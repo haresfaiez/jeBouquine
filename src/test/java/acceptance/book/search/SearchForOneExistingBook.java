@@ -32,6 +32,7 @@ public class SearchForOneExistingBook {
         bookInsertionTransaction.begin();
         bookInsertionSession.save(this.getExpectedBook());
         bookInsertionTransaction.commit();
+        bookInsertionSession.close();
     }
 
     @When("^The customer search for the book by ISBN \"([^\"]*)\"$")
@@ -41,6 +42,7 @@ public class SearchForOneExistingBook {
         bookRetrieveTransaction.begin();
         this.retrievedBook = bookRetrieveSession.load(Book.class, BookISBN);
         bookRetrieveTransaction.commit();
+        bookRetrieveSession.close();
     }
 
     @Then("^It should receive the book details$")
