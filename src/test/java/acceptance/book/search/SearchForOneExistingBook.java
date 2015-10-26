@@ -47,7 +47,10 @@ public class SearchForOneExistingBook {
 
     @Then("^It should receive the book details$")
     public void it_should_receive_the_book_details() throws Throwable {
+        final Session bookRetrieveSession = this.sessionFactory.openSession();
+        bookRetrieveSession.update(this.retrievedBook);
         assertThat(this.getExpectedBook()).isEqualToComparingFieldByField(this.getRetrievedBook());
+        bookRetrieveSession.close();
     }
 
     @Before
