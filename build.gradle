@@ -13,11 +13,14 @@ def slf4jVersion = '1.7.12'
 def hibernateVersion = '5.0.2.Final'
 def cucumberVersion = '1.2.4'
 def hsqldbVersion = '2.0.0'
+def jBehaveCoreVersion = '4.0.4'
+def jBehaveJUnitRunnerVersion = '1.0.1'
 
 configurations {
     cucumberRuntime {
         extendsFrom testRuntime
     }
+    jbehave
 }
 
 task cucumber() {
@@ -46,4 +49,6 @@ dependencies {
     testCompile group: 'info.cukes', name: 'cucumber-java', version: cucumberVersion
     testCompile group: 'info.cukes', name: 'cucumber-junit', version: cucumberVersion
     testCompile group: 'org.hsqldb', name: 'hsqldb', version: hsqldbVersion
+    testCompile group: 'org.jbehave', name: 'jbehave-core', version: jBehaveCoreVersion
+    testCompile group: 'de.codecentric', name: 'jbehave-junit-runner', version: jBehaveJUnitRunnerVersion
 }
