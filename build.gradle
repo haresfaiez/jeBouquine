@@ -4,8 +4,11 @@ apply plugin: 'idea'
 version = '1.0'
 
 def mainRepository = "http://localhost:8081/nexus/content/groups/public"
-def acceptanceTestPkg = 'acceptance.book.search'
-def acceptanceTestRes = 'src/test/resources'
+def acceptanceTestPkg = 'acceptance'
+def acceptanceTestResources = 'src/test/resources/acceptance'
+def integrationTestPkg = 'integration'
+def integrationTestResources = 'src/test/resources/integration'
+
 // dependencies versions
 def junitVersion = '4.12'
 def assertJVersion = '3.2.0'
@@ -13,23 +16,31 @@ def slf4jVersion = '1.7.12'
 def hibernateVersion = '5.0.2.Final'
 def cucumberVersion = '1.2.4'
 def hsqldbVersion = '2.0.0'
-def jBehaveCoreVersion = '4.0.4'
-def jBehaveJUnitRunnerVersion = '1.0.1'
 
 configurations {
     cucumberRuntime {
         extendsFrom testRuntime
     }
-    jbehave
 }
 
-task cucumber() {
+task acceptanceTest() {
     dependsOn assemble, compileTestJava
     doLast {
         javaexec {
             main = "cucumber.api.cli.Main"
             classpath = configurations.cucumberRuntime + sourceSets.main.output + sourceSets.test.output
-            args = ['--plugin', 'pretty', '--glue', acceptanceTestPkg, acceptanceTestRes]
+            args = ['--plugin', 'pretty', '--glue', acceptanceTestPkg, acceptanceTestResources]
+        }
+    }
+}
+
+task integrationTest() {
+    dependsOn assemble, compileTestJava
+    doLast {
+        javaexec {
+            main = "cucumber.api.cli.Main"
+            classpath = configurations.cucumberRuntime + sourceSets.main.output + sourceSets.test.output
+            args = ['--plugin', 'pretty', '--glue', integrationTestPkg, integrationTestResources]
         }
     }
 }
@@ -49,6 +60,4 @@ dependencies {
     testCompile group: 'info.cukes', name: 'cucumber-java', version: cucumberVersion
     testCompile group: 'info.cukes', name: 'cucumber-junit', version: cucumberVersion
     testCompile group: 'org.hsqldb', name: 'hsqldb', version: hsqldbVersion
-    testCompile group: 'org.jbehave', name: 'jbehave-core', version: jBehaveCoreVersion
-    testCompile group: 'de.codecentric', name: 'jbehave-junit-runner', version: jBehaveJUnitRunnerVersion
 }
