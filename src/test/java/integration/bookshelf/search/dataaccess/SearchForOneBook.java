@@ -27,7 +27,7 @@ public class SearchForOneBook {
     private Book expectedBook;
     private Optional<Book> retrievedBook;
 
-    @Given("^the data source contains a book with ISBN \"([^\"]*)\" and title \"([^\"]*)\"$")
+    @Given("^the catalog contains a book with ISBN \"([^\"]*)\" and title \"([^\"]*)\"$")
     public void there_is_a_book_in_the_catalog_with_ISBN_and_title(String BookISBN, String bookTitle) throws Throwable {
         this.expectedBook = Book.createBook(BookISBN, bookTitle);
         // add the book to the database
@@ -39,11 +39,11 @@ public class SearchForOneBook {
         bookInsertionSession.close();
     }
 
-    @Given("^the data source contains a no books$")
+    @Given("^the catalog contains a no books$")
     public void the_data_source_contains_a_no_books() throws Throwable {
     }
 
-    @When("^we try to retrieve a book with ISBN \"([^\"]*)\" from the data source$")
+    @When("^we try to retrieve a book with ISBN \"([^\"]*)\"")
     public void the_customer_search_for_the_book_by_ISBN(String BookISBN) throws Throwable {
         final Session bookRetrieveSession = this.sessionFactory.openSession();
         Transaction bookRetrieveTransaction = bookRetrieveSession.getTransaction();
@@ -53,7 +53,7 @@ public class SearchForOneBook {
         bookRetrieveSession.close();
     }
 
-    @Then("^we should get the book instance$")
+    @Then("^we should have the book")
     public void it_should_receive_the_book_details() throws Throwable {
         final Session bookRetrieveSession = this.sessionFactory.openSession();
         bookRetrieveSession.update(this.retrievedBook.get());
@@ -61,7 +61,7 @@ public class SearchForOneBook {
         bookRetrieveSession.close();
     }
 
-    @Then("^we should not get a book instance$")
+    @Then("^we should have an error$")
     public void we_should_not_get_a_book_instance() throws Throwable {
         //TODO:move that to a junit expected exception
         try {
