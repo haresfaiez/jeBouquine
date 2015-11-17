@@ -1,0 +1,25 @@
+stages:
+  - microTest
+  - integrationTest
+  - staticCodeAnalysis
+  - release
+
+build:
+  stage: microTest
+  script:
+  - gradle microTest
+
+integrationTest:
+  stage: integrationTest
+  script:
+  - gradle integrationTest
+
+staticCodeAnalysis:
+  stage: staticCodeAnalysis
+  script:
+    - gradle staticCodeAnalysis
+
+upload:
+  stage: release
+  script:
+  - gradle release
