@@ -23,6 +23,18 @@ configurations {
     }
 }
 
+task microTest(){
+
+}
+
+task staticCodeAnalysis(){
+
+}
+
+task release(){
+ //TODO:deploy to artifact repository
+}
+
 task acceptanceTest() {
     dependsOn assemble, compileTestJava
     doLast {
