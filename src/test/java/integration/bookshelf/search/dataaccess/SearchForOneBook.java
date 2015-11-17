@@ -18,7 +18,7 @@ import java.util.Optional;
 
 import static org.assertj.core.api.AssertionsForClassTypes.assertThat;
 
-public class SearchForASingleBookByISBN {
+public class SearchForOneBook {
 
     //TODO:Make that path a system property
     public static final String FAKE_HIBERNATE_CONFIG_LOCATION = "integration/dataaccess/fake-hibernate.xml";

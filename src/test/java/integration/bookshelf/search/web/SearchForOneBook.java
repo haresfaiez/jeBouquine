@@ -6,7 +6,10 @@ import cucumber.api.java.en.Given;
 import cucumber.api.java.en.Then;
 import cucumber.api.java.en.When;
 
-public class WebSearchForASingleBookByISBN {
+public class SearchForOneBook {
+
+    //TODO: mock the service layer: BookSearchService
+    //TODO: use spring testing framework to have some fun
 
     @Given("^the catalog contains a book with ISBN \"([^\"]*)\" and title \"([^\"]*)\"$")
     public void the_catalog_contains_a_book_with_ISBN_and_title(String BookISBN, String bookTitle) throws Throwable {
