@@ -1,3 +1,5 @@
+image: heroku/gradle:latest
+
 stages:
   - microTest
   - integrationTest
