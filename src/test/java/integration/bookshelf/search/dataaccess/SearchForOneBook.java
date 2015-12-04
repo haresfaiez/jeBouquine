@@ -21,13 +21,13 @@ import static org.assertj.core.api.AssertionsForClassTypes.assertThat;
 public class SearchForOneBook {
 
     //TODO:Make that path a system property
-    public static final String FAKE_HIBERNATE_CONFIG_LOCATION = "integration/dataaccess/fake-hibernate.xml";
+    public static final String FAKE_HIBERNATE_CONFIG_LOCATION = "acceptance/dataacess/fake-hibernate.xml";
     private SessionFactory sessionFactory;
 
     private Book expectedBook;
     private Optional<Book> retrievedBook;
 
-    @Given("^the catalog contains a book with ISBN \"([^\"]*)\" and title \"([^\"]*)\"$")
+    @Given("^the bookshop contains a book with ISBN \"([^\"]*)\" and title \"([^\"]*)\"$")
     public void there_is_a_book_in_the_catalog_with_ISBN_and_title(String BookISBN, String bookTitle) throws Throwable {
         this.expectedBook = Book.createBook(BookISBN, bookTitle);
         // add the book to the database

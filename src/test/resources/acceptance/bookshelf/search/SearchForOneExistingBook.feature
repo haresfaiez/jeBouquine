@@ -1,14 +1,20 @@
 Feature:
   As a customer
   I want to search for a book details
-  In order to choose whatever I will buy it or not
+  In order to decide whatever I will buy it or not
 
-  Scenario Outline:
-  Search for an existing book by ISBN
-    Given There is a book in the catalog with ISBN "<ISBN>" and title "<BookTitle>"
-    When  The customer search for the book by ISBN "<ISBN>"
-    Then  It should receive the book details
-  Examples:
-    | ISBN | BookTitle       |
-    | 1111 | HelloWorld      |
-    | 3456 | HibernateIsCool |
+  Background:
+    Given the catalog contains these books
+      | ISBN | BookTitle       |
+      | QBVS | HibernateIsCool |
+
+  Scenario:
+  Search for one existing book by ISBN
+    When  I search for a book with ISBN "QBVS"
+    Then  I should get the book
+
+   #The book doesn't exist in the catalog
+  Scenario:
+  Search for a non existing book by ISBN
+    When  I search for a book with ISBN "QQQQ"
+    Then  I should get an missing book message
