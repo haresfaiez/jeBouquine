@@ -16,6 +16,7 @@ def slf4jVersion = '1.7.12'
 def hibernateVersion = '5.0.2.Final'
 def cucumberVersion = '1.2.4'
 def hsqldbVersion = '2.0.0'
+def seleniumVersion = '2.48.2'
 
 configurations {
     cucumberRuntime {
@@ -23,7 +24,7 @@ configurations {
     }
 }
 
-task microTest(){
+task microtest(){
 
 }
 
@@ -35,8 +36,9 @@ task release(){
  //TODO:deploy to artifact repository
 }
 
-task acceptanceTest() {
-    dependsOn assemble, compileTestJava
+task acceptancetest(type: Test) {
+    description="acceptance test"
+    dependsOn assemble, microtest
     doLast {
         javaexec {
             main = "cucumber.api.cli.Main"
@@ -65,11 +67,20 @@ repositories {
 
 dependencies {
     compile group: 'org.hibernate', name: 'hibernate-core', version: hibernateVersion
+    compile group: 'org.hibernate', name: 'hibernate-entitymanager', version: hibernateVersion
+    compile group: 'org.slf4j', name: 'slf4j-simple', version: slf4jVersion
 
     testCompile group: 'junit', name: 'junit', version: junitVersion
     testCompile group: 'org.assertj', name: 'assertj-core', version: assertJVersion
-    testCompile group: 'org.slf4j', name: 'slf4j-simple', version: slf4jVersion
+    // Selenium
+    testCompile group: 'org.seleniumhq.selenium', name: 'selenium-java', version:
+            seleniumVersion
+    testCompile group: 'org.seleniumhq.selenium', name:
+            'selenium-firefox-driver', version: seleniumVersion
+    // HsqlDb
+    testCompile group: 'org.hsqldb', name: 'hsqldb', version: hsqldbVersion
+    // Cucumber
     testCompile group: 'info.cukes', name: 'cucumber-java', version: cucumberVersion
     testCompile group: 'info.cukes', name: 'cucumber-junit', version: cucumberVersion
-    testCompile group: 'org.hsqldb', name: 'hsqldb', version: hsqldbVersion
+
 }
