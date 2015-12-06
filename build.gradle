@@ -1,13 +1,12 @@
 apply plugin: 'java'
 apply plugin: 'idea'
 
+//TODO:configure versioning properly
 version = '1.0'
 
 def mainRepository = "http://localhost:8081/nexus/content/groups/public"
 def acceptanceTestPkg = 'acceptance'
 def acceptanceTestResources = 'src/test/resources/acceptance'
-def integrationTestPkg = 'integration'
-def integrationTestResources = 'src/test/resources/integration'
 
 // dependencies versions
 def junitVersion = '4.12'
@@ -17,7 +16,7 @@ def hibernateVersion = '5.0.2.Final'
 def cucumberVersion = '1.2.4'
 def hsqldbVersion = '2.0.0'
 def seleniumVersion = '2.48.2'
-
+def springVersion = '4.2.3.RELEASE'
 
 sourceSets {
     integrationtest {
@@ -29,13 +28,13 @@ sourceSets {
 
 task integrationtest(type: Test) {
     description = "Runs the integration tests"
-    testClassesDir = sourceSets.integrationTest.output.classesDir
-    classpath = sourceSets.integrationTest.runtimeClasspath
+    testClassesDir = sourceSets.integrationtest.output.classesDir
+    classpath = sourceSets.integrationtest.runtimeClasspath
 }
 
 configurations {
-    integrationTestCompile.extendsFrom testCompile
-    integrationTestRuntime.extendsFrom testRuntime
+    integrationtestCompile.extendsFrom testCompile
+    integrationtestRuntime.extendsFrom testRuntime
     cucumberRuntime {
         extendsFrom testRuntime
     }
@@ -65,17 +64,6 @@ task acceptancetest(type: Test) {
     }
 }
 
-task integrationTest() {
-    dependsOn assemble, compileTestJava
-    doLast {
-        javaexec {
-            main = "cucumber.api.cli.Main"
-            classpath = configurations.cucumberRuntime + sourceSets.main.output + sourceSets.test.output
-            args = ['--plugin', 'pretty', '--glue', integrationTestPkg, integrationTestResources]
-        }
-    }
-}
-
 repositories {
     maven {
         url mainRepository
@@ -86,6 +74,10 @@ dependencies {
     compile group: 'org.hibernate', name: 'hibernate-core', version: hibernateVersion
     compile group: 'org.hibernate', name: 'hibernate-entitymanager', version: hibernateVersion
     compile group: 'org.slf4j', name: 'slf4j-simple', version: slf4jVersion
+    compile group: 'org.springframework', name: 'spring-webmvc', version:
+            springVersion
+    compile 'javax.servlet:javax.servlet-api:3.1.0'
+
 
     testCompile group: 'junit', name: 'junit', version: junitVersion
     testCompile group: 'org.assertj', name: 'assertj-core', version: assertJVersion
@@ -99,5 +91,9 @@ dependencies {
     // Cucumber
     testCompile group: 'info.cukes', name: 'cucumber-java', version: cucumberVersion
     testCompile group: 'info.cukes', name: 'cucumber-junit', version: cucumberVersion
+    //Spring test
+    testCompile group: 'org.springframework', name: 'spring-test',
+            version:
+            springVersion
 
 }
