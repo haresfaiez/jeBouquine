@@ -13,30 +13,41 @@ import java.util.List;
 import java.util.Map;
 import java.util.Optional;
 
+import static org.junit.Assert.assertTrue;
+
 public class SearchForOneExistingBook {
-    private BookDataSourceDriver bookDataSourceDriver = new BookDataSourceDriver();
+    private final BookDataSourceDriver dataSourceDriver = new
+            BookDataSourceDriver();
+    private BookSearchWebDriver webDriver = new BookSearchWebDriver();
+    final List<Book> initialBooksList = new ArrayList<>();
 
     private Book expectedBook;
-    private Optional<Book> retrievedBook;
 
     @Given("^the catalog contains these books$")
     public void the_catalog_contains_these_books(Map<String, String> booksMap)
             throws
             Throwable {
-        List<Book> expectedBooksList = new ArrayList<>();
-        booksMap.forEach((isbn, title) -> expectedBooksList.add(new Book(isbn,
-                title)));
-        this.bookDataSourceDriver.addBooks(expectedBooksList);
+        booksMap.forEach(
+                (isbn, title) ->
+                        initialBooksList.add(new Book(isbn, title)));
+        dataSourceDriver.addBooks(initialBooksList);
     }
 
     @When("^I search for a book with ISBN \"([^\"]*)\"$")
-    public void the_customer_search_for_the_book_by_ISBN(String BookISBN) throws Throwable {
-        throw new PendingException();
+    public void the_customer_search_for_the_book_by_ISBN(String bookISBN)
+            throws Throwable {
+        this.expectedBook =
+                initialBooksList.stream()
+                .filter(book -> book.getISBN().equals(bookISBN))
+                .findFirst()
+                .orElse(new Book(bookISBN, ""));
+        webDriver.findBookByISBN(bookISBN);
     }
 
     @Then("^I should get the book$")
     public void it_should_receive_the_book_details() throws Throwable {
-        throw new PendingException();
+        Optional<Book> actualBook = webDriver.firstBookIfExists();
+        assertTrue(actualBook.isPresent() && actualBook.equals(expectedBook));
     }
 
     @Then("^I should get an missing book message$")
@@ -46,12 +57,14 @@ public class SearchForOneExistingBook {
 
     @Before
     public void setUp() {
-        this.bookDataSourceDriver.setUpDatabase();
+        this.dataSourceDriver.setUpDatabase();
+        this.webDriver.setUp();
     }
 
     @After
     public void tearDown() {
-        this.bookDataSourceDriver.tearDownDatabase();
+        this.dataSourceDriver.tearDownDatabase();
+        this.webDriver.tearDown();
     }
 
 }
