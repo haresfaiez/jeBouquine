@@ -18,7 +18,24 @@ def cucumberVersion = '1.2.4'
 def hsqldbVersion = '2.0.0'
 def seleniumVersion = '2.48.2'
 
+
+sourceSets {
+    integrationtest {
+        java.srcDir file('src/integrationtest/java')
+        resources.srcDir file('src/integrationtest/resources')
+        compileClasspath += sourceSets.main.output
+    }
+}
+
+task integrationtest(type: Test) {
+    description = "Runs the integration tests"
+    testClassesDir = sourceSets.integrationTest.output.classesDir
+    classpath = sourceSets.integrationTest.runtimeClasspath
+}
+
 configurations {
+    integrationTestCompile.extendsFrom testCompile
+    integrationTestRuntime.extendsFrom testRuntime
     cucumberRuntime {
         extendsFrom testRuntime
     }
