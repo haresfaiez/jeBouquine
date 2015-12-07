@@ -23,6 +23,7 @@ sourceSets {
         java.srcDir file('src/integrationtest/java')
         resources.srcDir file('src/integrationtest/resources')
         compileClasspath += sourceSets.main.output
+        runtimeClasspath += sourceSets.main.output
     }
 }
 
@@ -74,8 +75,10 @@ dependencies {
     compile group: 'org.hibernate', name: 'hibernate-core', version: hibernateVersion
     compile group: 'org.hibernate', name: 'hibernate-entitymanager', version: hibernateVersion
     compile group: 'org.slf4j', name: 'slf4j-simple', version: slf4jVersion
-    compile group: 'org.springframework', name: 'spring-webmvc', version:
-            springVersion
+    compile group: 'org.springframework', name: 'spring-webmvc',
+            version: springVersion
+    compile group: 'org.springframework', name: 'spring-web',
+            version: springVersion
     compile 'javax.servlet:javax.servlet-api:3.1.0'
 
 
@@ -93,7 +96,6 @@ dependencies {
     testCompile group: 'info.cukes', name: 'cucumber-junit', version: cucumberVersion
     //Spring test
     testCompile group: 'org.springframework', name: 'spring-test',
-            version:
-            springVersion
+            version: springVersion
 
 }
