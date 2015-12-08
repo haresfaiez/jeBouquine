@@ -22,6 +22,7 @@ def hsqldbVersion = '2.0.0'
 def seleniumVersion = '2.48.2'
 def springVersion = '4.2.3.RELEASE'
 def servletApiVersion = '3.1.0'
+def mockitoVersion = '1.10.19'
 
 sourceSets {
     integrationtest {
@@ -121,5 +122,7 @@ dependencies {
     //Spring test
     testCompile group: 'org.springframework', name: 'spring-test',
             version: springVersion
-
+    //Mockito
+    testCompile group: 'org.mockito', name: 'mockito-all',
+            version: mockitoVersion
 }
