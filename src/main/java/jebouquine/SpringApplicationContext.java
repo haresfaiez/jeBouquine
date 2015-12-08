@@ -21,11 +21,15 @@ import javax.persistence.EntityManagerFactory;
 @EnableTransactionManagement
 public class SpringApplicationContext {
 
+    //TODO:Move the parameter below to an application attribute
+    //TODO:it will contain either "acceptancetestenv" or "productionenv"
+    public static final String PERSISTENCE_UNIT = "productionenv";
+
     @Bean
     public LocalContainerEntityManagerFactoryBean entityManagerFactory() {
         LocalContainerEntityManagerFactoryBean entityManager =
                 new LocalContainerEntityManagerFactoryBean();
-        entityManager.setPersistenceUnitName("productionenv");
+        entityManager.setPersistenceUnitName(PERSISTENCE_UNIT);
         entityManager.setPackagesToScan(new String[] { "jebouquine.domain" });
         return entityManager;
     }
