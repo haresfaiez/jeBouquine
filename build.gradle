@@ -32,6 +32,12 @@ sourceSets {
         compileClasspath += sourceSets.main.output
         runtimeClasspath += sourceSets.main.output
     }
+    microtest {
+        java.srcDir file('src/microtest/java')
+        resources.srcDir file('src/microtest/resources')
+        compileClasspath += sourceSets.main.output
+        runtimeClasspath += sourceSets.main.output
+    }
 }
 
 task integrationtest(type: Test) {
@@ -40,16 +46,18 @@ task integrationtest(type: Test) {
     classpath = sourceSets.integrationtest.runtimeClasspath
 }
 
+task microtest(type: Test) {
+    description = "Runs the micro tests"
+    testClassesDir = sourceSets.microtest.output.classesDir
+    classpath = sourceSets.microtest.runtimeClasspath
+}
+
 configurations {
     integrationtestCompile.extendsFrom testCompile
     integrationtestRuntime.extendsFrom testRuntime
-    cucumberRuntime {
-        extendsFrom testRuntime
-    }
-}
-
-task microtest(){
-
+    microtestCompile.extendsFrom testCompile
+    microtestRuntime.extendsFrom testRuntime
+    cucumberRuntime.extendsFrom testRuntime
 }
 
 task staticCodeAnalysis(){
