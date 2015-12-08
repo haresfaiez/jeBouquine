@@ -1,5 +1,7 @@
 package jebouquine.service.bookshelf.viewmodel;
 
+import bookshelf.domain.Book;
+
 public class BookViewModel {
 
     private String ISBN;
@@ -11,6 +13,11 @@ public class BookViewModel {
     public BookViewModel(String ISBN, String title) {
         this.ISBN = ISBN;
         this.title = title;
+    }
+
+    public BookViewModel(Book book) {
+        this.ISBN = book.getISBN();
+        this.title = book.getTitle();
     }
 
     public String getISBN() {
@@ -47,5 +54,9 @@ public class BookViewModel {
         int result = ISBN != null ? ISBN.hashCode() : 0;
         result = 31 * result + (title != null ? title.hashCode() : 0);
         return result;
+    }
+
+    public static BookViewModel from(Book book) {
+        return new BookViewModel(book);
     }
 }
