@@ -8,7 +8,11 @@
           href="<c:url value="/resources/style.css" />" >
 </head>
 <body>
-<h1>Welcome to Spittr</h1>
-<a href="<c:url value="/" />">home</a> |
+<h1>Home</h1>
+<h2>Search for book</h2>
+<form method="POST" action="/search">
+    <input type="text" name="ISBN" id="find-book-by-isbn" /><br/>
+    <input type="submit" value="search" />
+</form>
 </body>
 </html>
