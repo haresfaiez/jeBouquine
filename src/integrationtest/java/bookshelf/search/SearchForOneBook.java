@@ -4,7 +4,6 @@ import jebouquine.service.bookshelf.BookService;
 import jebouquine.service.bookshelf.viewmodel.BookViewModel;
 import jebouquine.web.SpringWebContext;
 import jebouquine.web.bookshelf.BookSearchController;
-import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -35,18 +34,13 @@ public class SearchForOneBook {
     @Autowired
     private WebApplicationContext webApplicationContext;
 
-    private MockMvc mockMvc;
-
-    @Before
-    public void setUp() {
+    @Test
+    public void shouldProvideSearchByISBNOnHomePage() throws Exception {
+        MockMvc mockMvc;
         mockMvc = MockMvcBuilders
                 .webAppContextSetup(webApplicationContext)
                 .build();
-    }
-
-    @Test
-    public void shouldProvideSearchByISBNOnHomePage() throws Exception {
-        this.mockMvc.perform(get(HOME_PAGE_MAPPING))
+        mockMvc.perform(get(HOME_PAGE_MAPPING))
                 .andExpect(view().name(HOME_VIEW_NAME));
     }
 
