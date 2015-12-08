@@ -3,6 +3,7 @@ package jebouquine.domain.bookshelf;
 import javax.persistence.Entity;
 import javax.persistence.Id;
 
+//TODO:add attributes validation
 @Entity
 public class Book {
 
