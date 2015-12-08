@@ -1,6 +1,6 @@
 package acceptance.bookshelf.search;
 
-import bookshelf.domain.Book;
+import jebouquine.domain.bookshelf.Book;
 import cucumber.api.PendingException;
 import cucumber.api.java.After;
 import cucumber.api.java.Before;

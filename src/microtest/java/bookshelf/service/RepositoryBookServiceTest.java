@@ -1,6 +1,6 @@
 package bookshelf.service;
 
-import bookshelf.domain.Book;
+import jebouquine.domain.bookshelf.Book;
 import jebouquine.infrastructure.bookshelf.BookRepository;
 import jebouquine.service.bookshelf.BookService;
 import jebouquine.service.bookshelf.RepositoryBookService;

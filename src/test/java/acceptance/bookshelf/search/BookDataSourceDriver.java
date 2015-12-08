@@ -1,6 +1,6 @@
 package acceptance.bookshelf.search;
 
-import bookshelf.domain.Book;
+import jebouquine.domain.bookshelf.Book;
 
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;

@@ -1,6 +1,6 @@
 package jebouquine.service.bookshelf.viewmodel;
 
-import bookshelf.domain.Book;
+import jebouquine.domain.bookshelf.Book;
 
 public class BookViewModel {
 

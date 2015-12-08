@@ -1,4 +1,4 @@
-package bookshelf.domain;
+package jebouquine.domain.bookshelf;
 
 import javax.persistence.Entity;
 import javax.persistence.Id;
@@ -56,5 +56,9 @@ public class Book {
 
     public static Book createBook (String ISBN, String title) {
         return new Book(ISBN, title);
+    }
+
+    public static Book nullObject() {
+        return new Book("", "");
     }
 }

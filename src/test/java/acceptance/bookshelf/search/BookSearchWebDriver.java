@@ -1,6 +1,6 @@
 package acceptance.bookshelf.search;
 
-import bookshelf.domain.Book;
+import jebouquine.domain.bookshelf.Book;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.firefox.FirefoxDriver;
