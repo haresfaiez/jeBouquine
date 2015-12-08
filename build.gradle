@@ -110,6 +110,8 @@ dependencies {
             version: springVersion
     compile group: 'org.springframework', name: 'spring-web',
             version: springVersion
+    compile group: 'org.springframework', name: 'spring-orm',
+            version: springVersion
     
     providedCompile group: 'javax.servlet', name: 'javax.servlet-api',
             version: servletApiVersion
