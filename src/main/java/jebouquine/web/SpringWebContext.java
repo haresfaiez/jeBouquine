@@ -11,7 +11,8 @@ import org.springframework.web.servlet.view.InternalResourceViewResolver;
 
 @Configuration
 @EnableWebMvc
-@ComponentScan("jebouquine.web")
+//TODO:fix the scan below to focus just on jebouquine.web
+@ComponentScan("jebouquine")
 public class SpringWebContext extends WebMvcConfigurerAdapter{
 
     @Bean
