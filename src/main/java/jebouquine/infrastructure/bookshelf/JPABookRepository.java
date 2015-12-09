@@ -17,7 +17,7 @@ public class JPABookRepository implements BookRepository {
 
     @Override
     public Optional<Book> findBookByISBN(String ISBN) {
-        return null;
+        return Optional.of(entityManager.find(Book.class, ISBN));
     }
 
 }
