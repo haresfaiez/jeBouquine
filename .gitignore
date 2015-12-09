@@ -1,0 +1,12 @@
+artefacts
+build/*
+out/*
+target/*
+.idea/*
+nohup.out
+JeBouquine.iml
+JeBouquine.ipr
+JeBouquine.iws
+.gitignore.swp
+.gitignore~
+.gitlab-ci.yml~
