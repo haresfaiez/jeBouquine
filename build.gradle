@@ -24,6 +24,8 @@ def springVersion = '4.2.3.RELEASE'
 def servletApiVersion = '3.1.0'
 def mockitoVersion = '1.10.19'
 def hamcrestVersion = '1.3'
+def dbUnitVersion = '2.5.1'
+def springTestDBUnit = '1.2.1'
 
 sourceSets {
     acceptancetest {
@@ -136,5 +138,12 @@ dependencies {
     //Mockito
     testCompile group: 'org.mockito', name: 'mockito-all',
             version: mockitoVersion
+    //DBUnit
+    testCompile group: 'org.dbunit', name: 'dbunit',
+            version: dbUnitVersion
+    testCompile group: 'com.github.springtestdbunit', name: 'spring-test-dbunit',
+            version: springTestDBUnit
+
+
 
 }
