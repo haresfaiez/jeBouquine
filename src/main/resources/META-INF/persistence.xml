@@ -6,6 +6,7 @@
              version="2.1">
     <persistence-unit name="productionenv">
         <provider>org.hibernate.ejb.HibernatePersistence</provider>
+        <class>jebouquine.domain.bookshelf.Book</class>
         <properties>
             <property name="javax.persistence.jdbc.url" value="jdbc:hsqldb:mem:jebouquine"/>
             <property name="javax.persistence.jdbc.driver" value="org.hsqldb.jdbcDriver"/>
@@ -17,6 +18,7 @@
     </persistence-unit>
     <persistence-unit name="acceptancetestenv">
         <provider>org.hibernate.ejb.HibernatePersistence</provider>
+        <class>jebouquine.domain.bookshelf.Book</class>
         <properties>
             <property name="javax.persistence.jdbc.url" value="jdbc:hsqldb:mem:jebouquine"/>
             <property name="javax.persistence.jdbc.driver" value="org.hsqldb.jdbcDriver"/>
@@ -28,6 +30,7 @@
     </persistence-unit>
     <persistence-unit name="integrationtestenv">
         <provider>org.hibernate.ejb.HibernatePersistence</provider>
+        <class>jebouquine.domain.bookshelf.Book</class>
         <properties>
             <property name="javax.persistence.jdbc.url" value="jdbc:hsqldb:mem:jebouquine"/>
             <property name="javax.persistence.jdbc.driver" value="org.hsqldb.jdbcDriver"/>
