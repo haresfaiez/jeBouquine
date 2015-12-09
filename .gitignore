@@ -10,3 +10,4 @@ JeBouquine.iws
 .gitignore.swp
 .gitignore~
 .gitlab-ci.yml~
+.gradle/*
