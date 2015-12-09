@@ -1,9 +1,9 @@
-package bookshelf.search;
+package books.search;
 
-import jebouquine.service.bookshelf.BookService;
-import jebouquine.service.bookshelf.viewmodel.BookViewModel;
+import jebouquine.service.books.BookService;
+import jebouquine.service.books.viewmodel.BookViewModel;
 import jebouquine.web.SpringWebContext;
-import jebouquine.web.bookshelf.BookSearchController;
+import jebouquine.web.books.BookSearchController;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;

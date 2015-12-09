@@ -1,4 +1,4 @@
-package jebouquine.service.bookshelf.viewmodel;
+package jebouquine.service.books.viewmodel;
 
 public class BookSearchBookViewModel {
     private String ISBN;

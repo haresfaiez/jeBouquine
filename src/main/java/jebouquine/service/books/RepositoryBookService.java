@@ -1,8 +1,8 @@
-package jebouquine.service.bookshelf;
+package jebouquine.service.books;
 
-import jebouquine.domain.bookshelf.Book;
-import jebouquine.infrastructure.bookshelf.BookRepository;
-import jebouquine.service.bookshelf.viewmodel.BookViewModel;
+import jebouquine.domain.books.Book;
+import jebouquine.infrastructure.books.BookRepository;
+import jebouquine.service.books.viewmodel.BookViewModel;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 

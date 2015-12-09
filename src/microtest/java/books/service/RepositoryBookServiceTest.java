@@ -1,10 +1,10 @@
-package bookshelf.service;
+package books.service;
 
-import jebouquine.domain.bookshelf.Book;
-import jebouquine.infrastructure.bookshelf.BookRepository;
-import jebouquine.service.bookshelf.BookService;
-import jebouquine.service.bookshelf.RepositoryBookService;
-import jebouquine.service.bookshelf.viewmodel.BookViewModel;
+import jebouquine.domain.books.Book;
+import jebouquine.infrastructure.books.BookRepository;
+import jebouquine.service.books.BookService;
+import jebouquine.service.books.RepositoryBookService;
+import jebouquine.service.books.viewmodel.BookViewModel;
 import org.junit.Assert;
 import org.junit.Test;
 

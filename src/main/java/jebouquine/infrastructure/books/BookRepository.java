@@ -1,6 +1,6 @@
-package jebouquine.infrastructure.bookshelf;
+package jebouquine.infrastructure.books;
 
-import jebouquine.domain.bookshelf.Book;
+import jebouquine.domain.books.Book;
 
 import java.util.Optional;
 

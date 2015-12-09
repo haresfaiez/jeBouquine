@@ -1,11 +1,11 @@
-package bookshelf;
+package books;
 
-import bookshelf.infrastructure.SpringApplicationTestContext;
+import books.infrastructure.SpringApplicationTestContext;
 import com.github.springtestdbunit.DbUnitTestExecutionListener;
 import com.github.springtestdbunit.annotation.DatabaseSetup;
 import com.github.springtestdbunit.annotation.ExpectedDatabase;
-import jebouquine.domain.bookshelf.Book;
-import jebouquine.infrastructure.bookshelf.BookRepository;
+import jebouquine.domain.books.Book;
+import jebouquine.infrastructure.books.BookRepository;
 import org.junit.Assert;
 import org.junit.Test;
 import org.junit.runner.RunWith;
