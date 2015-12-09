@@ -1,6 +1,6 @@
 package acceptance.books.search;
 
-import jebouquine.infrastructure.books.Book;
+import jebouquine.infrastructure.books.model.BookEntity;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.firefox.FirefoxDriver;
@@ -37,11 +37,11 @@ public class WebDriver {
         element.submit();
     }
 
-    public Optional<Book> firstBookIfExists() {
+    public Optional<BookEntity> firstBookIfExists() {
         List<WebElement> bookSearchResultsTitles = firefoxDriver.findElements
                 (By.id
                 (BOOK_SEARCH_RESULT_BOOK_TITLE));
-        return Optional.of(new Book("", bookSearchResultsTitles.get(0)
+        return Optional.of(new BookEntity("", bookSearchResultsTitles.get(0)
                 .getText()));
 
     }

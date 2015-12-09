@@ -1,13 +1,6 @@
-package jebouquine.infrastructure.books;
+package jebouquine.domain.books;
 
-import javax.persistence.Entity;
-import javax.persistence.Id;
-
-//TODO:add attributes validation
-@Entity
 public class Book {
-
-    @Id
     private String ISBN;
     private String title;
 
@@ -53,13 +46,5 @@ public class Book {
         int result = ISBN.hashCode();
         result = 31 * result + title.hashCode();
         return result;
-    }
-
-    public static Book createBook (String ISBN, String title) {
-        return new Book(ISBN, title);
-    }
-
-    public static Book nullObject() {
-        return new Book("", "");
     }
 }

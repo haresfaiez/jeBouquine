@@ -1,6 +1,6 @@
 package books.service;
 
-import jebouquine.infrastructure.books.Book;
+import jebouquine.domain.books.Book;
 import jebouquine.domain.books.BookRepository;
 import jebouquine.service.books.BookService;
 import jebouquine.service.books.RepositoryBookService;
@@ -29,8 +29,8 @@ public class RepositoryBookServiceTest {
         final BookService bookService = new RepositoryBookService
                 (bookRepository);
 
-        DetailsBookViewModel actualDetailsBookViewModel = bookService.searchForBookByISBN
-                (ISBN);
+        DetailsBookViewModel actualDetailsBookViewModel =
+                bookService.searchForBookByISBN(ISBN);
 
         Assert.assertEquals(expectedDetailsBookViewModel, actualDetailsBookViewModel);
     }

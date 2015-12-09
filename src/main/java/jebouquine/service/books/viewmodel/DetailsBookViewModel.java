@@ -1,6 +1,7 @@
 package jebouquine.service.books.viewmodel;
 
-import jebouquine.infrastructure.books.Book;
+
+import jebouquine.domain.books.Book;
 
 public class DetailsBookViewModel {
 
