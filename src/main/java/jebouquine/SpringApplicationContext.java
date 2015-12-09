@@ -30,7 +30,6 @@ public class SpringApplicationContext {
         LocalContainerEntityManagerFactoryBean entityManager =
                 new LocalContainerEntityManagerFactoryBean();
         entityManager.setPersistenceUnitName(PERSISTENCE_UNIT);
-        entityManager.setPackagesToScan(new String[] { "jebouquine.domain" });
         return entityManager;
     }
 

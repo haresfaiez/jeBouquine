@@ -32,7 +32,6 @@ public class SpringApplicationTestContext {
         LocalContainerEntityManagerFactoryBean entityManager =
                 new LocalContainerEntityManagerFactoryBean();
         entityManager.setPersistenceUnitName(INTEGRATION_TEST_PERSISTENCE_UNIT);
-        entityManager.setPackagesToScan(new String[]{"jebouquine.domain"});
         return entityManager;
     }
 
