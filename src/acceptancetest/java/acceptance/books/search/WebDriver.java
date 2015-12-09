@@ -1,6 +1,6 @@
 package acceptance.books.search;
 
-import jebouquine.domain.books.Book;
+import jebouquine.infrastructure.books.Book;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.firefox.FirefoxDriver;
@@ -8,7 +8,7 @@ import org.openqa.selenium.firefox.FirefoxDriver;
 import java.util.List;
 import java.util.Optional;
 
-public class BookSearchWebDriver {
+public class WebDriver {
 
     //TODO: externalize the informations below
     public static final String HOME_URL = "http://localhost:8080/jebouquine";
@@ -18,7 +18,7 @@ public class BookSearchWebDriver {
 
     private FirefoxDriver firefoxDriver;
 
-    public BookSearchWebDriver() {
+    public WebDriver() {
     }
 
     public void setUp () {

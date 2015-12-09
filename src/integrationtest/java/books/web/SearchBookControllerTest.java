@@ -1,9 +1,9 @@
-package books.search;
+package books.web;
 
 import jebouquine.service.books.BookService;
-import jebouquine.service.books.viewmodel.BookViewModel;
+import jebouquine.service.books.viewmodel.DetailsBookViewModel;
 import jebouquine.web.SpringWebContext;
-import jebouquine.web.books.BookSearchController;
+import jebouquine.web.books.SearchBookController;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -25,7 +25,7 @@ import static org.springframework.test.web.servlet.setup.MockMvcBuilders.standal
 @RunWith(SpringJUnit4ClassRunner.class)
 @ContextConfiguration(classes = {SpringWebContext.class})
 @WebAppConfiguration
-public class SearchForOneBook {
+public class SearchBookControllerTest {
 
     //TODO:externalize constants below
     public static final String HOME_PAGE_MAPPING = "/";
@@ -49,18 +49,18 @@ public class SearchForOneBook {
             throws Exception {
         final String ISBN = "AAAA";
         final String title = "Hello Spring";
-        final BookViewModel expectedBookViewModel =  new BookViewModel(ISBN,
+        final DetailsBookViewModel expectedDetailsBookViewModel =  new DetailsBookViewModel(ISBN,
                                                                         title);
         BookService bookService = mock(BookService.class);
         given(bookService.searchForBookByISBN(ISBN)).willReturn
-                (expectedBookViewModel);
+                (expectedDetailsBookViewModel);
 
-        BookSearchController bookSearchController = new
-                BookSearchController(bookService);
-        standaloneSetup(bookSearchController).build()
+        SearchBookController searchBookController = new
+                SearchBookController(bookService);
+        standaloneSetup(searchBookController).build()
                 .perform(post("/search").param("ISBN", ISBN))
                 .andExpect(model()
-                        .attribute("book", expectedBookViewModel))
+                        .attribute("book", expectedDetailsBookViewModel))
                 .andExpect(view().name("book"));
     }
 }

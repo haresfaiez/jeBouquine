@@ -1,7 +1,7 @@
 package jebouquine.service.books;
 
-import jebouquine.service.books.viewmodel.BookViewModel;
+import jebouquine.service.books.viewmodel.DetailsBookViewModel;
 
 public interface BookService {
-    BookViewModel searchForBookByISBN(String ISBN);
+    DetailsBookViewModel searchForBookByISBN(String ISBN);
 }

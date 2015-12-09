@@ -1,4 +1,4 @@
-package books.infrastructure;
+package spring.context;
 
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.ComponentScan;

@@ -1,13 +1,13 @@
 package jebouquine.service.books.viewmodel;
 
-public class BookSearchBookViewModel {
+public class SearchBookFormViewModel {
     private String ISBN;
     private String title;
 
-    public BookSearchBookViewModel() {
+    public SearchBookFormViewModel() {
     }
 
-    public BookSearchBookViewModel(String ISBN, String title) {
+    public SearchBookFormViewModel(String ISBN, String title) {
         this.ISBN = ISBN;
         this.title = title;
     }
@@ -33,7 +33,7 @@ public class BookSearchBookViewModel {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
 
-        BookSearchBookViewModel that = (BookSearchBookViewModel) o;
+        SearchBookFormViewModel that = (SearchBookFormViewModel) o;
 
         if (ISBN != null ? !ISBN.equals(that.ISBN) : that.ISBN != null)
             return false;

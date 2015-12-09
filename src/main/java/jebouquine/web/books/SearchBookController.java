@@ -2,8 +2,8 @@ package jebouquine.web.books;
 
 
 import jebouquine.service.books.BookService;
-import jebouquine.service.books.viewmodel.BookSearchBookViewModel;
-import jebouquine.service.books.viewmodel.BookViewModel;
+import jebouquine.service.books.viewmodel.SearchBookFormViewModel;
+import jebouquine.service.books.viewmodel.DetailsBookViewModel;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -13,19 +13,19 @@ import static org.springframework.web.bind.annotation.RequestMethod.POST;
 
 @Controller
 @RequestMapping(value = "/search")
-public class BookSearchController {
+public class SearchBookController {
 
     private BookService service;
 
     @Autowired
-    public BookSearchController(BookService service) {
+    public SearchBookController(BookService service) {
         this.service = service;
     }
 
     @RequestMapping(method = POST)
-    public final String searchByISBN(BookSearchBookViewModel viewModel
+    public final String searchByISBN(SearchBookFormViewModel viewModel
                                                         , Model model) {
-        BookViewModel book = service.searchForBookByISBN(viewModel.getISBN());
+        DetailsBookViewModel book = service.searchForBookByISBN(viewModel.getISBN());
         model.addAttribute("book", book);
         return "book";
     }

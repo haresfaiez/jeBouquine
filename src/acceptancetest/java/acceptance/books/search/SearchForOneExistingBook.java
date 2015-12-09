@@ -6,13 +6,13 @@ import cucumber.api.java.Before;
 import cucumber.api.java.en.Given;
 import cucumber.api.java.en.Then;
 import cucumber.api.java.en.When;
-import jebouquine.domain.books.Book;
+import jebouquine.infrastructure.books.Book;
 
 import java.util.Map;
 import java.util.Optional;
 
 public class SearchForOneExistingBook {
-    private BookSearchWebDriver webDriver = new BookSearchWebDriver();
+    private WebDriver webDriver = new WebDriver();
 
     @Given("^the catalog contains these books$")
     public void the_catalog_contains_these_books(Map<String, String> booksMap)

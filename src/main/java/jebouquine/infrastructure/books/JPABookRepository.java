@@ -1,6 +1,6 @@
 package jebouquine.infrastructure.books;
 
-import jebouquine.domain.books.Book;
+import jebouquine.domain.books.BookRepository;
 import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
 

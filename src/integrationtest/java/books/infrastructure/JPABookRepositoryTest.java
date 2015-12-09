@@ -1,11 +1,10 @@
-package books;
+package books.infrastructure;
 
-import books.infrastructure.SpringApplicationTestContext;
 import com.github.springtestdbunit.DbUnitTestExecutionListener;
 import com.github.springtestdbunit.annotation.DatabaseSetup;
 import com.github.springtestdbunit.annotation.ExpectedDatabase;
-import jebouquine.domain.books.Book;
-import jebouquine.infrastructure.books.BookRepository;
+import jebouquine.domain.books.BookRepository;
+import jebouquine.infrastructure.books.Book;
 import org.junit.Assert;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -15,6 +14,7 @@ import org.springframework.test.context.TestExecutionListeners;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 import org.springframework.test.context.support.DependencyInjectionTestExecutionListener;
 import org.springframework.transaction.annotation.Transactional;
+import spring.context.SpringApplicationTestContext;
 
 import java.util.Optional;
 
@@ -29,8 +29,8 @@ public class JPABookRepositoryTest {
     private BookRepository bookRepository;
 
     @Test
-    @DatabaseSetup("/persistence/jpaBookRepositoryTest-init.xml")
-    @ExpectedDatabase("/persistence/jpaBookRepositoryTest-expected.xml")
+    @DatabaseSetup("/persistence/books/retrieve-book-setup.xml")
+    @ExpectedDatabase("/persistence/books/retrieve-book-expected.xml")
     public void shouldRetrieveExistingBookByISBN() {
         final String ISBN = "AAAA";
         final String title = "Hello spring";

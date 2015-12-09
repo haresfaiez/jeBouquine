@@ -1,10 +1,10 @@
 package books.service;
 
-import jebouquine.domain.books.Book;
-import jebouquine.infrastructure.books.BookRepository;
+import jebouquine.infrastructure.books.Book;
+import jebouquine.domain.books.BookRepository;
 import jebouquine.service.books.BookService;
 import jebouquine.service.books.RepositoryBookService;
-import jebouquine.service.books.viewmodel.BookViewModel;
+import jebouquine.service.books.viewmodel.DetailsBookViewModel;
 import org.junit.Assert;
 import org.junit.Test;
 
@@ -21,7 +21,7 @@ public class RepositoryBookServiceTest {
         final String ISBN = "AAAA";
         final String title = "Hello Spring";
         final Book expectedBook = new Book(ISBN, title);
-        final BookViewModel expectedBookViewModel = new BookViewModel(ISBN,
+        final DetailsBookViewModel expectedDetailsBookViewModel = new DetailsBookViewModel(ISBN,
                                                         title);
         BookRepository bookRepository = mock(BookRepository.class);
         when(bookRepository.findBookByISBN(ISBN)).thenReturn(Optional.of
@@ -29,10 +29,10 @@ public class RepositoryBookServiceTest {
         final BookService bookService = new RepositoryBookService
                 (bookRepository);
 
-        BookViewModel actualBookViewModel = bookService.searchForBookByISBN
+        DetailsBookViewModel actualDetailsBookViewModel = bookService.searchForBookByISBN
                 (ISBN);
 
-        Assert.assertEquals(expectedBookViewModel, actualBookViewModel);
+        Assert.assertEquals(expectedDetailsBookViewModel, actualDetailsBookViewModel);
     }
 
     @Test

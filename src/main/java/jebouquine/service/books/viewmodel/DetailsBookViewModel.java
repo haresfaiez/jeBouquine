@@ -1,21 +1,21 @@
 package jebouquine.service.books.viewmodel;
 
-import jebouquine.domain.books.Book;
+import jebouquine.infrastructure.books.Book;
 
-public class BookViewModel {
+public class DetailsBookViewModel {
 
     private String ISBN;
     private String title;
 
-    public BookViewModel() {
+    public DetailsBookViewModel() {
     }
 
-    public BookViewModel(String ISBN, String title) {
+    public DetailsBookViewModel(String ISBN, String title) {
         this.ISBN = ISBN;
         this.title = title;
     }
 
-    public BookViewModel(Book book) {
+    public DetailsBookViewModel(Book book) {
         this.ISBN = book.getISBN();
         this.title = book.getTitle();
     }
@@ -41,7 +41,7 @@ public class BookViewModel {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
 
-        BookViewModel that = (BookViewModel) o;
+        DetailsBookViewModel that = (DetailsBookViewModel) o;
 
         if (ISBN != null ? !ISBN.equals(that.ISBN) : that.ISBN != null)
             return false;
@@ -56,7 +56,7 @@ public class BookViewModel {
         return result;
     }
 
-    public static BookViewModel from(Book book) {
-        return new BookViewModel(book);
+    public static DetailsBookViewModel from(Book book) {
+        return new DetailsBookViewModel(book);
     }
 }

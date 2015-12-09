@@ -1,4 +1,4 @@
-package jebouquine.domain.books;
+package jebouquine.infrastructure.books;
 
 import javax.persistence.Entity;
 import javax.persistence.Id;
