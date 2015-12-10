@@ -1,13 +1,13 @@
 <!DOCTYPE Configure PUBLIC "-//Mort Bay Consulting//DTD Configure//EN"
         "http://www.eclipse.org/jetty/configure_9_0.dtd">
 <Configure id="wac" class="org.eclipse.jetty.webapp.WebAppContext">
-    <New id="JeBouquineDataSource" class="org.eclipse.jetty.plus.jndi.Resource">
+    <New id="jebouquineds" class="org.eclipse.jetty.plus.jndi.Resource">
         <Arg></Arg>
-        <Arg>jdbc/JeBouquineDataSource</Arg>
+        <Arg>jdbc/jebouquineds</Arg>
         <Arg>
             <New class="org.hsqldb.jdbc.JDBCDataSource">
                 <Set name="Database">mem:jebouquinedb</Set>
-                <Set name="User">SA</Set>
+                <Set name="User">sa</Set>
                 <Set name="Password">""</Set>
             </New>
         </Arg>
