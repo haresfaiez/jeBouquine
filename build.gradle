@@ -27,6 +27,7 @@ def hamcrestVersion = '1.3'
 def dbUnitVersion = '2.5.1'
 def springTestDBUnit = '1.2.1'
 def thymeleafSpringVersion = '2.1.4.RELEASE'
+def commonsDbcpVersion = '1.4'
 
 sourceSets {
     acceptancetest {
@@ -119,6 +120,8 @@ dependencies {
             version: springVersion
     compile group: 'org.thymeleaf', name: 'thymeleaf-spring4',
             version: thymeleafSpringVersion
+    compile group: 'commons-dbcp', name: 'commons-dbcp',
+            version: commonsDbcpVersion
 
     providedCompile group: 'javax.servlet', name: 'javax.servlet-api',
             version: servletApiVersion
@@ -128,7 +131,7 @@ dependencies {
     testCompile group: 'org.assertj', name: 'assertj-core', version: assertJVersion
 
     // HsqlDb
-    testCompile group: 'org.hsqldb', name: 'hsqldb', version: hsqldbVersion
+    providedCompile group: 'org.hsqldb', name: 'hsqldb', version: hsqldbVersion
     // Cucumber
     testCompile group: 'info.cukes', name: 'cucumber-java', version: cucumberVersion
     testCompile group: 'info.cukes', name: 'cucumber-junit', version: cucumberVersion
