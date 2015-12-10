@@ -8,7 +8,8 @@
         <provider>org.hibernate.ejb.HibernatePersistence</provider>
         <class>jebouquine.infrastructure.books.model.BookEntity</class>
         <properties>
-            <property name="javax.persistence.jdbc.url" value="jdbc:hsqldb:mem:jebouquine"/>
+            <property name="javax.persistence.jdbc.url"
+                      value="jdbc:hsqldb:mem:db"/>
             <property name="javax.persistence.jdbc.driver" value="org.hsqldb.jdbcDriver"/>
             <property name="javax.persistence.jdbc.user" value="sa"/>
             <property name="javax.persistence.jdbc.password" value=""/>

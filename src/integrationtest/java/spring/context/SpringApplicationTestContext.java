@@ -25,7 +25,7 @@ import javax.sql.DataSource;
 public class SpringApplicationTestContext {
 
     public static final String INTEGRATION_TEST_PERSISTENCE_UNIT
-                                                    = "integrationtestenv";
+            = "integrationtestenv";
 
     @Bean
     public LocalContainerEntityManagerFactoryBean entityManagerFactory() {
@@ -37,7 +37,7 @@ public class SpringApplicationTestContext {
 
     @Bean
     public DataSource dataSource() {
-        return new DriverManagerDataSource("jdbc:hsqldb:mem:jebouquine","sa","");
+        return new DriverManagerDataSource("jdbc:hsqldb:mem:jebouquine", "sa", "");
     }
 
     @Bean
