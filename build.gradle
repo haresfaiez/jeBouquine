@@ -113,7 +113,9 @@ dependencies {
             version: springVersion
     compile group: 'org.springframework', name: 'spring-web',
             version: springVersion
-    compile group: 'org.springframework', name: 'spring-orm',
+     compile group: 'org.springframework', name: 'spring-orm',
+            version: springVersion
+    compile group: 'org.springframework', name: 'spring-tx',
             version: springVersion
     compile group: 'org.thymeleaf', name: 'thymeleaf-spring4',
             version: thymeleafSpringVersion
