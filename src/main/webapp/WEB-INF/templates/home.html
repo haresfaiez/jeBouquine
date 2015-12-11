@@ -1,5 +1,7 @@
 <!DOCTYPE html>
-<html xmlns:th="http://www.w3.org/1999/xhtml">
+<html xmlns:th="http://www.w3.org/1999/xhtml"
+      th:with="lang=${#locale.language}"
+      th:lang="${lang}">
 <head>
     <meta charset="utf-8"/>
     <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
@@ -24,13 +26,19 @@
 <div class="wrapper">
     <header class="main-header">
         <a href="#" class="logo">
-            <span class="logo-mini">JB</span>
-            <span class="logo-lg">JeBouquine</span>
+            <span class="logo-mini" th:text="#{home.title-mini}">
+                ST
+            </span>
+            <span class="logo-lg" th:text="#{home.title-large}">
+                Site Title
+            </span>
         </a>
         <nav class="navbar navbar-static-top" role="navigation">
             <a href="#" class="sidebar-toggle" data-toggle="offcanvas"
                role="button">
-                <span class="sr-only">Toggle navigation</span>
+                <span class="sr-only"
+                      th:text="#{home.toggle-navigation}">toggle
+                    navigation</span>
             </a>
         </nav>
     </header>
@@ -43,14 +51,16 @@
                          alt="User Image"/>
                 </div>
                 <div class="pull-left info">
-                    <p>Alexander Pierce</p>
-                    <a href="#"><i class="fa fa-circle text-success"></i> Online</a>
+                    <p th:text="#{home.user-name}">User Name</p>
+                    <a href="#"><i class="fa fa-circle text-success"></i>
+                        <span th:text="#{home.user-status}">Online</span>
+                    </a>
                 </div>
             </div>
             <form action="#" method="get" class="sidebar-form">
                 <div class="input-group">
                     <input type="text" name="q" class="form-control"
-                           placeholder="Search..."/>
+                           th:value="#{home.search}"/>
               <span class="input-group-btn">
                 <button type="submit" name="search" id="search-btn"
                         class="btn btn-flat"><i class="fa fa-search"></i>
@@ -59,23 +69,37 @@
                 </div>
                 <div class="input-group">
                     <input type="radio" name="ISBN" class=""/>
-		  <span class="">
-		  ISBN
-              </span>
+                    <span th:text="#{home.search-by-isbn}">ISBN</span>
+                    <input type="radio" name="title" class=""/>
+                    <span th:text="#{home.search-by-title}">title</span>
                 </div>
             </form>
             <ul class="sidebar-menu">
                 <li class="active treeview">
                     <a href="#">
-                        <i class="fa fa-dashboard"></i> <span>Dashboard</span>
+                        <i class="fa fa-dashboard"></i>
+                        <span th:text="#{home.cart-management}">
+                            Cart management
+                        </span>
                         <i class="fa fa-angle-left pull-right"></i>
                     </a>
                     <ul class="treeview-menu">
-                        <li class="active"><a href="home.html"><i
-                                class="fa fa-circle-o"></i> Dashboard v1</a>
+                        <li>
+                            <a href="index2.html">
+                                <i class="fa fa-circle-o"></i>
+                                <span th:text="#{home.cart-view}">
+                                    Cart view
+                                </span>
+                            </a>
                         </li>
-                        <li><a href="index2.html"><i class="fa fa-circle-o"></i>
-                            Dashboard v2</a></li>
+                        <li>
+                            <a href="index2.html">
+                                <i class="fa fa-circle-o"></i>
+                                <span th:text="#{home.cart-order}">
+                                    Cart order
+                                </span>
+                            </a>
+                        </li>
                     </ul>
                 </li>
             </ul>
@@ -83,23 +107,16 @@
     </aside>
     <div class="content-wrapper">
         <section class="content-header">
+            <h1 th:text="#{home.content-title}">Content title</h1>
+
             <h1>
-                Dashboard
-                <small>Control panel</small>
+                <small th:text="#{home.content-subtitle}">
+                    Content sub title
+                </small>
             </h1>
         </section>
         <section class="content">
-            <div class="col-md-3 col-sm-6 col-xs-12">
-                <div class="info-box">
-                    <span class="info-box-icon bg-aqua"><i
-                            class="ion ion-ios-gear-outline"></i></span>
 
-                    <div class="info-box-content">
-                        <span class="info-box-text">CPU Traffic</span>
-                        <span class="info-box-number">90<small>%</small></span>
-                    </div>
-                </div>
-            </div>
         </section>
     </div>
 </div>
