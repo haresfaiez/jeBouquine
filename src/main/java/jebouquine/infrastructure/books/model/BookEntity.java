@@ -20,6 +20,11 @@ public class BookEntity {
         this.title = title;
     }
 
+    public BookEntity(Book book) {
+        this.ISBN = book.getISBN();
+        this.title = book.getTitle();
+    }
+
     public BookEntity() {
     }
 

@@ -21,16 +21,27 @@ import java.util.Optional;
 @RunWith(SpringJUnit4ClassRunner.class)
 @Transactional
 @ContextConfiguration(classes = {SpringApplicationTestContext.class})
-@TestExecutionListeners({ DependencyInjectionTestExecutionListener.class,
-        DbUnitTestExecutionListener.class })
+@TestExecutionListeners({DependencyInjectionTestExecutionListener.class,
+        DbUnitTestExecutionListener.class})
 public class JPABookRepositoryTest {
 
     @Autowired
     private BookRepository bookRepository;
 
     @Test
-    @DatabaseSetup("/persistence/books/retrieve-book-setup.xml")
-    @ExpectedDatabase("/persistence/books/retrieve-book-expected.xml")
+    @DatabaseSetup("/persistence/books/add/add-book-setup.xml")
+    @ExpectedDatabase("/persistence/books/add/add-book-expected.xml")
+    public void shouldAddBook() {
+        final String ISBN = "AAAA";
+        final String title = "Hello spring";
+
+        Book actualBook = new Book(ISBN, title);
+        bookRepository.addBook(actualBook);
+    }
+
+    @Test
+    @DatabaseSetup("/persistence/books/retrieve/retrieve-book-setup.xml")
+    @ExpectedDatabase("/persistence/books/retrieve/retrieve-book-expected.xml")
     public void shouldRetrieveExistingBookByISBN() {
         final String ISBN = "AAAA";
         final String title = "Hello spring";
