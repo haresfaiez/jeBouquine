@@ -14,15 +14,15 @@ public class SpringSecurityConfiguration extends WebSecurityConfigurerAdapter {
     @Override
     protected void configure(HttpSecurity http) throws Exception {
         http.csrf().disable().formLogin()
-                .loginPage("/login")
+                    .loginPage("/login")
                 .and()
                 .authorizeRequests()
-                .antMatchers("/book/add")
-                .access("hasRole('ROLE_ADMIN')")
+                    .antMatchers("/book/add")
+                    .access("hasRole('LOGISTIC_MANAGER')")
                 .and()
-                .logout()
-                .logoutSuccessUrl("/")
-                .logoutUrl("/logout");
+                    .logout()
+                    .logoutSuccessUrl("/")
+                    .logoutUrl("/logout");
     }
 
     @Override
@@ -31,6 +31,10 @@ public class SpringSecurityConfiguration extends WebSecurityConfigurerAdapter {
                 .withUser("user")
                 .password("user")
                 .roles("USER");
+        auth.inMemoryAuthentication()
+                .withUser("faiez_logistic")
+                .password("0000")
+                .roles("LOGISTIC_MANAGER");
         auth.inMemoryAuthentication()
                 .withUser("faiez")
                 .password("0000")

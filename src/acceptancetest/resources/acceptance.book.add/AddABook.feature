@@ -5,8 +5,8 @@ Feature:
 
   Background:
     Given I am
-    |username|password|role            |
-    |faiez   |0000    |logistic manager|
+    |username      |password|role            |
+    |faiez_logistic|0000    |logistic manager|
     And I want to add the book
 
   Scenario: Add a new book to the catalog
