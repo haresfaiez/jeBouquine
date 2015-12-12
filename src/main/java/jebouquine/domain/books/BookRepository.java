@@ -5,4 +5,5 @@ import java.util.Optional;
 
 public interface BookRepository {
     Optional<Book> findBookByISBN(String ISBN);
+    void addBook(Book expectedBook);
 }

@@ -26,6 +26,6 @@ public class RepositoryBookService implements BookService {
 
     @Override
     public void addBook(AddBookViewModel addBookViewModel) {
-
+        bookRepository.addBook(addBookViewModel.book());
     }
 }

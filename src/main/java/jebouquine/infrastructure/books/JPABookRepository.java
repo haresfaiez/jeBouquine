@@ -25,4 +25,9 @@ public class JPABookRepository implements BookRepository {
                 .get();
     }
 
+    @Override
+    public void addBook(Book expectedBook) {
+
+    }
+
 }
