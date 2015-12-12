@@ -5,7 +5,26 @@
 <body>
 <section class="content-header"  th:fragment="default">
     <h1 th:text="#{book-add.add-new-book}">Add new book</h1>
-    <div>...</div>
+    <div>
+        <form method="POST" th:object="${book}">
+            <div class="errors" th:if="${#fields.hasErrors('*')}">
+                <ul>
+                    <li th:each="err : ${#fields.errors('*')}"
+                        th:text="${err}">Input is incorrect</li>
+                </ul>
+            </div>
+            <label th:class="${#fields.hasErrors('ISBN')}? 'error'">
+                ISBN</label>:
+            <input type="text" th:field="*{ISBN}"
+                   th:class="${#fields.hasErrors('ISBN')}? 'error'" /><br/>
+            <label th:class="${#fields.hasErrors('title')}? 'error'">
+                Title</label>:
+            <input type="text" th:field="*{title}"
+                   th:class="${#fields.hasErrors('title')}? 'error'" /><br/>
+
+                <input type="submit" value="Register" />
+        </form>
+    </div>
 </section>
 
 </body>
