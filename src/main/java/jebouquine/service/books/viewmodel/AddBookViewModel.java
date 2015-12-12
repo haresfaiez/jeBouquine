@@ -63,4 +63,8 @@ public class AddBookViewModel {
     public Book book() {
         return new Book(ISBN, title);
     }
+
+    public static AddBookViewModel nullObject() {
+        return new AddBookViewModel("", "");
+    }
 }

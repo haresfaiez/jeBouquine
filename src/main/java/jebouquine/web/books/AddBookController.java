@@ -5,6 +5,8 @@ import jebouquine.service.books.BookService;
 import jebouquine.service.books.viewmodel.AddBookViewModel;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import static org.springframework.web.bind.annotation.RequestMethod.GET;
@@ -22,13 +24,15 @@ public class AddBookController {
     }
 
     @RequestMapping(method = GET)
-    public final String askForAddBook() {
+    public final String askForAddBook(Model model) {
+        model.addAttribute("book", AddBookViewModel.nullObject());
         return "book/add";
     }
 
     @RequestMapping(method = POST)
-    public final String addBook(AddBookViewModel viewModel) {
-        service.addBook(viewModel);
+    public final String addBook(@ModelAttribute(value="book") AddBookViewModel
+                                            addBookViewModel) {
+        service.addBook(addBookViewModel);
         return "home";
     }
 }
