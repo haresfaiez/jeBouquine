@@ -1,20 +1,18 @@
 package jebouquine.web.books;
 
-
 import jebouquine.service.books.BookService;
-import jebouquine.service.books.viewmodel.SearchBookFormViewModel;
 import jebouquine.service.books.viewmodel.DetailsBookViewModel;
+import jebouquine.service.books.viewmodel.SearchBookFormViewModel;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 
-import static org.springframework.web.bind.annotation.RequestMethod.POST;
+import static org.springframework.web.bind.annotation.RequestMethod.GET;
 
 @Controller
-@RequestMapping(value = "/search")
+@RequestMapping(value = "/book/search")
 public class SearchBookController {
-
     private BookService service;
 
     @Autowired
@@ -22,12 +20,11 @@ public class SearchBookController {
         this.service = service;
     }
 
-    @RequestMapping(method = POST)
-    public final String searchByISBN(SearchBookFormViewModel viewModel
-                                                        , Model model) {
+    @RequestMapping(method = GET)
+    public final String findBookByISBN(SearchBookFormViewModel viewModel
+            , Model model) {
         DetailsBookViewModel book = service.searchForBookByISBN(viewModel.getISBN());
         model.addAttribute("book", book);
-        return "book";
+        return "book/search";
     }
-
 }

@@ -1,4 +1,4 @@
-package books.web;
+package books.web.books;
 
 import jebouquine.service.books.BookService;
 import jebouquine.service.books.viewmodel.DetailsBookViewModel;
@@ -17,7 +17,6 @@ import org.springframework.web.context.WebApplicationContext;
 import static org.mockito.BDDMockito.given;
 import static org.mockito.Mockito.mock;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
-import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.model;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.view;
 import static org.springframework.test.web.servlet.setup.MockMvcBuilders.standaloneSetup;
@@ -58,9 +57,9 @@ public class SearchBookControllerTest {
         SearchBookController searchBookController = new
                 SearchBookController(bookService);
         standaloneSetup(searchBookController).build()
-                .perform(post("/search").param("ISBN", ISBN))
+                .perform(get("/book/search").param("ISBN", ISBN))
                 .andExpect(model()
                         .attribute("book", expectedDetailsBookViewModel))
-                .andExpect(view().name("book"));
+                .andExpect(view().name("book/search"));
     }
 }
