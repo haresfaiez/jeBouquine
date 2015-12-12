@@ -4,12 +4,14 @@ import jebouquine.domain.books.Book;
 import jebouquine.domain.books.BookRepository;
 import jebouquine.infrastructure.books.model.BookEntity;
 import org.springframework.stereotype.Repository;
+import org.springframework.transaction.annotation.Transactional;
 
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 import java.util.Optional;
 
 @Repository
+@Transactional
 public class JPABookRepository implements BookRepository {
 
     @PersistenceContext
