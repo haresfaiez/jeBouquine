@@ -18,7 +18,11 @@ public class SpringSecurityConfiguration extends WebSecurityConfigurerAdapter {
                 .and()
                 .authorizeRequests()
                 .antMatchers("/book/add")
-                .access("hasRole('ROLE_ADMIN')");
+                .access("hasRole('ROLE_ADMIN')")
+                .and()
+                .logout()
+                .logoutSuccessUrl("/")
+                .logoutUrl("/logout");
     }
 
     @Override
