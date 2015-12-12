@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.w3.org/1999/xhtml"
+      th:with="lang=${#locale.language}"
+      th:lang="${lang}">
+<body>
+<div th:fragment="logo">
+    <a href="#" class="logo">
+            <span class="logo-mini" th:text="#{home.title-mini}">
+                ST
+            </span>
+            <span class="logo-lg" th:text="#{home.title-large}">
+                Site Title
+            </span>
+    </a>
+    <nav class="navbar navbar-static-top" role="navigation">
+        <a href="#" class="sidebar-toggle" data-toggle="offcanvas"
+           role="button">
+                <span class="sr-only"
+                      th:text="#{home.toggle-navigation}">toggle
+                    navigation</span>
+        </a>
+    </nav>
+</div>
+</body>
+</html>

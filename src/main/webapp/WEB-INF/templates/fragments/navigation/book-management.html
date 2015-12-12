@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.w3.org/1999/xhtml"
+      th:with="lang=${#locale.language}"
+      th:lang="${lang}">
+<body>
+    <ul class="sidebar-menu" th:fragment="default">
+        <li class="active treeview">
+            <a href="#">
+                <i class="fa fa-dashboard"></i>
+                        <span th:text="#{home.book-management}">
+                            Book management
+                        </span>
+                <i class="fa fa-angle-left pull-right"></i>
+            </a>
+            <ul class="treeview-menu">
+                <li>
+                    <a href="index2.html">
+                        <i class="fa fa-circle-o"></i>
+                                <span th:text="#{home.add-book}">
+                                    Add new book
+                                </span>
+                    </a>
+                </li>
+            </ul>
+        </li>
+    </ul>
+</body>
+</html>
