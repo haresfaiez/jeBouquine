@@ -28,6 +28,7 @@ def dbUnitVersion = '2.5.1'
 def springTestDBUnit = '1.2.1'
 def thymeleafSpringVersion = '2.1.4.RELEASE'
 def commonsDbcpVersion = '1.4'
+def springSecurityVersion = '4.0.3.RELEASE'
 
 sourceSets {
     acceptancetest {
@@ -122,6 +123,10 @@ dependencies {
             version: thymeleafSpringVersion
     compile group: 'commons-dbcp', name: 'commons-dbcp',
             version: commonsDbcpVersion
+    compile group: 'org.springframework.security', name: 'spring-security-web',
+            version: springSecurityVersion
+    compile group: 'org.springframework.security', name: 'spring-security-config',
+            version: springSecurityVersion
 
     providedCompile group: 'javax.servlet', name: 'javax.servlet-api',
             version: servletApiVersion
