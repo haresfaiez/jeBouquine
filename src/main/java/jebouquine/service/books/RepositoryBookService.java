@@ -1,6 +1,7 @@
 package jebouquine.service.books;
 
 import jebouquine.domain.books.BookRepository;
+import jebouquine.service.books.viewmodel.AddBookViewModel;
 import jebouquine.service.books.viewmodel.DetailsBookViewModel;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -21,5 +22,10 @@ public class RepositoryBookService implements BookService {
                 bookRepository
                         .findBookByISBN(ISBN)
                         .get());
+    }
+
+    @Override
+    public void addBook(AddBookViewModel addBookViewModel) {
+
     }
 }
