@@ -8,6 +8,7 @@ import org.springframework.transaction.annotation.Transactional;
 
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
+import java.util.List;
 import java.util.Optional;
 
 @Repository
@@ -28,6 +29,11 @@ public class JPABookRepository implements BookRepository {
     @Override
     public void addBook(Book expectedBook) {
         entityManager.persist(new BookEntity(expectedBook));
+    }
+
+    @Override
+    public List<Book> findBooksByTitle(String title) {
+        return null;
     }
 
 }

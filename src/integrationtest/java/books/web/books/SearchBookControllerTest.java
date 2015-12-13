@@ -15,8 +15,9 @@ import org.springframework.test.web.servlet.MockMvc;
 import org.springframework.test.web.servlet.setup.MockMvcBuilders;
 import org.springframework.web.context.WebApplicationContext;
 
-import java.util.ArrayList;
 import java.util.List;
+import java.util.stream.Collectors;
+import java.util.stream.Stream;
 
 import static org.mockito.BDDMockito.given;
 import static org.mockito.Mockito.mock;
@@ -44,8 +45,7 @@ public class SearchBookControllerTest {
         final String title = "Hello Spring";
         final BookViewModel expectedBookViewModel = new BookViewModel(ISBN,
                 title);
-        List<BookViewModel> expectedResult = new ArrayList<>();
-        expectedResult.add(expectedBookViewModel);
+        List<BookViewModel> expectedResult = Stream.of(expectedBookViewModel).collect(Collectors.toList());
 
         BookService bookService = mock(BookService.class);
         given(bookService.searchForBooksByTitle(SearchBookViewModel.fromTitle

@@ -11,11 +11,40 @@ import jebouquine.service.books.viewmodel.SearchBookViewModel;
 import org.junit.Assert;
 import org.junit.Test;
 
+import java.util.List;
 import java.util.Optional;
+import java.util.stream.Collectors;
+import java.util.stream.Stream;
 
 import static org.mockito.Mockito.*;
 
 public class RepositoryBookServiceTest {
+
+    @Test
+    public void shouldReturnABookViewModelListWhenAskForAnExistingBookByTitle
+            () {
+        final String ISBN = "AAAA";
+        final String title = "Hello Spring";
+        Book expectedBook = new
+                Book(ISBN, title);
+        final BookViewModel expectedBookViewModel = BookViewModel.from(expectedBook);
+        final SearchBookViewModel searchBookViewModel
+                = SearchBookViewModel.fromTitle(title);
+       BookRepository bookRepository = mock(BookRepository.class);
+        final List<BookViewModel> expectedBooksList = Stream.of(expectedBookViewModel)
+                .collect(Collectors.toList());
+        when(bookRepository.findBooksByTitle(title)).thenReturn(
+                Stream.of(expectedBook)
+                        .collect(Collectors.toList())
+        );
+        final BookService bookService = new RepositoryBookService
+                (bookRepository);
+
+        List<BookViewModel> actualBooksList =
+                bookService.searchForBooksByTitle(searchBookViewModel);
+
+        Assert.assertEquals(expectedBooksList, actualBooksList);
+    }
 
     @Test
     public void shouldAddBookToTheCatalogWhenGivenValidBookDetails() {
@@ -33,17 +62,15 @@ public class RepositoryBookServiceTest {
     }
 
     @Test
-    public void shouldReturnABookViewModelWhenAskForAnExistingBookByISBN() {
+    public void shouldReturnABookViewModelWhenAskedForAnExistingBookByISBN() {
 
         final String ISBN = "AAAA";
         final String title = "Hello Spring";
         final Book expectedBook = new Book(ISBN, title);
         final SearchBookViewModel searchBookViewModel
-                = new SearchBookViewModel(
-                            SearchBookViewModel.getCriteriaISBN(),
-                            ISBN);
-        final BookViewModel expectedBookViewModel = new BookViewModel(ISBN,
-                title);
+                = SearchBookViewModel.fromISBN(ISBN);
+        final BookViewModel expectedBookViewModel = BookViewModel.from
+                (expectedBook);
         BookRepository bookRepository = mock(BookRepository.class);
         when(bookRepository.findBookByISBN(ISBN)).thenReturn(Optional.of
                 (expectedBook));
