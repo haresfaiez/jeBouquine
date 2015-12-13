@@ -32,8 +32,7 @@ public class SearchBookController {
         if (viewModel.isSearchByTitle())  {
             List<BookViewModel> books = service.searchForBooksByTitle(viewModel);
             model.addAttribute("books", books);
-            model.addAttribute("book", viewModel.getTitle());
-            return "redirect:/book/search/result/{book}";
+            return "book/search/result";
         }
         throw new IllegalArgumentException(
                 "Search criteria argument not supported");

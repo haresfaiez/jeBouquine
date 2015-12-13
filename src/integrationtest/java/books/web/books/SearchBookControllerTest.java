@@ -61,7 +61,7 @@ public class SearchBookControllerTest {
                 .andExpect(model()
                         .attribute("books", expectedResult))
                 .andExpect(view().name
-                        ("redirect:/book/search/result/{book}"));
+                        ("book/search/result"));
     }
 
 
