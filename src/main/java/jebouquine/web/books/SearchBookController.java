@@ -26,6 +26,6 @@ public class SearchBookController {
             , Model model) {
         DetailsBookViewModel book = service.searchForBookByISBN(viewModel.getISBN());
         model.addAttribute("book", book.getISBN());
-        return "redirect:book/view/{book}";
+        return "redirect:/book/view/{book}";
     }
 }

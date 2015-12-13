@@ -1,6 +1,7 @@
 package jebouquine.web.books;
 
 import jebouquine.service.books.BookService;
+import jebouquine.service.books.viewmodel.SearchBookFormViewModel;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -21,6 +22,7 @@ public class ViewBookController {
     @RequestMapping(value = "/book/view/{ISBN}", method = RequestMethod.GET)
     public String viewBookDetails(@PathVariable("ISBN") String ISBN,
                                   Model model) {
+        model.addAttribute("booksearch", SearchBookFormViewModel.nullObject());
         model.addAttribute("bookDetails", bookService.searchForBookByISBN
                 (ISBN));
         return "book/view";
