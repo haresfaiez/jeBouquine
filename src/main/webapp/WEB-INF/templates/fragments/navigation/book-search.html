@@ -7,7 +7,7 @@
           th:object="${booksearch}"
           th:fragment="default">
         <div class="input-group">
-            <input type="text"  th:field="*{ISBN}" class="form-control"
+            <input type="text"  th:field="*{value}" class="form-control"
                    th:value="#{home.search}"/>
               <span class="input-group-btn">
                 <button type="submit" name="search" id="search-btn"
@@ -16,10 +16,12 @@
               </span>
         </div>
         <div class="input-group">
-            <input type="radio" name="ISBN" class=""/>
-            <span th:text="#{home.search-by-isbn}">ISBN</span>
-            <input type="radio" name="title" class=""/>
-            <span th:text="#{home.search-by-title}">title</span>
+            <input type="radio" th:field="*{criteria}"
+                   th:value="*{criteriaISBN}" class=""/>
+            <span th:text="#{home.search-by-isbn}">By ISBN</span>
+            <input type="radio" th:field="*{criteria}"
+                   th:value="*{criteriaTitle}" class=""/>
+            <span th:text="#{home.search-by-title}">By title</span>
         </div>
     </form>
 

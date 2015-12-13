@@ -2,6 +2,7 @@ package books.web.books;
 
 import jebouquine.service.books.BookService;
 import jebouquine.service.books.viewmodel.DetailsBookViewModel;
+import jebouquine.service.books.viewmodel.SearchBookFormViewModel;
 import jebouquine.web.SpringWebContext;
 import jebouquine.web.books.SearchBookController;
 import org.junit.Test;
@@ -57,10 +58,12 @@ public class SearchBookControllerTest {
         SearchBookController searchBookController = new
                 SearchBookController(bookService);
         standaloneSetup(searchBookController).build()
-                .perform(get("/book/search").param("ISBN", ISBN))
+                .perform(get("/book/search")
+                            .param("criteria", SearchBookFormViewModel.getCriteriaISBN())
+                            .param("value", ISBN))
                 .andExpect(model()
                         .attribute("book", ISBN))
                 .andExpect(view().name
-                        ("redirect:book/view/{book}"));
+                        ("redirect:/book/view/{book}"));
     }
 }

@@ -1,31 +1,41 @@
 package jebouquine.service.books.viewmodel;
 
 public class SearchBookFormViewModel {
-    private String ISBN;
-    private String title;
+    private String value;
+    private String criteria;
+    private static final String criteriaISBN = "ISBN";
+    private static final String criteriaTitle = "title";
 
     public SearchBookFormViewModel() {
     }
 
-    public SearchBookFormViewModel(String ISBN, String title) {
-        this.ISBN = ISBN;
-        this.title = title;
+    public SearchBookFormViewModel(String criteria, String value) {
+        this.criteria = criteria;
+        this.value = value;
     }
 
-    public String getISBN() {
-        return ISBN;
+    public static String getCriteriaISBN() {
+        return criteriaISBN;
     }
 
-    public void setISBN(String ISBN) {
-        this.ISBN = ISBN;
+    public static String getCriteriaTitle() {
+        return criteriaTitle;
     }
 
-    public String getTitle() {
-        return title;
+    public String getValue() {
+        return value;
     }
 
-    public void setTitle(String title) {
-        this.title = title;
+    public void setValue(String value) {
+        this.value = value;
+    }
+
+    public String getCriteria() {
+        return criteria;
+    }
+
+    public void setCriteria(String criteria) {
+        this.criteria = criteria;
     }
 
     @Override
@@ -35,20 +45,25 @@ public class SearchBookFormViewModel {
 
         SearchBookFormViewModel that = (SearchBookFormViewModel) o;
 
-        if (ISBN != null ? !ISBN.equals(that.ISBN) : that.ISBN != null)
+        if (value != null ? !value.equals(that.value) : that.value != null)
             return false;
-        return !(title != null ? !title.equals(that.title) : that.title != null);
+        return !(criteria != null ? !criteria.equals(that.criteria) : that.criteria != null);
 
     }
 
     @Override
     public int hashCode() {
-        int result = ISBN != null ? ISBN.hashCode() : 0;
-        result = 31 * result + (title != null ? title.hashCode() : 0);
+        int result = value != null ? value.hashCode() : 0;
+        result = 31 * result + (criteria != null ? criteria.hashCode() : 0);
         return result;
     }
 
     public static SearchBookFormViewModel nullObject() {
-        return new SearchBookFormViewModel("", "");
+        return new SearchBookFormViewModel(criteriaISBN, "");
+    }
+
+    public String getISBN() {
+        assert criteria.equals(criteriaISBN);
+        return value;
     }
 }
