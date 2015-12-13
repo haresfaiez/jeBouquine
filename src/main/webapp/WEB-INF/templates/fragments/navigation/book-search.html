@@ -3,27 +3,29 @@
       th:with="lang=${#locale.language}"
       th:lang="${lang}">
 <body>
-    <form th:action="@{/book/search}" method="get" class="sidebar-form"
-          th:object="${booksearch}"
-          th:fragment="default">
-        <div class="input-group">
-            <input type="text"  th:field="*{value}" class="form-control"
-                   th:value="#{home.search}"/>
+<form th:action="@{/book/search}" method="get" class="sidebar-form"
+      th:object="${booksearch}"
+      th:fragment="default">
+    <div class="input-group">
+        <input type="text" th:field="*{value}" class="form-control"
+               th:value="#{home.search}" id="book-search"/>
               <span class="input-group-btn">
-                <button type="submit" name="search" id="search-btn"
+                <button type="submit" name="search" id="book-search-submit"
                         class="btn btn-flat"><i class="fa fa-search"></i>
                 </button>
               </span>
-        </div>
-        <div class="input-group">
-            <input type="radio" th:field="*{criteria}"
-                   th:value="*{criteriaISBN}" class=""/>
-            <span th:text="#{home.search-by-isbn}">By ISBN</span>
-            <input type="radio" th:field="*{criteria}"
-                   th:value="*{criteriaTitle}" class=""/>
-            <span th:text="#{home.search-by-title}">By title</span>
-        </div>
-    </form>
+    </div>
+    <div class="input-group">
+        <input type="radio" th:field="*{criteria}"
+               th:value="*{criteriaISBN}" class=""
+               id="search-book-by-isbn"/>
+        <span th:text="#{home.search-by-isbn}">By ISBN</span>
+        <input type="radio" th:field="*{criteria}"
+               th:value="*{criteriaTitle}" class=""
+               id="search-book-by-title"/>
+        <span th:text="#{home.search-by-title}">By title</span>
+    </div>
+</form>
 
 </body>
 </html>

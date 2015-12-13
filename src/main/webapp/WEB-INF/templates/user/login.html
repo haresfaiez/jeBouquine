@@ -35,15 +35,19 @@
                     <tr>
                         <td>User:</td>
                         <td>
-                            <input type='text' name='username' value=''/></td>
+                            <input type='text' name='username' value=''
+                                   id="username"/></td>
                     </tr>
                     <tr>
                         <td>Password:</td>
-                        <td><input type='password' name='password'/></td>
+                        <td><input type='password' name='password'
+                                   id="password"/></td>
                     </tr>
                     <tr>
                         <td colspan='2'>
-                            <input name="submit" type="submit" value="Login"/>
+                            <input name="submit" type="submit"
+                                   th:value="#{user.submit-login}"
+                                   id="submit"/>
                         </td>
                     </tr>
                 </table>

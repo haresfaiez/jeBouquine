@@ -15,14 +15,15 @@
             </div>
             <label th:class="${#fields.hasErrors('ISBN')}? 'error'">
                 ISBN</label>:
-            <input type="text" th:field="*{ISBN}"
+            <input type="text" th:field="*{ISBN}" id="book-isbn"
                    th:class="${#fields.hasErrors('ISBN')}? 'error'" /><br/>
             <label th:class="${#fields.hasErrors('title')}? 'error'">
                 Title</label>:
-            <input type="text" th:field="*{title}"
+            <input type="text" th:field="*{title}" id="book-title"
                    th:class="${#fields.hasErrors('title')}? 'error'" /><br/>
 
-                <input type="submit" value="Register" />
+                <input type="submit" th:value="#{book.submit-book}"
+            id="book-submit" />
         </form>
     </div>
 </section>

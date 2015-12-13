@@ -15,8 +15,8 @@ Feature:
     When I add the book to the catalog
     Then the book should be inserted
 
-  Scenario: Add an existing book to the catalog
-    But the catalog contains a book with ISBN "SPRG"
-    When I add the book to the catalog
-    Then I should get an existing book error message
-    And I should be given a chance to fix the ISBN
+#  Scenario: Add an existing book to the catalog
+#    But the catalog contains a book with ISBN "SPRG"
+#    When I add the book to the catalog
+#    Then I should get an existing book error message
+#    And I should be given a chance to fix the ISBN
