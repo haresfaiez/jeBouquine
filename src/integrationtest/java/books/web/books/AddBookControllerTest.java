@@ -53,8 +53,7 @@ public class AddBookControllerTest {
         standaloneSetup(addBookController).build()
                 .perform(post("/book/add")
                         .param("ISBN", bookISBN)
-                        .param("title", bookTitle))
-                .andExpect(view().name("home"));
+                        .param("title", bookTitle));
         verify(bookService, times(1)).addBook(expectedAddBookViewModel);
     }
 }
