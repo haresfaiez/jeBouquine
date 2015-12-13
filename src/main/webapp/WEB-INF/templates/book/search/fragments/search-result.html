@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.w3.org/1999/xhtml"
+      th:with="lang=${#locale.language}"
+      th:lang="${lang}">
+<body>
+<section class="content-header" th:fragment="default">
+    <h1 th:text="#{book-search.search-results}">Search results</h1>
+
+    <div>
+        Search result
+        <ul>
+            <li th:each="item : ${books}">
+                <span th:text="${item.title}">book title</span>
+            </li>
+        </ul>
+    </div>
+</section>
+
+</body>
+</html>
