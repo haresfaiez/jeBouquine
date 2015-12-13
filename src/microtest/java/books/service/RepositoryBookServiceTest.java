@@ -6,7 +6,8 @@ import jebouquine.infrastructure.books.JPABookRepository;
 import jebouquine.service.books.BookService;
 import jebouquine.service.books.RepositoryBookService;
 import jebouquine.service.books.viewmodel.AddBookViewModel;
-import jebouquine.service.books.viewmodel.DetailsBookViewModel;
+import jebouquine.service.books.viewmodel.BookViewModel;
+import jebouquine.service.books.viewmodel.SearchBookViewModel;
 import org.junit.Assert;
 import org.junit.Test;
 
@@ -37,7 +38,11 @@ public class RepositoryBookServiceTest {
         final String ISBN = "AAAA";
         final String title = "Hello Spring";
         final Book expectedBook = new Book(ISBN, title);
-        final DetailsBookViewModel expectedDetailsBookViewModel = new DetailsBookViewModel(ISBN,
+        final SearchBookViewModel searchBookViewModel
+                = new SearchBookViewModel(
+                            SearchBookViewModel.getCriteriaISBN(),
+                            ISBN);
+        final BookViewModel expectedBookViewModel = new BookViewModel(ISBN,
                 title);
         BookRepository bookRepository = mock(BookRepository.class);
         when(bookRepository.findBookByISBN(ISBN)).thenReturn(Optional.of
@@ -45,10 +50,10 @@ public class RepositoryBookServiceTest {
         final BookService bookService = new RepositoryBookService
                 (bookRepository);
 
-        DetailsBookViewModel actualDetailsBookViewModel =
-                bookService.searchForBookByISBN(ISBN);
+        BookViewModel actualBookViewModel =
+                bookService.searchForBookByISBN(searchBookViewModel);
 
-        Assert.assertEquals(expectedDetailsBookViewModel, actualDetailsBookViewModel);
+        Assert.assertEquals(expectedBookViewModel, actualBookViewModel);
     }
 
     @Test

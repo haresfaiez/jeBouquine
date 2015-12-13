@@ -1,7 +1,8 @@
 package books.web.books;
 
 import jebouquine.service.books.BookService;
-import jebouquine.service.books.viewmodel.DetailsBookViewModel;
+import jebouquine.service.books.viewmodel.BookViewModel;
+import jebouquine.service.books.viewmodel.SearchBookViewModel;
 import jebouquine.web.SpringWebContext;
 import jebouquine.web.books.ViewBookController;
 import org.junit.Test;
@@ -26,10 +27,12 @@ public class ViewBookControllerTest {
     public void shouldGiveBookDetailsWhenAskedForAnExistingBookDetails() throws Exception {
         final String bookISBN = "SPRG";
         final String bookTitle = "Hello Spring";
-        final DetailsBookViewModel expectedBookViewModel = new
-                DetailsBookViewModel(bookISBN, bookTitle);
+        final BookViewModel expectedBookViewModel = new
+                BookViewModel(bookISBN, bookTitle);
         BookService bookService = mock(BookService.class);
-        when(bookService.searchForBookByISBN(bookISBN)).thenReturn
+        SearchBookViewModel searchBookViewModel
+                = SearchBookViewModel.fromISBN(bookISBN);
+        when(bookService.searchForBookByISBN(searchBookViewModel)).thenReturn
                 (expectedBookViewModel);
         ViewBookController viewBookController = new ViewBookController
                 (bookService);

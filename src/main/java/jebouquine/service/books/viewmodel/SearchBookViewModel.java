@@ -1,15 +1,15 @@
 package jebouquine.service.books.viewmodel;
 
-public class SearchBookFormViewModel {
+public class SearchBookViewModel {
     private String value;
     private String criteria;
     private static final String criteriaISBN = "ISBN";
     private static final String criteriaTitle = "title";
 
-    public SearchBookFormViewModel() {
+    public SearchBookViewModel() {
     }
 
-    public SearchBookFormViewModel(String criteria, String value) {
+    public SearchBookViewModel(String criteria, String value) {
         this.criteria = criteria;
         this.value = value;
     }
@@ -43,7 +43,7 @@ public class SearchBookFormViewModel {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
 
-        SearchBookFormViewModel that = (SearchBookFormViewModel) o;
+        SearchBookViewModel that = (SearchBookViewModel) o;
 
         if (value != null ? !value.equals(that.value) : that.value != null)
             return false;
@@ -58,12 +58,33 @@ public class SearchBookFormViewModel {
         return result;
     }
 
-    public static SearchBookFormViewModel nullObject() {
-        return new SearchBookFormViewModel(criteriaISBN, "");
+    public static SearchBookViewModel nullObject() {
+        return new SearchBookViewModel(criteriaISBN, "");
     }
 
     public String getISBN() {
         assert criteria.equals(criteriaISBN);
         return value;
+    }
+
+    public static SearchBookViewModel fromISBN(String bookISBN) {
+        return new SearchBookViewModel(criteriaISBN, bookISBN);
+    }
+
+    public String getTitle() {
+        assert criteria.equals(criteriaTitle);
+        return value;
+    }
+
+    public static SearchBookViewModel fromTitle(String title) {
+        return new SearchBookViewModel(criteriaTitle, title);
+    }
+
+    public boolean isSearchByISBN() {
+        return criteriaISBN.equals(criteria);
+    }
+
+    public boolean isSearchByTitle() {
+        return criteriaTitle.equals(criteria);
     }
 }

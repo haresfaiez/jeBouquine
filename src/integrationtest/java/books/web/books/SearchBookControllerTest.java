@@ -1,8 +1,8 @@
 package books.web.books;
 
 import jebouquine.service.books.BookService;
-import jebouquine.service.books.viewmodel.DetailsBookViewModel;
-import jebouquine.service.books.viewmodel.SearchBookFormViewModel;
+import jebouquine.service.books.viewmodel.BookViewModel;
+import jebouquine.service.books.viewmodel.SearchBookViewModel;
 import jebouquine.web.SpringWebContext;
 import jebouquine.web.books.SearchBookController;
 import org.junit.Test;
@@ -14,6 +14,9 @@ import org.springframework.test.context.web.WebAppConfiguration;
 import org.springframework.test.web.servlet.MockMvc;
 import org.springframework.test.web.servlet.setup.MockMvcBuilders;
 import org.springframework.web.context.WebApplicationContext;
+
+import java.util.ArrayList;
+import java.util.List;
 
 import static org.mockito.BDDMockito.given;
 import static org.mockito.Mockito.mock;
@@ -35,6 +38,35 @@ public class SearchBookControllerTest {
     private WebApplicationContext webApplicationContext;
 
     @Test
+    public void shouldReturnMatchedBookListWhenSearchForAnExistingBookByTitle()
+            throws Exception {
+        final String ISBN = "AAAA";
+        final String title = "Hello Spring";
+        final BookViewModel expectedBookViewModel = new BookViewModel(ISBN,
+                title);
+        List<BookViewModel> expectedResult = new ArrayList<>();
+        expectedResult.add(expectedBookViewModel);
+
+        BookService bookService = mock(BookService.class);
+        given(bookService.searchForBooksByTitle(SearchBookViewModel.fromTitle
+                (title))).willReturn
+                (expectedResult);
+
+        SearchBookController searchBookController = new
+                SearchBookController(bookService);
+        standaloneSetup(searchBookController).build()
+                .perform(get("/book/search")
+                        .param("criteria", SearchBookViewModel.getCriteriaTitle())
+                        .param("value", title))
+                .andExpect(model()
+                        .attribute("books", expectedResult))
+                .andExpect(view().name
+                        ("redirect:/book/search/result/{book}"));
+    }
+
+
+    //TODO:Move this to an independent test "HomeControllerTest"
+    @Test
     public void shouldProvideSearchByISBNOnHomePage() throws Exception {
         MockMvc mockMvc;
         mockMvc = MockMvcBuilders
@@ -49,18 +81,19 @@ public class SearchBookControllerTest {
             throws Exception {
         final String ISBN = "AAAA";
         final String title = "Hello Spring";
-        final DetailsBookViewModel expectedDetailsBookViewModel =  new DetailsBookViewModel(ISBN,
-                                                                        title);
+        final BookViewModel expectedBookViewModel = new BookViewModel(ISBN,
+                title);
         BookService bookService = mock(BookService.class);
-        given(bookService.searchForBookByISBN(ISBN)).willReturn
-                (expectedDetailsBookViewModel);
+        given(bookService.searchForBookByISBN(SearchBookViewModel.fromISBN(ISBN)
+        )).willReturn
+                (expectedBookViewModel);
 
         SearchBookController searchBookController = new
                 SearchBookController(bookService);
         standaloneSetup(searchBookController).build()
                 .perform(get("/book/search")
-                            .param("criteria", SearchBookFormViewModel.getCriteriaISBN())
-                            .param("value", ISBN))
+                        .param("criteria", SearchBookViewModel.getCriteriaISBN())
+                        .param("value", ISBN))
                 .andExpect(model()
                         .attribute("book", ISBN))
                 .andExpect(view().name

@@ -1,18 +1,17 @@
 package jebouquine.web.books;
 
 import jebouquine.service.books.BookService;
-import jebouquine.service.books.viewmodel.DetailsBookViewModel;
-import jebouquine.service.books.viewmodel.SearchBookFormViewModel;
+import jebouquine.service.books.viewmodel.BookViewModel;
+import jebouquine.service.books.viewmodel.SearchBookViewModel;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 
-import static org.springframework.web.bind.annotation.RequestMethod.GET;
+import java.util.List;
 
 @Controller
-@RequestMapping(value = "/book/search")
 public class SearchBookController {
     private BookService service;
 
@@ -21,11 +20,22 @@ public class SearchBookController {
         this.service = service;
     }
 
-    @RequestMapping(method = GET)
-    public final String findBookByISBN(@ModelAttribute(value="booksearch") SearchBookFormViewModel viewModel
+    @RequestMapping(value = "/book/search")
+    public final String findBookByISBN(@ModelAttribute(value = "booksearch") SearchBookViewModel viewModel
             , Model model) {
-        DetailsBookViewModel book = service.searchForBookByISBN(viewModel.getISBN());
-        model.addAttribute("book", book.getISBN());
-        return "redirect:/book/view/{book}";
+        //TODO:remove those "if"s open closed principle
+        if (viewModel.isSearchByISBN()) {
+            BookViewModel book = service.searchForBookByISBN(viewModel);
+            model.addAttribute("book", book.getISBN());
+            return "redirect:/book/view/{book}";
+        }
+        if (viewModel.isSearchByTitle())  {
+            List<BookViewModel> books = service.searchForBooksByTitle(viewModel);
+            model.addAttribute("books", books);
+            model.addAttribute("book", viewModel.getTitle());
+            return "redirect:/book/search/result/{book}";
+        }
+        throw new IllegalArgumentException(
+                "Search criteria argument not supported");
     }
 }

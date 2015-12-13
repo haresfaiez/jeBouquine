@@ -3,20 +3,20 @@ package jebouquine.service.books.viewmodel;
 
 import jebouquine.domain.books.Book;
 
-public class DetailsBookViewModel {
+public class BookViewModel {
 
     private String ISBN;
     private String title;
 
-    public DetailsBookViewModel() {
+    public BookViewModel() {
     }
 
-    public DetailsBookViewModel(String ISBN, String title) {
+    public BookViewModel(String ISBN, String title) {
         this.ISBN = ISBN;
         this.title = title;
     }
 
-    public DetailsBookViewModel(Book book) {
+    public BookViewModel(Book book) {
         this.ISBN = book.getISBN();
         this.title = book.getTitle();
     }
@@ -42,7 +42,7 @@ public class DetailsBookViewModel {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
 
-        DetailsBookViewModel that = (DetailsBookViewModel) o;
+        BookViewModel that = (BookViewModel) o;
 
         if (ISBN != null ? !ISBN.equals(that.ISBN) : that.ISBN != null)
             return false;
@@ -57,7 +57,7 @@ public class DetailsBookViewModel {
         return result;
     }
 
-    public static DetailsBookViewModel from(Book book) {
-        return new DetailsBookViewModel(book);
+    public static BookViewModel from(Book book) {
+        return new BookViewModel(book);
     }
 }

@@ -1,6 +1,6 @@
 package jebouquine.web;
 
-import jebouquine.service.books.viewmodel.SearchBookFormViewModel;
+import jebouquine.service.books.viewmodel.SearchBookViewModel;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -12,7 +12,7 @@ public class HomeController {
 
     @RequestMapping(value="/", method=GET)
     public String home(Model model) {
-        model.addAttribute("booksearch", SearchBookFormViewModel.nullObject());
+        model.addAttribute("booksearch", SearchBookViewModel.nullObject());
         return "home";
     }
 

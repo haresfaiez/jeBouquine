@@ -3,7 +3,7 @@ package jebouquine.web.books;
 
 import jebouquine.service.books.BookService;
 import jebouquine.service.books.viewmodel.AddBookViewModel;
-import jebouquine.service.books.viewmodel.SearchBookFormViewModel;
+import jebouquine.service.books.viewmodel.SearchBookViewModel;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -26,7 +26,7 @@ public class AddBookController {
     @RequestMapping(value = "/book/add", method = GET)
     public final String askForAddBook(Model model) {
         model.addAttribute("book", AddBookViewModel.nullObject());
-        model.addAttribute("booksearch", SearchBookFormViewModel.nullObject());
+        model.addAttribute("booksearch", SearchBookViewModel.nullObject());
         return "book/add";
     }
 
