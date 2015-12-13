@@ -1,8 +1,6 @@
 package acceptance.books;
 
 import acceptance.books.driver.AddBookDriver;
-import cucumber.api.java.After;
-import cucumber.api.java.Before;
 import cucumber.api.java.en.Given;
 import cucumber.api.java.en.Then;
 import cucumber.api.java.en.When;
@@ -27,6 +25,7 @@ public class AddABook {
 
     @Given("^I am$")
     public void i_am(List<List<String>> actor) throws Throwable {
+        driver.setUp();
         username = actor.get(1).get(0);
         password = actor.get(1).get(1);
         role = actor.get(1).get(2);
@@ -55,16 +54,8 @@ public class AddABook {
         Assert.assertEquals(ISBN, driver.bookISBN());
         Assert.assertEquals(title, driver.bookTitle());
         //TODO:test the whole details
-    }
-
-    @Before
-    public void setUp() {
-        driver.setUp();
-    }
-
-    @After
-    public void tearDown() {
         driver.logout();
         driver.tearDown();
     }
+
 }
