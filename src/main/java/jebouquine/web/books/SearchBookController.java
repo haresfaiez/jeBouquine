@@ -6,6 +6,7 @@ import jebouquine.service.books.viewmodel.SearchBookFormViewModel;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import static org.springframework.web.bind.annotation.RequestMethod.GET;
@@ -21,10 +22,10 @@ public class SearchBookController {
     }
 
     @RequestMapping(method = GET)
-    public final String findBookByISBN(SearchBookFormViewModel viewModel
+    public final String findBookByISBN(@ModelAttribute(value="booksearch") SearchBookFormViewModel viewModel
             , Model model) {
         DetailsBookViewModel book = service.searchForBookByISBN(viewModel.getISBN());
-        model.addAttribute("book", book);
-        return "book/search";
+        model.addAttribute("book", book.getISBN());
+        return "redirect:book/view/{book}";
     }
 }

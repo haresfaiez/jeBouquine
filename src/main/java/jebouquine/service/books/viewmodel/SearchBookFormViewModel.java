@@ -47,4 +47,8 @@ public class SearchBookFormViewModel {
         result = 31 * result + (title != null ? title.hashCode() : 0);
         return result;
     }
+
+    public static SearchBookFormViewModel nullObject() {
+        return new SearchBookFormViewModel("", "");
+    }
 }

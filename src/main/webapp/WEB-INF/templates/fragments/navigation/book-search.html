@@ -3,9 +3,11 @@
       th:with="lang=${#locale.language}"
       th:lang="${lang}">
 <body>
-    <form action="#" method="get" class="sidebar-form" th:fragment="default">
+    <form th:action="@{/book/search}" method="get" class="sidebar-form"
+          th:object="${booksearch}"
+          th:fragment="default">
         <div class="input-group">
-            <input type="text" name="q" class="form-control"
+            <input type="text"  th:field="*{ISBN}" class="form-control"
                    th:value="#{home.search}"/>
               <span class="input-group-btn">
                 <button type="submit" name="search" id="search-btn"

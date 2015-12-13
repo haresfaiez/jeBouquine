@@ -60,6 +60,6 @@ public class SearchBookControllerTest {
                 .perform(get("/book/search").param("ISBN", ISBN))
                 .andExpect(model()
                         .attribute("book", expectedDetailsBookViewModel))
-                .andExpect(view().name("book/search"));
+                .andExpect(view().name("book/view"));
     }
 }
