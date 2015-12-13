@@ -2,11 +2,14 @@ package jebouquine.infrastructure.books.model;
 
 import jebouquine.domain.books.Book;
 
-import javax.persistence.Entity;
-import javax.persistence.Id;
-import javax.persistence.Table;
+import javax.persistence.*;
 
 //TODO:add attributes validation
+@NamedQueries({
+        @NamedQuery(name = "BookEntity.searchByTitle",
+                query = "SELECT bookEntity FROM BookEntity bookEntity" +
+                        " WHERE bookEntity.title like :bookTitle")
+})
 @Table(name = "BOOKS")
 @Entity
 public class BookEntity {

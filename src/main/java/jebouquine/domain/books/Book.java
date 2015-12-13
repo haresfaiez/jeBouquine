@@ -47,4 +47,8 @@ public class Book {
         result = 31 * result + title.hashCode();
         return result;
     }
+
+    public static Book create(String ISBN, String title) {
+        return new Book(ISBN, title);
+    }
 }

@@ -8,8 +8,10 @@ import org.springframework.transaction.annotation.Transactional;
 
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
+import javax.persistence.TypedQuery;
 import java.util.List;
 import java.util.Optional;
+import java.util.stream.Collectors;
 
 @Repository
 @Transactional
@@ -33,7 +35,14 @@ public class JPABookRepository implements BookRepository {
 
     @Override
     public List<Book> findBooksByTitle(String title) {
-        return null;
+        TypedQuery<BookEntity> query = entityManager
+                .createNamedQuery("BookEntity.searchByTitle", BookEntity.class);
+        query.setParameter("bookTitle", title);
+        return  query
+                .getResultList()
+                .stream()
+                .map(bookEntity -> bookEntity.createBook())
+                .collect(Collectors.toList());
     }
 
 }

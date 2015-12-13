@@ -16,7 +16,10 @@ import org.springframework.test.context.support.DependencyInjectionTestExecution
 import org.springframework.transaction.annotation.Transactional;
 import spring.context.SpringApplicationTestContext;
 
+import java.util.List;
 import java.util.Optional;
+import java.util.stream.Collectors;
+import java.util.stream.Stream;
 
 @RunWith(SpringJUnit4ClassRunner.class)
 @Transactional
@@ -27,6 +30,20 @@ public class JPABookRepositoryTest {
 
     @Autowired
     private BookRepository bookRepository;
+
+
+    @Test
+    @DatabaseSetup("/persistence/books/search/by-title/find-books-setup.xml")
+    @ExpectedDatabase("/persistence/books/search/by-title/find-books-expected.xml")
+    public void shouldFindBooksByTitle() {
+        final String title = "Hello Spring";
+        List<Book> actualBooksResult = bookRepository.findBooksByTitle(title);
+        List<Book> expectedBooksResult = Stream.of(
+                Book.create("A1", "Hello Spring")
+        ).collect(Collectors.toList());
+
+        Assert.assertEquals(expectedBooksResult, actualBooksResult);
+    }
 
     @Test
     @DatabaseSetup("/persistence/books/add/add-book-setup.xml")

@@ -60,4 +60,8 @@ public class BookViewModel {
     public static BookViewModel from(Book book) {
         return new BookViewModel(book);
     }
+
+    public static BookViewModel create(String ISBN, String title) {
+        return new BookViewModel(ISBN, title);
+    }
 }
