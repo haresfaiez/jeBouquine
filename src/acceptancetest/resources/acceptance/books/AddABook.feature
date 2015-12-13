@@ -9,7 +9,7 @@ Feature:
       | faiez_logistic | 0000     | logistic manager |
     And I want to add the book
       | ISBN | Title               | Price | Summary | Author |
-      | SPRG | Good evening Spring | 900   | Spring  | Faiez  |
+      | AAB1 | Good evening Spring | 900   | Spring  | Faiez  |
 
   Scenario: Add a new book to the catalog
     When I add the book to the catalog

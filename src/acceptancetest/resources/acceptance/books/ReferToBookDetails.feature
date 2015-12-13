@@ -5,8 +5,8 @@ Feature:
 
   Scenario:
     Given the catalog contains these books
-      | ISBN | Title      | Price | Summary    | Author |
-      | JVVV | Hello Java | 800   | Java book  | Faiez  |
+      | ISBN  | Title      | Price | Summary    | Author |
+      | RTBD1 | Hello Java | 800   | Java book  | Faiez  |
     When I want to buy this book
     Then I should be given all of its details
 
