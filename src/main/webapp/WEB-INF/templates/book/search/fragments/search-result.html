@@ -10,7 +10,7 @@
         Search result
         <ul>
             <li th:each="item : ${books}">
-                <span th:text="${item.title}">book title</span>
+                <span th:text="${item.title}" id="book-search-result-book-title">book title</span>
             </li>
         </ul>
     </div>

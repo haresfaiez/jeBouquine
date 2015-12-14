@@ -17,18 +17,15 @@ public class SearchForABook {
     private FirefoxDriver firefoxDriver = new FirefoxDriver();
 
     private AddBookDriver addBookDriver = new AddBookDriver(firefoxDriver);
-    private LoginDriver loginDriver = new LoginDriver (firefoxDriver);
-    private SearchBookDriver searchBookDriver = new SearchBookDriver  (firefoxDriver);
-    private HomeDriver homeDriver = new HomeDriver  (firefoxDriver);
-
-    private String adminPassowd = "0000";
-    private String adminUsername = "faiez_logistic";
+    private LoginDriver loginDriver = new LoginDriver(firefoxDriver);
+    private SearchBookDriver searchBookDriver = new SearchBookDriver(firefoxDriver);
+    private HomeDriver homeDriver = new HomeDriver(firefoxDriver);
 
     @Given("^the catalog contains these books$")
     public void the_catalog_contains_these_books(List<List<String>> books)
             throws Throwable {
         homeDriver.setUp();
-        loginDriver.loginAs(adminUsername, adminPassowd);
+        loginDriver.loginAs(LoginDriver.logisticManagerUsername, LoginDriver.logisticManagerPassword);
         addBook(books.get(1));
         addBook(books.get(2));
         addBook(books.get(3));
@@ -49,6 +46,11 @@ public class SearchForABook {
         searchBookDriver.openBookDetails(ISBN);
     }
 
+    @When("^I search for a book with title \"([^\"]*)\"$")
+    public void i_search_for_a_book_with_title(String title) throws Throwable {
+        searchBookDriver.searchForBookByTitle(title);
+    }
+
     @Then("^I should get the book$")
     public void i_should_get_the_book(List<List<String>> book) throws Throwable {
         String ISBN = book.get(1).get(0);
@@ -61,6 +63,23 @@ public class SearchForABook {
         //TODO:test the whole details
         loginDriver.logout();
         homeDriver.tearDown();
+    }
+
+    @Then("^I should get the books below$")
+    public void i_should_get_the_books_below(List<List<String>> books) {
+        boolean allBooksExist = books.stream()
+                .filter(booksEntry -> !booksEntry.get(0).equals("ISBN"))
+                .map(bookEntry -> extractBookTitle(bookEntry))
+                .map(bookTitle ->
+                        searchBookDriver.searchResultContains(bookTitle))
+                .allMatch(bookExists -> (bookExists == true));
+        Assert.assertTrue(allBooksExist);
+        loginDriver.logout();
+        homeDriver.tearDown();
+    }
+
+    private String extractBookTitle(List<String> bookEntry) {
+        return bookEntry.get(1);
     }
 
 }

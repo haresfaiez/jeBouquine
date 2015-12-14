@@ -4,6 +4,11 @@ import org.openqa.selenium.WebElement;
 import org.openqa.selenium.firefox.FirefoxDriver;
 
 public class LoginDriver {
+
+    //Logistic manager
+    public static final String logisticManagerUsername = "faiez_logistic";
+    public static final String logisticManagerPassword = "0000";
+
     private FirefoxDriver firefoxDriver;
 
     public LoginDriver(FirefoxDriver firefoxDriver) {
