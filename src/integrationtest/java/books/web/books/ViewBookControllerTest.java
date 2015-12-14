@@ -1,6 +1,6 @@
 package books.web.books;
 
-import books.IntegrationTestBookFactory;
+import factory.IntegrationTestBookFactory;
 import jebouquine.service.books.BookService;
 import jebouquine.service.books.viewmodel.BookViewModel;
 import jebouquine.service.books.viewmodel.SearchBookViewModel;

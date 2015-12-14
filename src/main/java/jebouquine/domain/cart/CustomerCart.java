@@ -19,6 +19,6 @@ public class CustomerCart implements Cart {
 
     @Override
     public void addBook(Book book) {
-        purchaseRepository.addPurchase(customer, book);
+        purchaseRepository.addPurchase(Purchase.now(book, customer));
     }
 }

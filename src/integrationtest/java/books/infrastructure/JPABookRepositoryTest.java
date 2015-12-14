@@ -32,7 +32,6 @@ public class JPABookRepositoryTest {
     @Autowired
     private BookRepository bookRepository;
 
-
     @Test
     @DatabaseSetup("/persistence/books/search/by-title/find-books-setup.xml")
     @ExpectedDatabase("/persistence/books/search/by-title/find-books-expected.xml")

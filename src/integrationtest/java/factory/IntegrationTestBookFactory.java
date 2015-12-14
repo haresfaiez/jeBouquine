@@ -1,5 +1,6 @@
-package books;
+package factory;
 
+import jebouquine.domain.books.Book;
 import jebouquine.service.books.viewmodel.AddBookViewModel;
 import jebouquine.service.books.viewmodel.BookViewModel;
 
@@ -23,5 +24,10 @@ public class IntegrationTestBookFactory {
     public static AddBookViewModel createAddBookViewModel() {
         return AddBookViewModel.from(bookISBN, bookTitle, bookPrice.get(),
                     bookSummary, bookAuthor);
+    }
+
+    public static Book createBook() {
+        return Book.from(bookISBN, bookTitle, bookPrice, bookSummary,
+                bookAuthor);
     }
 }

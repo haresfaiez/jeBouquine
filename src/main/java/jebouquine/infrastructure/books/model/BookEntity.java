@@ -117,7 +117,7 @@ public class BookEntity {
 
     public static BookEntity from(Book book) {
         return new BookEntity(book.getISBN(), book.getTitle(), book.getPrice
-                ().get(), book.getSummary(),  book.getAuthor());
+                ().get(), book.getSummary(), book.getAuthor());
     }
 
 }

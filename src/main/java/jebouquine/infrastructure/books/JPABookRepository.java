@@ -19,6 +19,7 @@ public class JPABookRepository implements BookRepository {
 
     public static final String SEARCH_BY_TITLE_NAMED_QUERY = "BookEntity.searchByTitle";
     public static final String BOOK_TITLE_NQ_PARAM = "bookTitle";
+
     @PersistenceContext
     private EntityManager entityManager;
 

@@ -2,4 +2,7 @@
 <dataset>
     <BOOKS ISBN="AAAA" title="Hello spring" price="400" summary="Spring summary"
            author="Faiez"  />
+    <BOOKS ISBN="QQ" title="Hello spring" price="400" summary="Spring summary"
+           author="Faiez"  />
+    <PURCHASES PURCHASE_ID="1" date="2014-12-29" book_ISBN="QQ" />
 </dataset>
