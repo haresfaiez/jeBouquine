@@ -1,23 +1,23 @@
 package jebouquine.service.cart;
 
 import jebouquine.domain.books.BookRepository;
-import jebouquine.domain.cart.CartRepository;
+import jebouquine.domain.cart.Cart;
 import org.springframework.beans.factory.annotation.Autowired;
 
 public class RepositoryCartService implements CartService {
 
-    private final CartRepository cartRepository;
+    private final Cart cart;
     private final BookRepository bookRepository;
 
     @Autowired
-    public RepositoryCartService(CartRepository cartRepository,
+    public RepositoryCartService(Cart cart,
                                  BookRepository bookRepository) {
-        this.cartRepository = cartRepository;
+        this.cart = cart;
         this.bookRepository = bookRepository;
     }
 
     @Override
     public void addBookToCart(String bookISBN) {
-        cartRepository.addBookToCart(bookRepository.findBookByISBN(bookISBN).get());
+        cart.addBook(bookRepository.findBookByISBN(bookISBN).get());
     }
 }
