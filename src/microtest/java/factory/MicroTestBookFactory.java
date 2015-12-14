@@ -1,4 +1,4 @@
-package books;
+package factory;
 
 import jebouquine.domain.books.Book;
 import jebouquine.service.books.viewmodel.AddBookViewModel;

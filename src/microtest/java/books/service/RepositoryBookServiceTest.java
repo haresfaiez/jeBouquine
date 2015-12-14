@@ -1,6 +1,6 @@
 package books.service;
 
-import books.MicroTestBookFactory;
+import factory.MicroTestBookFactory;
 import jebouquine.domain.books.Book;
 import jebouquine.domain.books.BookRepository;
 import jebouquine.infrastructure.books.JPABookRepository;
