@@ -1,4 +1,4 @@
-package jebouquine.infrastructure.cart;
+package jebouquine.domain.cart;
 
 import jebouquine.domain.books.Book;
 

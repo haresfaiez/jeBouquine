@@ -3,7 +3,7 @@ package cart.service;
 import factory.MicroTestBookFactory;
 import jebouquine.domain.books.Book;
 import jebouquine.domain.books.BookRepository;
-import jebouquine.infrastructure.cart.CartRepository;
+import jebouquine.domain.cart.CartRepository;
 import jebouquine.service.cart.CartService;
 import jebouquine.service.cart.RepositoryCartService;
 import org.junit.Test;
@@ -28,7 +28,7 @@ public class RepositoryCartServiceTest {
                 RepositoryCartService(cartRepository, bookRepository);
 
         repositoryCartService.addBookToCart(expectedBook.getISBN());
-        
+
         verify(cartRepository, times(1)).addBookToCart(expectedBook);
     }
 }

@@ -1,7 +1,7 @@
 package jebouquine.service.cart;
 
 import jebouquine.domain.books.BookRepository;
-import jebouquine.infrastructure.cart.CartRepository;
+import jebouquine.domain.cart.CartRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 
 public class RepositoryCartService implements CartService {
