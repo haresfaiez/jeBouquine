@@ -25,19 +25,17 @@ public class ViewBookControllerTest {
 
     @Test
     public void shouldGiveBookDetailsWhenAskedForAnExistingBookDetails() throws Exception {
-        final String bookISBN = "SPRG";
-        final String bookTitle = "Hello Spring";
-        final BookViewModel expectedBookViewModel = new
-                BookViewModel(bookISBN, bookTitle);
+        final BookViewModel expectedBookViewModel = BookFactory
+                .createBookViewModel();
         BookService bookService = mock(BookService.class);
         SearchBookViewModel searchBookViewModel
-                = SearchBookViewModel.fromISBN(bookISBN);
+                = SearchBookViewModel.fromISBN(BookFactory.bookISBN);
         when(bookService.searchForBookByISBN(searchBookViewModel)).thenReturn
                 (expectedBookViewModel);
         ViewBookController viewBookController = new ViewBookController
                 (bookService);
         standaloneSetup(viewBookController).build()
-                .perform(get(String.format("/book/view/%s", bookISBN)))
+                .perform(get(String.format("/book/view/%s", BookFactory.bookISBN)))
                 .andExpect(view().name("book/view"))
                 .andExpect(model().attribute("bookDetails", expectedBookViewModel));
     }

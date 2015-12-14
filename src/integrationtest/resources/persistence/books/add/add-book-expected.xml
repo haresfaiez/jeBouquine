@@ -1,4 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <dataset>
-    <BOOKS ISBN="AAAA" title="Hello spring" />
+    <BOOKS ISBN="AAAA" title="Hello spring" price="400" summary="Spring summary"
+           author="Faiez"  />
 </dataset>

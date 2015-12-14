@@ -30,7 +30,7 @@ public class JPABookRepository implements BookRepository {
 
     @Override
     public void addBook(Book expectedBook) {
-        entityManager.persist(new BookEntity(expectedBook));
+        entityManager.persist(BookEntity.from(expectedBook));
     }
 
     @Override

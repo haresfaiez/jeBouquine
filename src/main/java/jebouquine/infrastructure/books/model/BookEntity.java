@@ -3,6 +3,7 @@ package jebouquine.infrastructure.books.model;
 import jebouquine.domain.books.Book;
 
 import javax.persistence.*;
+import java.util.concurrent.atomic.AtomicInteger;
 
 //TODO:add attributes validation
 @NamedQueries({
@@ -17,15 +18,16 @@ public class BookEntity {
     @Id
     private String ISBN;
     private String title;
+    private Integer price;
+    private String summary;
+    private String author;
 
-    public BookEntity(String ISBN, String title) {
+    public BookEntity(String ISBN, String title, Integer price, String summary, String author) {
         this.ISBN = ISBN;
         this.title = title;
-    }
-
-    public BookEntity(Book book) {
-        this.ISBN = book.getISBN();
-        this.title = book.getTitle();
+        this.price = price;
+        this.summary = summary;
+        this.author = author;
     }
 
     public BookEntity() {
@@ -52,30 +54,70 @@ public class BookEntity {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
 
-        BookEntity bookEntity = (BookEntity) o;
+        BookEntity that = (BookEntity) o;
 
-        if (!ISBN.equals(bookEntity.ISBN)) return false;
-        if (!title.equals(bookEntity.title)) return false;
+        if (ISBN != null ? !ISBN.equals(that.ISBN) : that.ISBN != null)
+            return false;
+        if (title != null ? !title.equals(that.title) : that.title != null)
+            return false;
+        if (price != null ? !price.equals(that.price) : that.price != null)
+            return false;
+        if (summary != null ? !summary.equals(that.summary) : that.summary != null)
+            return false;
+        return !(author != null ? !author.equals(that.author) : that.author != null);
 
-        return true;
     }
 
     @Override
     public int hashCode() {
-        int result = ISBN.hashCode();
-        result = 31 * result + title.hashCode();
+        int result = ISBN != null ? ISBN.hashCode() : 0;
+        result = 31 * result + (title != null ? title.hashCode() : 0);
+        result = 31 * result + (price != null ? price.hashCode() : 0);
+        result = 31 * result + (summary != null ? summary.hashCode() : 0);
+        result = 31 * result + (author != null ? author.hashCode() : 0);
         return result;
     }
 
-    public Book createBook() {
-        return new Book(ISBN, title);
+    public Integer getPrice() {
+        return price;
     }
 
-    public static BookEntity newInstance(String ISBN, String title) {
-        return new BookEntity(ISBN, title);
+    public void setPrice(Integer price) {
+        this.price = price;
+    }
+
+    public String getSummary() {
+        return summary;
+    }
+
+    public void setSummary(String summary) {
+        this.summary = summary;
+    }
+
+    public String getAuthor() {
+        return author;
+    }
+
+    public void setAuthor(String author) {
+        this.author = author;
+    }
+
+    public Book createBook() {
+        return new Book(ISBN, title, new AtomicInteger(price), summary, author);
+    }
+
+    public static BookEntity from(String ISBN, String title, Integer
+            price, String summary, String author) {
+        return new BookEntity(ISBN, title, price, summary, author);
     }
 
     public static BookEntity nullObject() {
-        return new BookEntity("", "");
+        return new BookEntity("", "", 0, "", "");
     }
+
+    public static BookEntity from(Book book) {
+        return new BookEntity(book.getISBN(), book.getTitle(), book.getPrice
+                ().get(), book.getSummary(),  book.getAuthor());
+    }
+
 }

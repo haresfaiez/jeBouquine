@@ -1,5 +1,6 @@
 package books.service;
 
+import books.BookFactory;
 import jebouquine.domain.books.Book;
 import jebouquine.domain.books.BookRepository;
 import jebouquine.infrastructure.books.JPABookRepository;
@@ -23,17 +24,14 @@ public class RepositoryBookServiceTest {
     @Test
     public void shouldReturnABookViewModelListWhenAskForAnExistingBookByTitle
             () {
-        final String ISBN = "AAAA";
-        final String title = "Hello Spring";
-        Book expectedBook = new
-                Book(ISBN, title);
+        Book expectedBook = BookFactory.createBook();
         final BookViewModel expectedBookViewModel = BookViewModel.from(expectedBook);
         final SearchBookViewModel searchBookViewModel
-                = SearchBookViewModel.fromTitle(title);
+                = SearchBookViewModel.fromTitle(BookFactory.bookTitle);
        BookRepository bookRepository = mock(BookRepository.class);
         final List<BookViewModel> expectedBooksList = Stream.of(expectedBookViewModel)
                 .collect(Collectors.toList());
-        when(bookRepository.findBooksByTitle(title)).thenReturn(
+        when(bookRepository.findBooksByTitle(BookFactory.bookTitle)).thenReturn(
                 Stream.of(expectedBook)
                         .collect(Collectors.toList())
         );
@@ -48,12 +46,9 @@ public class RepositoryBookServiceTest {
 
     @Test
     public void shouldAddBookToTheCatalogWhenGivenValidBookDetails() {
-        final String bookISBN = "AAAA";
-        final String bookTitle = "Spring is awesome";
-        Book expectedBook = new Book(bookISBN, bookTitle);
-        AddBookViewModel actualAddBookViewModel = new AddBookViewModel
-                (bookISBN, bookTitle);
+        AddBookViewModel actualAddBookViewModel = BookFactory.createAddBookViewModel();
         BookRepository jpaBookRepository = mock(JPABookRepository.class);
+        Book expectedBook = actualAddBookViewModel.book();
 
         BookService repositoryBookService = new RepositoryBookService
                 (jpaBookRepository);
@@ -63,16 +58,13 @@ public class RepositoryBookServiceTest {
 
     @Test
     public void shouldReturnABookViewModelWhenAskedForAnExistingBookByISBN() {
-
-        final String ISBN = "AAAA";
-        final String title = "Hello Spring";
-        final Book expectedBook = new Book(ISBN, title);
+        final Book expectedBook = BookFactory.createBook();
         final SearchBookViewModel searchBookViewModel
-                = SearchBookViewModel.fromISBN(ISBN);
+                = SearchBookViewModel.fromISBN(BookFactory.bookISBN);
         final BookViewModel expectedBookViewModel = BookViewModel.from
                 (expectedBook);
         BookRepository bookRepository = mock(BookRepository.class);
-        when(bookRepository.findBookByISBN(ISBN)).thenReturn(Optional.of
+        when(bookRepository.findBookByISBN(BookFactory.bookISBN)).thenReturn(Optional.of
                 (expectedBook));
         final BookService bookService = new RepositoryBookService
                 (bookRepository);

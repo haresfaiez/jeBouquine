@@ -18,6 +18,7 @@ import spring.context.SpringApplicationTestContext;
 
 import java.util.List;
 import java.util.Optional;
+import java.util.concurrent.atomic.AtomicInteger;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
@@ -39,7 +40,9 @@ public class JPABookRepositoryTest {
         final String title = "Hello Spring";
         List<Book> actualBooksResult = bookRepository.findBooksByTitle(title);
         List<Book> expectedBooksResult = Stream.of(
-                Book.create("A1", "Hello Spring")
+                Book.from("A1", "Hello Spring", new AtomicInteger(400),
+                        "Spring summary",
+                        "Faiez")
         ).collect(Collectors.toList());
 
         Assert.assertEquals(expectedBooksResult, actualBooksResult);
@@ -51,8 +54,11 @@ public class JPABookRepositoryTest {
     public void shouldAddBook() {
         final String ISBN = "AAAA";
         final String title = "Hello spring";
+        final AtomicInteger price = new AtomicInteger(400);
+        final String summary = "Spring summary";
+        final String author = "Faiez";
 
-        Book actualBook = new Book(ISBN, title);
+        Book actualBook = Book.from(ISBN, title, price, summary, author);
         bookRepository.addBook(actualBook);
     }
 
@@ -62,8 +68,11 @@ public class JPABookRepositoryTest {
     public void shouldRetrieveExistingBookByISBN() {
         final String ISBN = "AAAA";
         final String title = "Hello spring";
+        final AtomicInteger price = new AtomicInteger(400);
+        final String summary = "Spring summary";
+        final String author = "Faiez";
 
-        Book expectedBook = new Book(ISBN, title);
+        Book expectedBook = Book.from(ISBN, title, price, summary, author);
         Optional<Book> actualBook = bookRepository.findBookByISBN(ISBN);
 
         Assert.assertTrue(actualBook.isPresent());

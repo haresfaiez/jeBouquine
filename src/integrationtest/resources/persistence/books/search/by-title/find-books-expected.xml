@@ -1,6 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <dataset>
-    <BOOKS ISBN="A1" title="Hello Spring" />
-    <BOOKS ISBN="A2" title="Hello Spring Web MVC" />
-    <BOOKS ISBN="A3" title="Hello Java" />
+    <BOOKS ISBN="A1" title="Hello Spring" price="400" summary="Spring summary"
+           author="Faiez" />
+    <BOOKS ISBN="A2" title="Hello Spring Web MVC" price="400" summary="Spring summary"
+           author="Faiez"  />
+    <BOOKS ISBN="A3" title="Hello Java" price="400" summary="Spring summary"
+           author="Faiez"  />
 </dataset>

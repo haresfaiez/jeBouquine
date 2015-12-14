@@ -2,22 +2,33 @@ package jebouquine.service.books.viewmodel;
 
 import jebouquine.domain.books.Book;
 
+import java.util.concurrent.atomic.AtomicInteger;
+
 public class AddBookViewModel {
 
     private String ISBN;
     private String title;
+    private Integer price;
+    private String summary;
+    private String author;
 
     public AddBookViewModel() {
     }
 
-    public AddBookViewModel(String ISBN, String title) {
+    public AddBookViewModel(String ISBN, String title, Integer price, String summary, String author) {
         this.ISBN = ISBN;
         this.title = title;
+        this.price = price;
+        this.summary = summary;
+        this.author = author;
     }
 
     public AddBookViewModel(Book book) {
         this.ISBN = book.getISBN();
         this.title = book.getTitle();
+        this.price = book.getPrice().get();
+        this.summary = book.getSummary();
+        this.author = book.getAuthor();
     }
 
     public String getISBN() {
@@ -45,7 +56,13 @@ public class AddBookViewModel {
 
         if (ISBN != null ? !ISBN.equals(that.ISBN) : that.ISBN != null)
             return false;
-        return !(title != null ? !title.equals(that.title) : that.title != null);
+        if (title != null ? !title.equals(that.title) : that.title != null)
+            return false;
+        if (price != null ? !price.equals(that.price) : that.price != null)
+            return false;
+        if (summary != null ? !summary.equals(that.summary) : that.summary != null)
+            return false;
+        return !(author != null ? !author.equals(that.author) : that.author != null);
 
     }
 
@@ -53,7 +70,34 @@ public class AddBookViewModel {
     public int hashCode() {
         int result = ISBN != null ? ISBN.hashCode() : 0;
         result = 31 * result + (title != null ? title.hashCode() : 0);
+        result = 31 * result + (price != null ? price.hashCode() : 0);
+        result = 31 * result + (summary != null ? summary.hashCode() : 0);
+        result = 31 * result + (author != null ? author.hashCode() : 0);
         return result;
+    }
+
+    public Integer getPrice() {
+        return price;
+    }
+
+    public void setPrice(Integer price) {
+        this.price = price;
+    }
+
+    public String getSummary() {
+        return summary;
+    }
+
+    public void setSummary(String summary) {
+        this.summary = summary;
+    }
+
+    public String getAuthor() {
+        return author;
+    }
+
+    public void setAuthor(String author) {
+        this.author = author;
     }
 
     public static AddBookViewModel from(Book book) {
@@ -61,10 +105,20 @@ public class AddBookViewModel {
     }
 
     public Book book() {
-        return new Book(ISBN, title);
+//        return new Book(ISBN, title, new AtomicInteger(price), summary,
+//                author);
+        //TODO:uncomment last instruction
+        return new Book(ISBN, title, new AtomicInteger(0), "",
+                "");
     }
 
     public static AddBookViewModel nullObject() {
-        return new AddBookViewModel("", "");
+        return new AddBookViewModel("", "", new Integer(0), "", "");
     }
+
+    public static AddBookViewModel from(String ISBN, String title, Integer
+            price, String summary, String author) {
+        return new AddBookViewModel(ISBN, title, price, summary, author);
+    }
+
 }

@@ -41,15 +41,13 @@ public class SearchBookControllerTest {
     @Test
     public void shouldReturnMatchedBookListWhenSearchForAnExistingBookByTitle()
             throws Exception {
-        final String ISBN = "AAAA";
-        final String title = "Hello Spring";
-        final BookViewModel expectedBookViewModel = new BookViewModel(ISBN,
-                title);
-        List<BookViewModel> expectedResult = Stream.of(expectedBookViewModel).collect(Collectors.toList());
+        final BookViewModel expectedBookViewModel = BookFactory.createBookViewModel();
+        List<BookViewModel> expectedResult =
+                Stream.of(expectedBookViewModel).collect(Collectors.toList());
 
         BookService bookService = mock(BookService.class);
         given(bookService.searchForBooksByTitle(SearchBookViewModel.fromTitle
-                (title))).willReturn
+                (BookFactory.bookTitle))).willReturn
                 (expectedResult);
 
         SearchBookController searchBookController = new
@@ -57,7 +55,7 @@ public class SearchBookControllerTest {
         standaloneSetup(searchBookController).build()
                 .perform(get("/book/search")
                         .param("criteria", SearchBookViewModel.getCriteriaTitle())
-                        .param("value", title))
+                        .param("value", BookFactory.bookTitle))
                 .andExpect(model()
                         .attribute("books", expectedResult))
                 .andExpect(view().name
@@ -79,12 +77,10 @@ public class SearchBookControllerTest {
     @Test
     public void shouldReturnBookViewWhenSearchForAnExistingBookByISBN()
             throws Exception {
-        final String ISBN = "AAAA";
-        final String title = "Hello Spring";
-        final BookViewModel expectedBookViewModel = new BookViewModel(ISBN,
-                title);
+        final BookViewModel expectedBookViewModel = BookFactory.createBookViewModel();
         BookService bookService = mock(BookService.class);
-        given(bookService.searchForBookByISBN(SearchBookViewModel.fromISBN(ISBN)
+        given(bookService.searchForBookByISBN(SearchBookViewModel.fromISBN
+                (BookFactory.bookISBN)
         )).willReturn
                 (expectedBookViewModel);
 
@@ -93,9 +89,9 @@ public class SearchBookControllerTest {
         standaloneSetup(searchBookController).build()
                 .perform(get("/book/search")
                         .param("criteria", SearchBookViewModel.getCriteriaISBN())
-                        .param("value", ISBN))
+                        .param("value", BookFactory.bookISBN))
                 .andExpect(model()
-                        .attribute("book", ISBN))
+                        .attribute("book", BookFactory.bookISBN))
                 .andExpect(view().name
                         ("redirect:/book/view/{book}"));
     }
