@@ -3,7 +3,9 @@ package jebouquine.domain.cart;
 import jebouquine.domain.books.Book;
 import jebouquine.domain.customer.Customer;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Component;
 
+@Component
 public class CustomerCart implements Cart {
 
     private final Customer customer;

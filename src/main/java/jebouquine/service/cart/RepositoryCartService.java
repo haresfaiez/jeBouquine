@@ -3,7 +3,9 @@ package jebouquine.service.cart;
 import jebouquine.domain.books.BookRepository;
 import jebouquine.domain.cart.Cart;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 
+@Service
 public class RepositoryCartService implements CartService {
 
     private final Cart cart;
