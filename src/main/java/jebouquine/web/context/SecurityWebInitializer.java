@@ -1,4 +1,4 @@
-package jebouquine.web;
+package jebouquine.web.context;
 
 import org.springframework.security.web.context.AbstractSecurityWebApplicationInitializer;
 

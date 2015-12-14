@@ -32,8 +32,9 @@ public class AddBookController {
 
     @RequestMapping(value = "/book/add", method = POST)
     public final String addBook(@ModelAttribute(value="book") AddBookViewModel
-                                            addBookViewModel) {
+                                            addBookViewModel, Model model) {
         service.addBook(addBookViewModel);
-        return "redirect:/";
+        model.addAttribute("book", addBookViewModel.getISBN());
+        return "redirect:/book/view/{book}";
     }
 }

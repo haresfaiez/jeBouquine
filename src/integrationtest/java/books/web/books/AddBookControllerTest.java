@@ -1,8 +1,9 @@
 package books.web.books;
 
+import books.IntegrationTestBookFactory;
 import jebouquine.service.books.BookService;
 import jebouquine.service.books.viewmodel.AddBookViewModel;
-import jebouquine.web.SpringWebContext;
+import jebouquine.web.context.SpringWebContext;
 import jebouquine.web.books.AddBookController;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -29,9 +30,9 @@ public class AddBookControllerTest {
     @Test
     public void shouldAllowALogisticManagerToAddNewBook() throws Exception {
         BookService bookService = mock(BookService.class);
-
         AddBookController addBookController = new
                 AddBookController(bookService);
+
         standaloneSetup(addBookController).build()
                 .perform(get("/book/add"))
                 .andExpect(view().name("book/add"));
@@ -39,18 +40,20 @@ public class AddBookControllerTest {
 
     @Test
     public void shouldAddNewBookWhenGivenValidBookDetails() throws Exception {
-        AddBookViewModel expectedAddBookViewModel = BookFactory
+        AddBookViewModel expectedAddBookViewModel = IntegrationTestBookFactory
                 .createAddBookViewModel();
         BookService bookService = mock(BookService.class);
         AddBookController addBookController = new
                 AddBookController(bookService);
+
         standaloneSetup(addBookController).build()
                 .perform(post("/book/add")
-                        .param("ISBN", BookFactory.bookISBN)
-                        .param("title", BookFactory.bookTitle)
-                        .param("price", String.valueOf(BookFactory.bookPrice.get()))
-                        .param("summary", BookFactory.bookSummary)
-                        .param("author", BookFactory.bookAuthor));
+                        .param("ISBN", IntegrationTestBookFactory.bookISBN)
+                        .param("title", IntegrationTestBookFactory.bookTitle)
+                        .param("price", String.valueOf(IntegrationTestBookFactory.bookPrice.get()))
+                        .param("summary", IntegrationTestBookFactory.bookSummary)
+                        .param("author", IntegrationTestBookFactory.bookAuthor));
+
         verify(bookService, times(1)).addBook(expectedAddBookViewModel);
     }
 }

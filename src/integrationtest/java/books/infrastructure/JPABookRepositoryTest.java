@@ -40,7 +40,7 @@ public class JPABookRepositoryTest {
         final String title = "Hello Spring";
         List<Book> actualBooksResult = bookRepository.findBooksByTitle(title);
         List<Book> expectedBooksResult = Stream.of(
-                Book.from("A1", "Hello Spring", new AtomicInteger(400),
+                Book.from("A1", title, new AtomicInteger(400),
                         "Spring summary",
                         "Faiez")
         ).collect(Collectors.toList());

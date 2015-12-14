@@ -1,12 +1,11 @@
 package books;
 
-import jebouquine.domain.books.Book;
 import jebouquine.service.books.viewmodel.AddBookViewModel;
 import jebouquine.service.books.viewmodel.BookViewModel;
 
 import java.util.concurrent.atomic.AtomicInteger;
 
-public class BookFactory {
+public class IntegrationTestBookFactory {
 
     //Book test sample
     public final static String bookISBN = "AAAA";
@@ -16,19 +15,13 @@ public class BookFactory {
     public final static String bookAuthor = "Faiez";
 
 
-    public static AddBookViewModel createAddBookViewModel() {
-        return AddBookViewModel.from(bookISBN, bookTitle, bookPrice.get(),
-                bookSummary, bookAuthor);
-    }
-
     public static BookViewModel createBookViewModel() {
         return BookViewModel.from(bookISBN, bookTitle, bookPrice,
                     bookSummary, bookAuthor);
     }
 
-    public static Book createBook() {
-        return Book.from(bookISBN, bookTitle, bookPrice,
+    public static AddBookViewModel createAddBookViewModel() {
+        return AddBookViewModel.from(bookISBN, bookTitle, bookPrice.get(),
                     bookSummary, bookAuthor);
     }
-
 }

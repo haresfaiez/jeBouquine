@@ -102,7 +102,7 @@ public class BookEntity {
         this.author = author;
     }
 
-    public Book createBook() {
+    public Book book() {
         return new Book(ISBN, title, new AtomicInteger(price), summary, author);
     }
 

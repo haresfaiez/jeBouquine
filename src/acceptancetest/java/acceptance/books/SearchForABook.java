@@ -48,6 +48,7 @@ public class SearchForABook {
         String author = book.get(1).get(4);
         Assert.assertEquals(ISBN, driver.bookISBN());
         Assert.assertEquals(title, driver.bookTitle());
+        //TODO:test the whole details
         driver.logout();
         driver.tearDown();
     }

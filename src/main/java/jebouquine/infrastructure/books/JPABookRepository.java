@@ -17,6 +17,8 @@ import java.util.stream.Collectors;
 @Transactional
 public class JPABookRepository implements BookRepository {
 
+    public static final String SEARCH_BY_TITLE_NAMED_QUERY = "BookEntity.searchByTitle";
+    public static final String BOOK_TITLE_NQ_PARAM = "bookTitle";
     @PersistenceContext
     private EntityManager entityManager;
 
@@ -24,7 +26,7 @@ public class JPABookRepository implements BookRepository {
     public Optional<Book> findBookByISBN(String ISBN) {
         return Optional
                 .of(entityManager.find(BookEntity.class, ISBN))
-                .map(bookEntity -> Optional.of(bookEntity.createBook()))
+                .map(bookEntity -> Optional.of(bookEntity.book()))
                 .get();
     }
 
@@ -36,12 +38,12 @@ public class JPABookRepository implements BookRepository {
     @Override
     public List<Book> findBooksByTitle(String title) {
         TypedQuery<BookEntity> query = entityManager
-                .createNamedQuery("BookEntity.searchByTitle", BookEntity.class);
-        query.setParameter("bookTitle", title);
+                .createNamedQuery(SEARCH_BY_TITLE_NAMED_QUERY, BookEntity.class);
+        query.setParameter(BOOK_TITLE_NQ_PARAM, title);
         return  query
                 .getResultList()
                 .stream()
-                .map(bookEntity -> bookEntity.createBook())
+                .map(bookEntity -> bookEntity.book())
                 .collect(Collectors.toList());
     }
 
