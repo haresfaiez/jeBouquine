@@ -37,6 +37,7 @@ public class JPAPurchaseRepositoryTest {
     public void shouldAddPurchase() {
         Book actualBook = IntegrationTestBookFactory.createBook();
         Customer customer = IntegrationTestCustomerFactory.createCustomer();
+        //TODO:fix date handling
         Date date = new Date(12, 29, 2014);
         purchaseRepository.addPurchase(Purchase.from(actualBook, customer,
                 date));
