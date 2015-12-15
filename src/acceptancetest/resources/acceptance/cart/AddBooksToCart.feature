@@ -5,13 +5,13 @@ Feature:
 
   Scenario:
   Add books to the cart
-    Given The books I want to buy are
+    Given I am the customer
+      | Username       | Password |
+      | faiez_customer | 0000     |
+    And The books I want to buy are
       | ISBN  | Title             | Price | Summary | Author |
       | ABTC1 | Clojure in action | 300   | Clojure | Faiez  |
       | ABTC2 | Groovy in action  | 900   | Groovy  | Faiez  |
-    And I am the customer
-      | Username       | Password |
-      | faiez_customer | 0000     |
     When I add them to my cart
     Then I should find these purchases in my cart
       | Book              | Price |

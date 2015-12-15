@@ -36,19 +36,18 @@ public class AddBooksToCart {
         homeDriver.setUp();
         username = actor.get(1).get(0);
         password = actor.get(1).get(1);
-        loginDriver.loginAs(username, password);
     }
 
     @Given("^The books I want to buy are$")
     public void the_books_I_want_to_buy_are(List<List<String>> books)
             throws Throwable {
-        homeDriver.setUp();
         loginDriver.loginAs(LoginDriver.logisticManagerUsername, LoginDriver.logisticManagerPassword);
         firstBook = books.get(1);
         secondBook = books.get(2);
         addBookDriver.addBook(firstBook);
         addBookDriver.addBook(secondBook);
         loginDriver.logout();
+        loginDriver.loginAs(username, password);
     }
 
     @When("^I add them to my cart$")
