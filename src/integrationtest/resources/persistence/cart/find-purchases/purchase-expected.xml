@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<dataset>
+    <BOOKS ISBN="FFFF" title="Hibernate in action" price="400"
+           summary="Hibernate summary"
+           author="Faiez"/>
+    <BOOKS ISBN="IIII" title="Spring in action" price="400"
+           summary="Spring summary"
+           author="Faiez"/>
+
+    <PURCHASES PURCHASE_ID="4" date="1919-12-05" book_ISBN="IIII"/>
+    <PURCHASES PURCHASE_ID="5" date="1919-12-05" book_ISBN="FFFF"/>
+</dataset>

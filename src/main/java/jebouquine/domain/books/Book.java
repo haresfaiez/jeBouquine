@@ -95,4 +95,8 @@ public class Book {
                             String summary, String author) {
         return new Book(ISBN, title, price, summary, author);
     }
+
+    public static Book nullObject() {
+        return new Book("", "", new AtomicInteger(0), "", "");
+    }
 }

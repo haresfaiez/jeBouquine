@@ -30,4 +30,5 @@ public class IntegrationTestBookFactory {
         return Book.from(bookISBN, bookTitle, bookPrice, bookSummary,
                 bookAuthor);
     }
+
 }

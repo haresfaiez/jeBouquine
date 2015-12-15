@@ -37,10 +37,11 @@ public class Purchase {
 
         Purchase purchase = (Purchase) o;
 
-        if (date != null ? !(date.compareTo(purchase.date) == 0) : purchase
-                .date !=
-                null)
-            return false;
+        //TODO:fix date comparison
+//        if (date != null ? !(date.compareTo(purchase.date) == 0) : purchase
+//                .date !=
+//                null)
+//            return false;
         if (book != null ? !book.equals(purchase.book) : purchase.book != null)
             return false;
         return !(customer != null ? !customer.equals(purchase.customer) : purchase.customer != null);

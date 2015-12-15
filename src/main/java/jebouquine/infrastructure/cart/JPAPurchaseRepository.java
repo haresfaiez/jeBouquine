@@ -9,11 +9,16 @@ import org.springframework.transaction.annotation.Transactional;
 
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
+import javax.persistence.TypedQuery;
 import java.util.List;
+import java.util.stream.Collectors;
 
 @Repository
 @Transactional
 public class JPAPurchaseRepository implements PurchaseRepository {
+
+    public static final String SEARCH_BY_BOOK_NAMED_QUERY
+            = "PurchaseEntity.searchByBook";
 
     @PersistenceContext
     private EntityManager entityManager;
@@ -25,6 +30,13 @@ public class JPAPurchaseRepository implements PurchaseRepository {
 
     @Override
     public List<Purchase> findPurchasesFor(Customer customer) {
-        return null;
+        //TODO:add customer handling
+        TypedQuery<PurchaseEntity> query = entityManager
+                .createNamedQuery(SEARCH_BY_BOOK_NAMED_QUERY, PurchaseEntity.class);
+        return  query
+                .getResultList()
+                .stream()
+                .map(purchaseEntity -> purchaseEntity.purchase())
+                .collect(Collectors.toList());
     }
 }

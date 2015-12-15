@@ -1,8 +1,11 @@
 package jebouquine.infrastructure.books.model;
 
 import jebouquine.domain.books.Book;
+import jebouquine.infrastructure.cart.model.PurchaseEntity;
 
 import javax.persistence.*;
+import java.util.HashSet;
+import java.util.Set;
 import java.util.concurrent.atomic.AtomicInteger;
 
 //TODO:add attributes validation
@@ -21,6 +24,9 @@ public class BookEntity {
     private Integer price;
     private String summary;
     private String author;
+
+    @OneToMany(mappedBy = "book", cascade = CascadeType.REMOVE)
+    private Set<PurchaseEntity> purchaseEntity  = new HashSet<PurchaseEntity>();
 
     public BookEntity(String ISBN, String title, Integer price, String summary, String author) {
         this.ISBN = ISBN;

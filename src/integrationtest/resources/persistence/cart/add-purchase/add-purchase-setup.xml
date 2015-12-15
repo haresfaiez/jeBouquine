@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <dataset>
-    <BOOKS ISBN="AAAA" title="Hello Spring Test" price="500" summary="Spring summary"
-           author="Faiez"  />
+    <BOOKS ISBN="FFFF" title="Hibernate in action" price="400"
+           summary="Hibernate summary"
+           author="Faiez"/>
 </dataset>

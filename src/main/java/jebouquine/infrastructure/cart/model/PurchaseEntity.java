@@ -1,11 +1,17 @@
 package jebouquine.infrastructure.cart.model;
 
 import jebouquine.domain.cart.Purchase;
+import jebouquine.domain.customer.Customer;
 import jebouquine.infrastructure.books.model.BookEntity;
 
 import javax.persistence.*;
 import java.util.Date;
 
+@NamedQueries({
+        @NamedQuery(name = "PurchaseEntity.searchByBook",
+                query = "SELECT purchaseEntity " +
+                        "FROM PurchaseEntity  purchaseEntity")
+})
 @Table(name = "PURCHASES")
 @Entity
 public class PurchaseEntity {
@@ -76,5 +82,10 @@ public class PurchaseEntity {
     public static PurchaseEntity from(Purchase purchase) {
         return new PurchaseEntity(purchase.getDate(),
                 BookEntity.from(purchase.getBook()));
+    }
+
+    public Purchase purchase() {
+        //TODO:handle customer
+        return Purchase.from(book.book(), Customer.nullObject(), getDate());
     }
 }
