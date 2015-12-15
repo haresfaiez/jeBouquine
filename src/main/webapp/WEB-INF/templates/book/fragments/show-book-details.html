@@ -5,7 +5,8 @@
 <body>
 <section class="content-header" th:fragment="default">
     <h1 th:text="${bookDetails.title}" id="book-title">Book Title</h1>
-    <a th:href="@{'/cart/add-book/' + ${bookDetails.ISBN}}"><span
+    <a th:href="@{'/cart/add-book/' + ${bookDetails.ISBN}}"
+       id="add-to-cart"><span
             th:text="#{book-view.add-to-cart}">Add to cart</span></a>
     <div>
         <h1>

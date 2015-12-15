@@ -4,6 +4,7 @@ import acceptance.HomeDriver;
 import acceptance.driver.AddBookDriver;
 import acceptance.driver.SearchBookDriver;
 import acceptance.driver.LoginDriver;
+import acceptance.factory.ListToBook;
 import cucumber.api.java.en.Given;
 import cucumber.api.java.en.Then;
 import cucumber.api.java.en.When;
@@ -53,17 +54,13 @@ public class SearchForABook {
     public void i_should_get_the_books_below(List<List<String>> books) {
         boolean allBooksExist = books.stream()
                 .filter(booksEntry -> !booksEntry.get(0).equals("ISBN"))
-                .map(bookEntry -> extractBookTitle(bookEntry))
+                .map(bookEntry -> ListToBook.titleOf(bookEntry))
                 .map(bookTitle ->
                         searchBookDriver.searchResultContains(bookTitle))
                 .allMatch(bookExists -> (bookExists == true));
         Assert.assertTrue(allBooksExist);
         loginDriver.logout();
         homeDriver.tearDown();
-    }
-
-    private String extractBookTitle(List<String> bookEntry) {
-        return bookEntry.get(1);
     }
 
 }
