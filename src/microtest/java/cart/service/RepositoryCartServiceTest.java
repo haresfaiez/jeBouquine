@@ -1,18 +1,55 @@
 package cart.service;
 
 import factory.MicroTestBookFactory;
+import factory.MicroTestPurchaseFactory;
 import jebouquine.domain.books.Book;
 import jebouquine.domain.books.BookRepository;
 import jebouquine.domain.cart.Cart;
+import jebouquine.domain.cart.Purchase;
 import jebouquine.service.cart.CartService;
 import jebouquine.service.cart.RepositoryCartService;
+import jebouquine.service.cart.viewmodel.PurchaseViewModel;
+import junit.framework.Assert;
 import org.junit.Test;
 
+import java.util.List;
 import java.util.Optional;
+import java.util.stream.Collectors;
+import java.util.stream.Stream;
 
+import static factory.MicroTestPurchaseFactory.createPurchaseViewModelFor;
 import static org.mockito.Mockito.*;
 
 public class RepositoryCartServiceTest {
+
+
+    @Test
+    public void shouldReturnPurchasesListOfTheCurrentCustomer() {
+        Book expectedBook = MicroTestBookFactory.createBook();
+        BookRepository bookRepository = mock(BookRepository.class);
+
+        List<Purchase> expectedPurchaseList
+                = Stream
+                .of(MicroTestPurchaseFactory.createPurchaseFor(expectedBook))
+                .collect(Collectors.toList());
+
+        List<PurchaseViewModel> expectedPurchaseListViewModel
+                = Stream
+                .of(createPurchaseViewModelFor(expectedBook))
+                .collect(Collectors.toList());
+
+        Cart cart = mock(Cart.class);
+        when(cart.purchases())
+                .thenReturn(expectedPurchaseList);
+
+        CartService cartService = new RepositoryCartService(cart,
+                bookRepository);
+
+        List<PurchaseViewModel> actualPurchaseListViewModel
+                = cartService.purchases();
+        Assert.assertEquals(expectedPurchaseListViewModel, actualPurchaseListViewModel);
+
+    }
 
     @Test
     public void shouldAddABookToTheCatalogWhenGivenAValidBookISBN() {

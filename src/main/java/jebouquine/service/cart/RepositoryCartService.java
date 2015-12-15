@@ -7,6 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.stream.Collectors;
 
 @Service
 public class RepositoryCartService implements CartService {
@@ -28,6 +29,10 @@ public class RepositoryCartService implements CartService {
 
     @Override
     public List<PurchaseViewModel> purchases() {
-        return null;
+        return cart
+                .purchases()
+                .stream()
+                .map(purchase -> PurchaseViewModel.from(purchase))
+                .collect(Collectors.toList());
     }
 }

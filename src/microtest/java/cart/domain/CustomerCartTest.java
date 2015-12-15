@@ -8,8 +8,8 @@ import jebouquine.domain.cart.CustomerCart;
 import jebouquine.domain.cart.Purchase;
 import jebouquine.domain.cart.PurchaseRepository;
 import jebouquine.domain.customer.Customer;
+import matcher.IsSamePurchase;
 import org.junit.Test;
-import org.mockito.ArgumentMatcher;
 
 import static org.mockito.Mockito.*;
 
@@ -19,7 +19,6 @@ public class CustomerCartTest {
     public void shouldAddCustomerBookToHisCart() {
         Book book = MicroTestBookFactory.createBook();
         Customer customer = MicroTestCustomerFactory.createCustomer();
-        Purchase purchase = Purchase.now(book, customer);
         PurchaseRepository purchaseRepository = mock(PurchaseRepository.class);
 
         Cart customerCart = new CustomerCart(customer, purchaseRepository);
@@ -31,21 +30,4 @@ public class CustomerCartTest {
                         argThat(new IsSamePurchase(customer, book)));
     }
 
-    class IsSamePurchase extends ArgumentMatcher {
-
-        private Customer customer;
-        private Book book;
-
-        public IsSamePurchase(Customer customer, Book book) {
-            this.customer = customer;
-            this.book = book;
-        }
-
-        @Override
-        public boolean matches(Object argument) {
-            Purchase purchase = (Purchase) argument;
-            return ((Purchase) argument).getBook().equals(book)
-                    && purchase.getCustomer().equals(customer);
-        }
-    }
 }

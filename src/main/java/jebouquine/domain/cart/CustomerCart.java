@@ -5,6 +5,8 @@ import jebouquine.domain.customer.Customer;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
+import java.util.List;
+
 @Component
 public class CustomerCart implements Cart {
 
@@ -20,5 +22,10 @@ public class CustomerCart implements Cart {
     @Override
     public void addBook(Book book) {
         purchaseRepository.addPurchase(Purchase.now(book, customer));
+    }
+
+    @Override
+    public List<Purchase> purchases() {
+        return null;
     }
 }

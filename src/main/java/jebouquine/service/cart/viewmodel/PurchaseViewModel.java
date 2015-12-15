@@ -1,5 +1,7 @@
 package jebouquine.service.cart.viewmodel;
 
+import jebouquine.domain.cart.Purchase;
+
 import java.util.Date;
 
 public class PurchaseViewModel {
@@ -52,8 +54,10 @@ public class PurchaseViewModel {
             return false;
         if (bookTitle != null ? !bookTitle.equals(that.bookTitle) : that.bookTitle != null)
             return false;
-        return !(purchaseDate != null ? !purchaseDate.equals(that.purchaseDate) : that.purchaseDate != null);
-
+        //TODO:compare the date wisely
+//        return !(purchaseDate != null ? !(purchaseDate.equals(that
+//                .purchaseDate)) : that.purchaseDate != null);
+        return true;
     }
 
     @Override
@@ -71,5 +75,11 @@ public class PurchaseViewModel {
 
     public static PurchaseViewModel now(String bookISBN, String bookTitle) {
         return new PurchaseViewModel(bookISBN, bookTitle, new Date());
+    }
+
+    public static PurchaseViewModel from(Purchase purchase) {
+        return new PurchaseViewModel(purchase.getBook().getISBN(),
+                purchase.getBook().getTitle(),
+                purchase.getDate());
     }
 }
