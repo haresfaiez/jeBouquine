@@ -1,5 +1,6 @@
 package jebouquine.web.cart;
 
+import jebouquine.service.books.viewmodel.SearchBookViewModel;
 import jebouquine.service.cart.CartService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.ui.Model;
@@ -20,6 +21,7 @@ public class AddBookToCartController {
     public String addBookToCart(@PathVariable("ISBN") String ISBN, Model model){
         cartService.addBookToCart(ISBN);
         model.addAttribute("book", ISBN);
+        model.addAttribute("booksearch", SearchBookViewModel.nullObject());
         return "redirect:/book/view/{book}";
     }
 

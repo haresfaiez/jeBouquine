@@ -1,5 +1,6 @@
 package jebouquine.web.cart;
 
+import jebouquine.service.books.viewmodel.SearchBookViewModel;
 import jebouquine.service.cart.CartService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -17,9 +18,10 @@ public class ViewCartController {
         this.cartService = cartService;
     }
 
-    @RequestMapping(name = "", method = RequestMethod.GET)
+    @RequestMapping(value = "/cart/view", method = RequestMethod.GET)
     public String viewPurchases(Model model) {
         model.addAttribute("purchases", cartService.purchases());
+        model.addAttribute("booksearch", SearchBookViewModel.nullObject());
         return "cart/view";
     }
 
