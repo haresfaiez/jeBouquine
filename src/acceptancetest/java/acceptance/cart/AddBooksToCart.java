@@ -60,13 +60,13 @@ public class AddBooksToCart {
         cartDriver.visitCart();
         cartDriver.assertPurchaseExists(purchases.get(1));
         cartDriver.assertPurchaseExists(purchases.get(2));
+        loginDriver.logout();
+        homeDriver.tearDown();
     }
 
     @Then("^the total price should be \"([^\"]*)\"$")
     public void the_total_price_should_be(String expectedSum) throws Throwable {
         cartDriver.assertPurchasesSumIs(expectedSum);
-        loginDriver.logout();
-        homeDriver.tearDown();
     }
 
     @When("^I come back to a new shopping session$")

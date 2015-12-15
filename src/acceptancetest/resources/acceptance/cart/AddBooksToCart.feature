@@ -13,11 +13,11 @@ Feature:
       | ABTC1 | Clojure in action | 300   | Clojure | Faiez  |
       | ABTC2 | Groovy in action  | 900   | Groovy  | Faiez  |
     When I add them to my cart
-    Then I should find these purchases in my cart
+    Then the total price should be "1200"
+    And I should find these purchases in my cart
       | Book              | Price |
       | Clojure in action | 300   |
       | Groovy in action  | 900   |
-    And the total price should be "1200"
 
   Scenario:
   Keep the cart purchases out of the current shopping session

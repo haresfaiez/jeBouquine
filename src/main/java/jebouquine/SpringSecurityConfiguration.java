@@ -20,6 +20,10 @@ public class SpringSecurityConfiguration extends WebSecurityConfigurerAdapter {
                     .antMatchers("/book/add")
                     .access("hasRole('LOGISTIC_MANAGER')")
                 .and()
+                .authorizeRequests()
+                    .antMatchers("/cart/**")
+                    .access("hasRole('CUSTOMER')")
+                .and()
                     .logout()
                     .logoutSuccessUrl("/")
                     .logoutUrl("/logout");
