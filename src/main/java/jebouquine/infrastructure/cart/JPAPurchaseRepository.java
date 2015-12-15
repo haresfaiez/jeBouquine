@@ -2,12 +2,14 @@ package jebouquine.infrastructure.cart;
 
 import jebouquine.domain.cart.Purchase;
 import jebouquine.domain.cart.PurchaseRepository;
+import jebouquine.domain.customer.Customer;
 import jebouquine.infrastructure.cart.model.PurchaseEntity;
 import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
 
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
+import java.util.List;
 
 @Repository
 @Transactional
@@ -19,5 +21,10 @@ public class JPAPurchaseRepository implements PurchaseRepository {
     @Override
     public void addPurchase(Purchase purchase) {
         entityManager.persist(PurchaseEntity.from(purchase));
+    }
+
+    @Override
+    public List<Purchase> findPurchasesFor(Customer customer) {
+        return null;
     }
 }

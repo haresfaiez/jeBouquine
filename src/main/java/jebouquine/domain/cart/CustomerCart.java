@@ -26,6 +26,6 @@ public class CustomerCart implements Cart {
 
     @Override
     public List<Purchase> purchases() {
-        return null;
+        return purchaseRepository.findPurchasesFor(customer);
     }
 }
