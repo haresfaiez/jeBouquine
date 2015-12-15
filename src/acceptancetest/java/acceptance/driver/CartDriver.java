@@ -1,4 +1,4 @@
-package acceptance.factory;
+package acceptance.driver;
 
 import org.junit.Assert;
 import org.openqa.selenium.WebElement;

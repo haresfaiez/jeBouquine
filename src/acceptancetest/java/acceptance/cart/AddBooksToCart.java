@@ -1,11 +1,7 @@
 package acceptance.cart;
 
 import acceptance.HomeDriver;
-import acceptance.driver.AddBookDriver;
-import acceptance.driver.BookDriver;
-import acceptance.driver.LoginDriver;
-import acceptance.driver.SearchBookDriver;
-import acceptance.factory.CartDriver;
+import acceptance.driver.*;
 import acceptance.factory.ListToBook;
 import cucumber.api.java.en.Given;
 import cucumber.api.java.en.Then;
@@ -72,4 +68,11 @@ public class AddBooksToCart {
         loginDriver.logout();
         homeDriver.tearDown();
     }
+
+    @When("^I come back to a new shopping session$")
+    public void i_come_back_to_a_new_shopping_session() throws Throwable {
+        loginDriver.logout();
+        loginDriver.loginAs(username, password);
+    }
+
 }

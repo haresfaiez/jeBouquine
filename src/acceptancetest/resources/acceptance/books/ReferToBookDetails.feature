@@ -1,7 +1,7 @@
 Feature:
   In order to have a big picture of the book I will buy
   As a customer
-  I want to have all of its details
+  I want to have all of the book details
 
 #  Scenario:
 #    Given the catalog contains these books
