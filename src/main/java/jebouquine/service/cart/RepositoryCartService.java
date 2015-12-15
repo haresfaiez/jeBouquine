@@ -2,8 +2,11 @@ package jebouquine.service.cart;
 
 import jebouquine.domain.books.BookRepository;
 import jebouquine.domain.cart.Cart;
+import jebouquine.service.cart.viewmodel.PurchaseViewModel;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+
+import java.util.List;
 
 @Service
 public class RepositoryCartService implements CartService {
@@ -21,5 +24,10 @@ public class RepositoryCartService implements CartService {
     @Override
     public void addBookToCart(String bookISBN) {
         cart.addBook(bookRepository.findBookByISBN(bookISBN).get());
+    }
+
+    @Override
+    public List<PurchaseViewModel> purchases() {
+        return null;
     }
 }
