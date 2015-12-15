@@ -28,6 +28,31 @@ import static org.springframework.test.web.servlet.request.MockMvcRequestBuilder
 public class ViewCartControllerTest {
 
     @Test
+    public void shouldProvidePurchasesSum() throws Exception {
+         List<PurchaseViewModel> expectedPurchaseListViewModel =
+                Stream.of(
+                        IntegrationTestPurchaseFactory.createRandomPurchaseViewModel(),
+                        IntegrationTestPurchaseFactory.createRandomPurchaseViewModel()
+                ).collect(Collectors.toList());
+
+        Integer expectedPurchasesSum = expectedPurchaseListViewModel
+                .stream()
+                .mapToInt(purchaseViewModel -> purchaseViewModel.getPrice())
+                .sum();
+
+        CartService cartService = mock(CartService.class);
+        when(cartService.purchasesSum()).thenReturn(expectedPurchasesSum);
+
+        ViewCartController viewCartController = new ViewCartController
+                (cartService);
+
+        standaloneSetup(viewCartController).build()
+                .perform(get("/cart/view"))
+                .andExpect(model().attribute("purchases-sum",
+                        expectedPurchasesSum));
+    }
+
+    @Test
     public void shouldListPurchaseWhenAskedToViewCart() throws Exception {
         List<PurchaseViewModel> expectedPurchaseListViewModel =
                 Stream.of(

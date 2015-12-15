@@ -22,6 +22,7 @@ public class ViewCartController {
     public String viewPurchases(Model model) {
         model.addAttribute("purchases", cartService.purchases());
         model.addAttribute("booksearch", SearchBookViewModel.nullObject());
+        model.addAttribute("purchases-sum", cartService.purchasesSum());
         return "cart/view";
     }
 

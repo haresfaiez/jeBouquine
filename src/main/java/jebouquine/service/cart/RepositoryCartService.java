@@ -35,4 +35,11 @@ public class RepositoryCartService implements CartService {
                 .map(purchase -> PurchaseViewModel.from(purchase))
                 .collect(Collectors.toList());
     }
+
+    @Override
+    public Integer purchasesSum() {
+        return purchases()
+                .stream()
+                .mapToInt(purchaseViewModel -> purchaseViewModel.getPrice()).sum();
+    }
 }

@@ -12,7 +12,8 @@ public class IntegrationTestPurchaseFactory {
     public static PurchaseViewModel createRandomPurchaseViewModel() {
         final String bookISBN = String.format("ISBN %s", Math.random());
         final String bookTitle = String.format("title %s", Math.random());
-        return PurchaseViewModel.from(bookISBN, bookTitle, DATE);
+        final Integer bookPrice = 100;
+        return PurchaseViewModel.from(bookISBN, bookTitle, DATE, bookPrice);
     }
     public static Purchase createPurchaseFrom(Customer customer, Book book) {
         return Purchase.now(book, customer);

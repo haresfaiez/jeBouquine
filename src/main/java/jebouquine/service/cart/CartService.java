@@ -7,4 +7,5 @@ import java.util.List;
 public interface CartService {
     void addBookToCart(String bookISBN);
     List<PurchaseViewModel> purchases();
+    Integer purchasesSum();
 }

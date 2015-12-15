@@ -9,14 +9,16 @@ public class PurchaseViewModel {
     private String bookISBN;
     private String bookTitle;
     private Date purchaseDate;
+    private Integer price;
 
     public PurchaseViewModel() {
     }
 
-    public PurchaseViewModel(String bookISBN, String bookTitle, Date purchaseDate) {
+    public PurchaseViewModel(String bookISBN, String bookTitle, Date purchaseDate, Integer price) {
         this.bookISBN = bookISBN;
         this.bookTitle = bookTitle;
         this.purchaseDate = purchaseDate;
+        this.price = price;
     }
 
     public String getBookISBN() {
@@ -54,10 +56,11 @@ public class PurchaseViewModel {
             return false;
         if (bookTitle != null ? !bookTitle.equals(that.bookTitle) : that.bookTitle != null)
             return false;
-        //TODO:compare the date wisely
-//        return !(purchaseDate != null ? !(purchaseDate.equals(that
-//                .purchaseDate)) : that.purchaseDate != null);
-        return true;
+        //TODO:fix the comparison below
+//        if (purchaseDate != null ? !purchaseDate.equals(that.purchaseDate) : that.purchaseDate != null)
+//            return false;
+        return !(price != null ? !price.equals(that.price) : that.price != null);
+
     }
 
     @Override
@@ -69,17 +72,27 @@ public class PurchaseViewModel {
     }
 
     public static PurchaseViewModel from(String bookISBN, String bookTitle, Date
-            purchaseDate) {
-        return new PurchaseViewModel(bookISBN, bookTitle, purchaseDate);
+            purchaseDate, Integer bookPrice) {
+        return new PurchaseViewModel(bookISBN, bookTitle, purchaseDate, bookPrice);
     }
 
-    public static PurchaseViewModel now(String bookISBN, String bookTitle) {
-        return new PurchaseViewModel(bookISBN, bookTitle, new Date());
+    public static PurchaseViewModel now(String bookISBN, String bookTitle,
+                                        Integer bookPrice) {
+        return new PurchaseViewModel(bookISBN, bookTitle, new Date(),
+                bookPrice);
     }
 
     public static PurchaseViewModel from(Purchase purchase) {
         return new PurchaseViewModel(purchase.getBook().getISBN(),
                 purchase.getBook().getTitle(),
-                purchase.getDate());
+                purchase.getDate(), purchase.getBook().getPrice().get());
+    }
+
+    public Integer getPrice() {
+        return price;
+    }
+
+    public void setPrice(Integer price) {
+        this.price = price;
     }
 }
