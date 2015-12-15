@@ -8,7 +8,7 @@ import javax.persistence.*;
 import java.util.Date;
 
 @NamedQueries({
-        @NamedQuery(name = "PurchaseEntity.searchByBook",
+        @NamedQuery(name = "PurchaseEntity.searchByCustomer",
                 query = "SELECT purchaseEntity " +
                         "FROM PurchaseEntity  purchaseEntity")
 })

@@ -17,8 +17,8 @@ import java.util.stream.Collectors;
 @Transactional
 public class JPAPurchaseRepository implements PurchaseRepository {
 
-    public static final String SEARCH_BY_BOOK_NAMED_QUERY
-            = "PurchaseEntity.searchByBook";
+    public static final String SEARCH_BY_CUSTOMER_NAMED_QUERY
+            = "PurchaseEntity.searchByCustomer";
 
     @PersistenceContext
     private EntityManager entityManager;
@@ -32,7 +32,7 @@ public class JPAPurchaseRepository implements PurchaseRepository {
     public List<Purchase> findPurchasesFor(Customer customer) {
         //TODO:add customer handling
         TypedQuery<PurchaseEntity> query = entityManager
-                .createNamedQuery(SEARCH_BY_BOOK_NAMED_QUERY, PurchaseEntity.class);
+                .createNamedQuery(SEARCH_BY_CUSTOMER_NAMED_QUERY, PurchaseEntity.class);
         return  query
                 .getResultList()
                 .stream()
