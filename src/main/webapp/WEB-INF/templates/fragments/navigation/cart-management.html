@@ -3,34 +3,34 @@
       th:with="lang=${#locale.language}"
       th:lang="${lang}">
 <body>
-    <ul class="sidebar-menu" th:fragment="default">
-        <li class="active treeview">
-            <a href="#">
-                <i class="fa fa-dashboard"></i>
+<ul class="sidebar-menu" th:fragment="default">
+    <li class="active treeview">
+        <a href="#">
+            <i class="fa fa-dashboard"></i>
                         <span th:text="#{home.cart-management}">
                             Cart management
                         </span>
-                <i class="fa fa-angle-left pull-right"></i>
-            </a>
-            <ul class="treeview-menu">
-                <li>
-                    <a href="index2.html">
-                        <i class="fa fa-circle-o"></i>
+            <i class="fa fa-angle-left pull-right"></i>
+        </a>
+        <ul class="treeview-menu">
+            <li>
+                <a th:href="@{/cart/view}">
+                    <i class="fa fa-circle-o"></i>
                                 <span th:text="#{home.cart-view}">
                                     Cart view
                                 </span>
-                    </a>
-                </li>
-                <li>
-                    <a href="index2.html">
-                        <i class="fa fa-circle-o"></i>
+                </a>
+            </li>
+            <li>
+                <a th:href="@{/cart/order}">
+                    <i class="fa fa-circle-o"></i>
                                 <span th:text="#{home.cart-order}">
                                     Cart order
                                 </span>
-                    </a>
-                </li>
-            </ul>
-        </li>
-    </ul>
+                </a>
+            </li>
+        </ul>
+    </li>
+</ul>
 </body>
 </html>

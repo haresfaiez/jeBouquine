@@ -4,7 +4,13 @@
       th:lang="${lang}">
 <body>
 <section class="content-header" th:fragment="default">
-
+    Cart purchases
+    <ul>
+        <li th:each="item : ${purchases}">
+                <span th:text="${item.bookTitle}"
+                      id="cart-view-book-title">book title</span>
+        </li>
+    </ul>
 </section>
 
 </body>
