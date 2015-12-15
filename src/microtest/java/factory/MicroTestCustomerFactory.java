@@ -4,6 +4,6 @@ import jebouquine.domain.customer.Customer;
 
 public class MicroTestCustomerFactory {
     public static Customer createCustomer() {
-        return new Customer();
+        return Customer.nullObject();
     }
 }

@@ -56,7 +56,7 @@ public class CustomerCartTest {
 
         verify(purchaseRepository, times(1))
                 .addPurchase((Purchase)
-                        argThat(new IsSamePurchase(customer, book)));
+                        argThat(IsSamePurchase.as(customer, book)));
     }
 
 }
