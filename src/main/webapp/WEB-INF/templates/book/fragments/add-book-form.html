@@ -15,23 +15,27 @@
                     </li>
                 </ul>
             </div>
-            <label th:class="${#fields.hasErrors('ISBN')}? 'error'">
+            <label th:class="${#fields.hasErrors('ISBN')}? 'error'"
+                   th:text="#{book.ISBN}">
                 ISBN</label>:
             <input type="text" th:field="*{ISBN}" id="book-isbn"
                    th:class="${#fields.hasErrors('ISBN')}? 'error'"/><br/>
-            <label th:class="${#fields.hasErrors('title')}? 'error'">
+            <label th:class="${#fields.hasErrors('title')}? 'error'"
+                   th:text="#{book.title}">
                 Title</label>:
             <input type="text" th:field="*{title}" id="book-title"
                    th:class="${#fields.hasErrors('title')}? 'error'"/><br/>
-            <label th:class="${#fields.hasErrors('price')}? 'error'">
+            <label th:class="${#fields.hasErrors('price')}? 'error'" th:text="#{book.price}">
                 Price</label>:
             <input type="text" th:field="*{price}" id="book-price"
                    th:class="${#fields.hasErrors('price')}? 'error'"/><br/>
-            <label th:class="${#fields.hasErrors('summary')}? 'error'">
+            <label th:class="${#fields.hasErrors('summary')}? 'error'"
+                   th:text="#{book.summary}">
                 Summary</label>:
             <input type="text" th:field="*{summary}" id="book-summary"
                    th:class="${#fields.hasErrors('summary')}? 'error'"/><br/>
-            <label th:class="${#fields.hasErrors('author')}? 'error'">
+            <label th:class="${#fields.hasErrors('author')}? 'error'"
+                   th:text="#{book.author}">
                 Author</label>:
             <input type="text" th:field="*{author}" id="book-author"
                    th:class="${#fields.hasErrors('author')}? 'error'"/><br/>

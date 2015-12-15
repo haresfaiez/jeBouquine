@@ -18,7 +18,12 @@ public class AddBookDriver {
         ISBNField.sendKeys(ISBN);
         WebElement titleField = firefoxDriver.findElementById("book-title");
         titleField.sendKeys(title);
-        //TODO:fill the whole form
+        WebElement priceField = firefoxDriver.findElementById("book-price");
+        priceField.sendKeys(price);
+        WebElement summaryField = firefoxDriver.findElementById("book-summary");
+        summaryField.sendKeys(summary);
+        WebElement authorField = firefoxDriver.findElementById("book-author");
+        authorField.sendKeys(author);
     }
 
     public void submitBookForm() {

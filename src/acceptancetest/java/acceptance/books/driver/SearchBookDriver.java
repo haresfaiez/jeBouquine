@@ -17,6 +17,26 @@ public class SearchBookDriver {
         return bookISBNLabel.getText();
     }
 
+    public String bookPrice() {
+        WebElement bookPriceLabel = firefoxDriver.findElementById("book-price");
+        return bookPriceLabel.getText();
+    }
+
+    public String bookSummary() {
+        WebElement bookSummaryLabel = firefoxDriver.findElementById
+                ("book-summary");
+        return bookSummaryLabel.getText();
+    }
+
+    public String bookAuthor() {
+       WebElement bookAuthorLabel = firefoxDriver.findElementById("book-author");
+        return bookAuthorLabel.getText();
+    }
+
+    public void searchForBookByTitle(String title) {
+        searchForBook(title, "search-book-by-title");
+    }
+
     public String bookTitle() {
         WebElement bookTitleLabel = firefoxDriver.findElementById("book-title");
         return bookTitleLabel.getText();
@@ -24,10 +44,6 @@ public class SearchBookDriver {
 
     public void openBookDetails(String ISBN) {
         searchForBook(ISBN, "search-book-by-isbn");
-    }
-
-    public void searchForBookByTitle(String title) {
-        searchForBook(title, "search-book-by-title");
     }
 
     private void searchForBook(String value, String criteriaId) {
@@ -47,5 +63,4 @@ public class SearchBookDriver {
         return searchResultBooks.stream()
                 .anyMatch(webElement -> webElement.getText().equals(bookTitle));
     }
-
 }

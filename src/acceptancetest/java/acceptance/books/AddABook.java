@@ -61,7 +61,9 @@ public class AddABook {
         searchBookDriver.openBookDetails(ISBN);
         Assert.assertEquals(ISBN, searchBookDriver.bookISBN());
         Assert.assertEquals(title, searchBookDriver.bookTitle());
-        //TODO:test the whole details
+        Assert.assertEquals(price, searchBookDriver.bookPrice());
+        Assert.assertEquals(summary, searchBookDriver.bookSummary());
+        Assert.assertEquals(author, searchBookDriver.bookAuthor());
         loginDriver.logout();
         homeDriver.tearDown();
     }
