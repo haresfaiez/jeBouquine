@@ -2,6 +2,7 @@ package jebouquine.web.cart;
 
 import jebouquine.service.books.viewmodel.SearchBookViewModel;
 import jebouquine.service.cart.CartService;
+import jebouquine.service.cart.viewmodel.CartViewModel;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -20,9 +21,9 @@ public class ViewCartController {
 
     @RequestMapping(value = "/cart/view", method = RequestMethod.GET)
     public String viewPurchases(Model model) {
-        model.addAttribute("purchases", cartService.purchases());
         model.addAttribute("booksearch", SearchBookViewModel.nullObject());
-        model.addAttribute("purchases-sum", cartService.purchasesSum());
+        model.addAttribute("purchases", CartViewModel
+                .from(cartService.purchases(), cartService.purchasesSum()));
         return "cart/view";
     }
 

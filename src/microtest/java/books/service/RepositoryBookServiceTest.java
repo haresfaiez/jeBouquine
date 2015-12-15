@@ -78,10 +78,4 @@ public class RepositoryBookServiceTest {
         Assert.assertEquals(expectedBookViewModel, actualBookViewModel);
     }
 
-    @Test
-    public void shouldReturnANullBookViewModelWhenAskForANonExistingBookByISBN
-            () {
-        //TODO:wait for implementing the integration test
-    }
-
 }

@@ -6,11 +6,14 @@
 <section class="content-header" th:fragment="default">
     Cart purchases
     <ul>
-        <li th:each="item : ${purchases}">
+        <li th:each="item : ${purchases.purchases}">
                 <span th:text="${item.bookTitle}"
                       id="cart-view-book-title">book title</span>
+                <span th:text="${item.price}"
+                      id="cart-view-book-price">book price</span>
         </li>
     </ul>
+    <span th:text="${purchases.purchasesSum}">r</span>
 </section>
 
 </body>

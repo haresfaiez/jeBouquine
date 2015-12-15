@@ -40,6 +40,7 @@ public class RepositoryCartService implements CartService {
     public Integer purchasesSum() {
         return purchases()
                 .stream()
-                .mapToInt(purchaseViewModel -> purchaseViewModel.getPrice()).sum();
+                .mapToInt(purchaseViewModel -> purchaseViewModel.getPrice())
+                .sum();
     }
 }

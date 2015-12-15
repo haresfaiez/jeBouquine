@@ -105,11 +105,8 @@ public class AddBookViewModel {
     }
 
     public Book book() {
-//        return new Book(ISBN, title, new AtomicInteger(price), summary,
-//                author);
-        //TODO:uncomment last instruction
-        return new Book(ISBN, title, new AtomicInteger(0), "",
-                "");
+        return new Book(ISBN, title, new AtomicInteger(price), summary,
+                author);
     }
 
     public static AddBookViewModel nullObject() {

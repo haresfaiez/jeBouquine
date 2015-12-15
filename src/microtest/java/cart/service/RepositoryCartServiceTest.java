@@ -24,6 +24,28 @@ public class RepositoryCartServiceTest {
 
 
     @Test
+    public void shouldCalculatePurchasesSum() {
+        Book expectedBook = MicroTestBookFactory.createBook();
+        BookRepository bookRepository = mock(BookRepository.class);
+
+        List<Purchase> expectedPurchaseList
+                = Stream
+                .of(MicroTestPurchaseFactory.createPurchaseFor(expectedBook))
+                .collect(Collectors.toList());
+
+
+        Cart cart = mock(Cart.class);
+        when(cart.purchases())
+                .thenReturn(expectedPurchaseList);
+        CartService cartService = new RepositoryCartService(cart,
+                bookRepository);
+
+        Integer actualSum = cartService.purchasesSum();
+
+        Assert.assertEquals(new Integer(500), actualSum);
+    }
+
+    @Test
     public void shouldReturnPurchasesListOfTheCurrentCustomer() {
         Book expectedBook = MicroTestBookFactory.createBook();
         BookRepository bookRepository = mock(BookRepository.class);
