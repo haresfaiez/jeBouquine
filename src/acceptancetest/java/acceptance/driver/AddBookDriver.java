@@ -1,7 +1,9 @@
-package acceptance.books.driver;
+package acceptance.driver;
 
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.firefox.FirefoxDriver;
+
+import java.util.List;
 
 public class AddBookDriver {
 
@@ -31,4 +33,13 @@ public class AddBookDriver {
         submitButton.click();
     }
 
+    public void addBook(List<String> book) {
+        String ISBN = book.get(0);
+        String title = book.get(1);
+        String price = book.get(2);
+        String summary = book.get(3);
+        String author = book.get(4);
+        fillBookForm(ISBN, title, price, summary, author);
+        submitBookForm();
+    }
 }

@@ -1,9 +1,9 @@
 package acceptance.books;
 
 import acceptance.HomeDriver;
-import acceptance.books.driver.AddBookDriver;
-import acceptance.books.driver.SearchBookDriver;
-import acceptance.user.driver.LoginDriver;
+import acceptance.driver.AddBookDriver;
+import acceptance.driver.SearchBookDriver;
+import acceptance.driver.LoginDriver;
 import cucumber.api.java.en.Given;
 import cucumber.api.java.en.Then;
 import cucumber.api.java.en.When;
@@ -26,19 +26,9 @@ public class SearchForABook {
             throws Throwable {
         homeDriver.setUp();
         loginDriver.loginAs(LoginDriver.logisticManagerUsername, LoginDriver.logisticManagerPassword);
-        addBook(books.get(1));
-        addBook(books.get(2));
-        addBook(books.get(3));
-    }
-
-    private void addBook(List<String> book) {
-        String ISBN = book.get(0);
-        String title = book.get(1);
-        String price = book.get(2);
-        String summary = book.get(3);
-        String author = book.get(4);
-        addBookDriver.fillBookForm(ISBN, title, price, summary, author);
-        addBookDriver.submitBookForm();
+        addBookDriver.addBook(books.get(1));
+        addBookDriver.addBook(books.get(2));
+        addBookDriver.addBook(books.get(3));
     }
 
     @When("^I search for a book with ISBN \"([^\"]*)\"$")
@@ -52,17 +42,9 @@ public class SearchForABook {
     }
 
     @Then("^I should get the book$")
-    public void i_should_get_the_book(List<List<String>> book) throws Throwable {
-        String ISBN = book.get(1).get(0);
-        String title = book.get(1).get(1);
-        String price = book.get(1).get(2);
-        String summary = book.get(1).get(3);
-        String author = book.get(1).get(4);
-        Assert.assertEquals(ISBN, searchBookDriver.bookISBN());
-        Assert.assertEquals(title, searchBookDriver.bookTitle());
-        Assert.assertEquals(price, searchBookDriver.bookPrice());
-        Assert.assertEquals(summary, searchBookDriver.bookSummary());
-        Assert.assertEquals(author, searchBookDriver.bookAuthor());
+    public void i_should_get_the_book(List<List<String>> books) throws
+            Throwable {
+        searchBookDriver.assertBookExists(books);
         loginDriver.logout();
         homeDriver.tearDown();
     }

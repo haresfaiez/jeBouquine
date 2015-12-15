@@ -1,5 +1,6 @@
-package acceptance.books.driver;
+package acceptance.driver;
 
+import org.junit.Assert;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.firefox.FirefoxDriver;
 
@@ -62,5 +63,18 @@ public class SearchBookDriver {
                 ("book-search-result-book-title");
         return searchResultBooks.stream()
                 .anyMatch(webElement -> webElement.getText().equals(bookTitle));
+    }
+
+    public void assertBookExists(List<List<String>> book) {
+        String ISBN = book.get(1).get(0);
+        String title = book.get(1).get(1);
+        String price = book.get(1).get(2);
+        String summary = book.get(1).get(3);
+        String author = book.get(1).get(4);
+        Assert.assertEquals(ISBN, bookISBN());
+        Assert.assertEquals(title, bookTitle());
+        Assert.assertEquals(price, bookPrice());
+        Assert.assertEquals(summary, bookSummary());
+        Assert.assertEquals(author, bookAuthor());
     }
 }

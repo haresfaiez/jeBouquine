@@ -1,9 +1,9 @@
 package acceptance.books;
 
 import acceptance.HomeDriver;
-import acceptance.books.driver.AddBookDriver;
-import acceptance.books.driver.SearchBookDriver;
-import acceptance.user.driver.LoginDriver;
+import acceptance.driver.AddBookDriver;
+import acceptance.driver.SearchBookDriver;
+import acceptance.driver.LoginDriver;
 import cucumber.api.java.en.Given;
 import cucumber.api.java.en.Then;
 import cucumber.api.java.en.When;

@@ -1,4 +1,4 @@
-package acceptance.user.driver;
+package acceptance.driver;
 
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.firefox.FirefoxDriver;
