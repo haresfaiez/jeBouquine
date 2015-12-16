@@ -1,7 +1,7 @@
 package cart.service;
 
 import jebouquine.domain.cart.Cart;
-import jebouquine.domain.cart.OrderRequest;
+import jebouquine.domain.order.OrderRequest;
 import jebouquine.service.cart.RepositoryOrderService;
 import org.junit.Test;
 

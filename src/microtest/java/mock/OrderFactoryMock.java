@@ -1,7 +1,7 @@
 package mock;
 
-import jebouquine.domain.cart.OrderBuilder;
-import jebouquine.domain.cart.OrderFactory;
+import jebouquine.domain.order.OrderBuilder;
+import jebouquine.domain.order.OrderFactory;
 
 import static org.mockito.Mockito.mock;
 

@@ -2,6 +2,10 @@ package jebouquine.domain.cart;
 
 import jebouquine.domain.books.Book;
 import jebouquine.domain.customer.CustomerRepository;
+import jebouquine.domain.order.Order;
+import jebouquine.domain.order.OrderBuilder;
+import jebouquine.domain.order.OrderFactory;
+import jebouquine.domain.order.OrderRequest;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 

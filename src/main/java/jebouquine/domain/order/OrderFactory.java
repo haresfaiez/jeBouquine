@@ -1,4 +1,4 @@
-package jebouquine.domain.cart;
+package jebouquine.domain.order;
 
 public interface OrderFactory {
     OrderBuilder buildOrder();

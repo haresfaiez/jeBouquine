@@ -1,8 +1,8 @@
 package jebouquine.service.cart;
 
 import jebouquine.domain.cart.Cart;
-import jebouquine.domain.cart.Order;
-import jebouquine.domain.cart.OrderRequest;
+import jebouquine.domain.order.Order;
+import jebouquine.domain.order.OrderRequest;
 import jebouquine.service.cart.viewmodel.OrderViewModel;
 
 public class RepositoryOrderService implements OrderService {

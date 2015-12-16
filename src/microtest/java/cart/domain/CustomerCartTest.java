@@ -7,6 +7,8 @@ import jebouquine.domain.books.Book;
 import jebouquine.domain.cart.*;
 import jebouquine.domain.customer.Customer;
 import jebouquine.domain.customer.CustomerRepository;
+import jebouquine.domain.order.OrderFactory;
+import jebouquine.domain.order.OrderRequest;
 import matcher.IsForSame;
 import matcher.IsSamePurchase;
 import mock.OrderFactoryMock;

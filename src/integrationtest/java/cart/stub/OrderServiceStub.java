@@ -1,7 +1,5 @@
 package cart.stub;
 
-import factory.IntegrationTestOrderFactory;
-import jebouquine.domain.cart.Order;
 import jebouquine.service.cart.OrderService;
 import jebouquine.service.cart.viewmodel.OrderPassingViewModel;
 import jebouquine.service.cart.viewmodel.OrderViewModel;
@@ -19,11 +17,6 @@ public class OrderServiceStub implements OrderService {
     @Override
     public OrderService pass() {
         return this;
-    }
-
-    @Override
-    public Order order() {
-        return IntegrationTestOrderFactory.createOrder();
     }
 
     @Override

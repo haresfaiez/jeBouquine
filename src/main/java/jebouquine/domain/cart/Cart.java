@@ -1,6 +1,8 @@
 package jebouquine.domain.cart;
 
 import jebouquine.domain.books.Book;
+import jebouquine.domain.order.Order;
+import jebouquine.domain.order.OrderRequest;
 
 import java.util.List;
 

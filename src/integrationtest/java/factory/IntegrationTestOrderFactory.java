@@ -1,6 +1,6 @@
 package factory;
 
-import jebouquine.domain.cart.Order;
+import jebouquine.domain.order.Order;
 
 import static org.mockito.Mockito.mock;
 
