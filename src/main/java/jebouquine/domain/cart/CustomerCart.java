@@ -12,12 +12,15 @@ public class CustomerCart implements Cart {
 
     private final CustomerRepository customerRepository;
     private final PurchaseRepository purchaseRepository;
+    private final OrderFactory orderFactory;
 
     @Autowired
     public CustomerCart(CustomerRepository customerRepository,
-                        PurchaseRepository purchaseRepository) {
+                        PurchaseRepository purchaseRepository,
+                        OrderFactory orderFactory) {
         this.customerRepository = customerRepository;
         this.purchaseRepository = purchaseRepository;
+        this.orderFactory = orderFactory;
     }
 
     @Override
@@ -39,7 +42,21 @@ public class CustomerCart implements Cart {
     }
 
     @Override
-    public Order passOrder(OrderRequest order) {
-    return null;
+    public Order passOrder(OrderRequest orderRequest) {
+        OrderBuilder orderBuilder = orderFactory.buildOrder();
+        purchases()
+                .stream()
+                .forEach(purchase -> orderBuilder.withPurchase(purchase));
+        orderBuilder.fromRequest(orderRequest);
+        orderBuilder.forCustomer(customerRepository.getCurrentCustomer());
+        removeAllPurchases();
+        return orderBuilder.get();
+
+    }
+
+    public void removeAllPurchases() {
+        purchases()
+                .stream()
+                .forEach(purchase -> purchaseRepository.removePurchase(purchase));
     }
 }
