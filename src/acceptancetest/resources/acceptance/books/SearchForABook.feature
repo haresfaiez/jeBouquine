@@ -27,6 +27,9 @@ Feature:
       | ISBN  | Title               | Price | Summary | Author |
       | SFAB5 | Good morning Groovy | 400   | Groovy  | Faiez  |
 
+  Scenario:
+  Search for a book by multiple criteria
+
   #TODO:enable the next scenario
 #The book doesn't exist in the catalog
 #  Scenario:
