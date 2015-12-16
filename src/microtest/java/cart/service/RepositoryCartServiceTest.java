@@ -25,13 +25,17 @@ public class RepositoryCartServiceTest {
     @Test
     public void shouldRemovePurchaseFromCart() {
         Book expectedBook = MicroTestBookFactory.createBook();
+        
         Cart cart = mock(Cart.class);
         BookRepository bookRepository = mock(BookRepository.class);
         when(bookRepository.findBookByISBN(expectedBook.getISBN()))
                 .thenReturn(Optional.of(expectedBook));
+
         CartService cartService = new RepositoryCartService(cart,
                 bookRepository);
+
         cartService.removeBookFromCart(expectedBook.getISBN());
+
         verify(cart, times(1)).removeBook(expectedBook);
     }
 
