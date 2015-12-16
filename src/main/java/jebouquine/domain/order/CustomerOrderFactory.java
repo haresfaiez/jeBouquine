@@ -6,6 +6,6 @@ import org.springframework.stereotype.Component;
 public class CustomerOrderFactory implements OrderFactory {
     @Override
     public OrderBuilder buildOrder() {
-        return null;
+        return CustomerOrderBuilder.newInstance();
     }
 }

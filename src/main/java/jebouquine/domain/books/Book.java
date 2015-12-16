@@ -99,4 +99,6 @@ public class Book {
     public static Book nullObject() {
         return new Book("", "", new AtomicInteger(0), "", "");
     }
+
+
 }

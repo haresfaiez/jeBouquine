@@ -2,16 +2,20 @@ package cart.domain;
 
 import factory.MicroTestBookFactory;
 import factory.MicroTestCustomerFactory;
+import factory.MicroTestOrderFactory;
 import factory.MicroTestPurchaseFactory;
 import jebouquine.domain.books.Book;
-import jebouquine.domain.cart.*;
+import jebouquine.domain.cart.Cart;
+import jebouquine.domain.cart.CustomerCart;
+import jebouquine.domain.cart.Purchase;
+import jebouquine.domain.cart.PurchaseRepository;
 import jebouquine.domain.customer.Customer;
 import jebouquine.domain.customer.CustomerRepository;
+import jebouquine.domain.order.CustomerOrderFactory;
+import jebouquine.domain.order.Order;
 import jebouquine.domain.order.OrderFactory;
 import jebouquine.domain.order.OrderRequest;
-import matcher.IsForSame;
 import matcher.IsSamePurchase;
-import mock.OrderFactoryMock;
 import org.junit.Assert;
 import org.junit.Test;
 
@@ -29,12 +33,13 @@ public class CustomerCartTest {
         Customer customer = MicroTestCustomerFactory.createCustomer();
         Purchase expectedPurchase = Purchase.now(book, customer);
 
-        OrderFactoryMock orderFactory = new OrderFactoryMock();
+        OrderFactory orderFactory = new CustomerOrderFactory();
         CustomerRepository customerRepository = mock(CustomerRepository.class);
         when(customerRepository.getCurrentCustomer()).thenReturn(customer);
         PurchaseRepository purchaseRepository = mock(PurchaseRepository.class);
+        List<Purchase> expectedPurchasesList = Stream.of(expectedPurchase).collect(Collectors.toList());
         when(purchaseRepository.findPurchasesFor(customer)).
-                thenReturn(Stream.of(expectedPurchase).collect(Collectors.toList()));
+                thenReturn(expectedPurchasesList);
 
         OrderRequest orderRequest = mock(OrderRequest.class);
 
@@ -42,13 +47,12 @@ public class CustomerCartTest {
                 purchaseRepository,
                 orderFactory);
 
-        customerCart.passOrder(orderRequest);
+        Order expectedOrder = MicroTestOrderFactory
+                .createOrder(orderRequest, customer, expectedPurchasesList);
 
-        verify(purchaseRepository, times(1))
-                .removePurchase((Purchase)
-                        argThat(IsForSame.customer(customer)));
-        Assert.assertEquals(new Integer(1),
-                orderFactory.getBuildOrderCallsNumber());
+        Order actualOrder = customerCart.passOrderRequest(orderRequest);
+
+        Assert.assertEquals(expectedOrder, actualOrder);
     }
 
     @Test

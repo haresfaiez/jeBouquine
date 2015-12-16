@@ -1,50 +1,55 @@
-package jebouquine.service.cart.viewmodel;
+package jebouquine.domain.order;
 
-import jebouquine.domain.order.Order;
-import org.springframework.format.annotation.DateTimeFormat;
+import jebouquine.domain.customer.Customer;
 
+import java.time.Instant;
+import java.util.ArrayList;
 import java.util.Date;
+import java.util.List;
 
-public class OrderViewModel {
+public class CustomerOrder implements Order {
     private Integer id;
     private String customerName;
     private String customerPhone;
-    @DateTimeFormat(pattern = "dd/MM/yyyy")
     private Date expeditionDate;
     private String paymentMethod;
     private String deliveryAddress;
+    private Customer customer;
+    private List<OrderItem> items;
 
-    public OrderViewModel() {
-    }
-
-    public OrderViewModel(Integer id, String customerName, String customerPhone, Date expeditionDate, String paymentMethod, String deliveryAddress) {
+    public CustomerOrder(Integer id, String customerName, String customerPhone, Date expeditionDate, String paymentMethod, String deliveryAddress, Customer customer, List<OrderItem> items) {
         this.id = id;
         this.customerName = customerName;
         this.customerPhone = customerPhone;
         this.expeditionDate = expeditionDate;
         this.paymentMethod = paymentMethod;
         this.deliveryAddress = deliveryAddress;
+        this.customer = customer;
+        this.items = items;
     }
 
     @Override
     public boolean equals(Object o) {
-
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
 
-        OrderViewModel that = (OrderViewModel) o;
+        CustomerOrder that = (CustomerOrder) o;
 
         if (id != null ? !id.equals(that.id) : that.id != null) return false;
         if (customerName != null ? !customerName.equals(that.customerName) : that.customerName != null)
             return false;
         if (customerPhone != null ? !customerPhone.equals(that.customerPhone) : that.customerPhone != null)
             return false;
-        //TODO:fix date comparison
+        //TODO:// FIXME: 12/16/15
 //        if (expeditionDate != null ? !expeditionDate.equals(that.expeditionDate) : that.expeditionDate != null)
 //            return false;
         if (paymentMethod != null ? !paymentMethod.equals(that.paymentMethod) : that.paymentMethod != null)
             return false;
-        return !(deliveryAddress != null ? !deliveryAddress.equals(that.deliveryAddress) : that.deliveryAddress != null);
+        if (deliveryAddress != null ? !deliveryAddress.equals(that.deliveryAddress) : that.deliveryAddress != null)
+            return false;
+        if (customer != null ? !customer.equals(that.customer) : that.customer != null)
+            return false;
+        return !(items != null ? !items.equals(that.items) : that.items != null);
 
     }
 
@@ -56,9 +61,12 @@ public class OrderViewModel {
         result = 31 * result + (expeditionDate != null ? expeditionDate.hashCode() : 0);
         result = 31 * result + (paymentMethod != null ? paymentMethod.hashCode() : 0);
         result = 31 * result + (deliveryAddress != null ? deliveryAddress.hashCode() : 0);
+        result = 31 * result + (customer != null ? customer.hashCode() : 0);
+        result = 31 * result + (items != null ? items.hashCode() : 0);
         return result;
     }
 
+    @Override
     public Integer getId() {
         return id;
     }
@@ -67,6 +75,7 @@ public class OrderViewModel {
         this.id = id;
     }
 
+    @Override
     public String getCustomerName() {
         return customerName;
     }
@@ -75,6 +84,7 @@ public class OrderViewModel {
         this.customerName = customerName;
     }
 
+    @Override
     public String getCustomerPhone() {
         return customerPhone;
     }
@@ -83,6 +93,7 @@ public class OrderViewModel {
         this.customerPhone = customerPhone;
     }
 
+    @Override
     public Date getExpeditionDate() {
         return expeditionDate;
     }
@@ -91,6 +102,7 @@ public class OrderViewModel {
         this.expeditionDate = expeditionDate;
     }
 
+    @Override
     public String getPaymentMethod() {
         return paymentMethod;
     }
@@ -99,6 +111,7 @@ public class OrderViewModel {
         this.paymentMethod = paymentMethod;
     }
 
+    @Override
     public String getDeliveryAddress() {
         return deliveryAddress;
     }
@@ -107,24 +120,37 @@ public class OrderViewModel {
         this.deliveryAddress = deliveryAddress;
     }
 
-    public static OrderViewModel from(Integer id, OrderPassingViewModel
-            orderPassingViewModel) {
-        return new OrderViewModel(id, orderPassingViewModel.getCustomerName(),
-                orderPassingViewModel.getCustomerPhone(),
-                orderPassingViewModel.getExpeditionDate(),
-                orderPassingViewModel.getPaymentMethod(),
-                orderPassingViewModel.getDeliveryAddress());
+    @Override
+    public Customer getCustomer() {
+        return customer;
     }
 
+    public void setCustomer(Customer customer) {
+        this.customer = customer;
+    }
 
-    public static OrderViewModel from(Order order) {
-        return new OrderViewModel(
-                order.getId(),
-                order.getCustomerName(),
-                order.getCustomerPhone(),
-                order.getExpeditionDate(),
-                order.getPaymentMethod(),
-                order.getDeliveryAddress()
-        );
+    @Override
+    public List<OrderItem> getItems() {
+        return items;
+    }
+
+    @Override
+    public void addItem(OrderItem item) {
+        items.add(item);
+    }
+
+    public void setItems(List<OrderItem> items) {
+        this.items = items;
+    }
+
+    public static CustomerOrder nullObject() {
+        return new CustomerOrder(0,
+                "",
+                "",
+                Date.from(Instant.now()),
+                "",
+                "",
+                Customer.nullObject(),
+                new ArrayList<>());
     }
 }

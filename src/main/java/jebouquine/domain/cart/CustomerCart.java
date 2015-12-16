@@ -46,18 +46,18 @@ public class CustomerCart implements Cart {
     }
 
     @Override
-    public Order passOrder(OrderRequest orderRequest) {
+    public Order passOrderRequest(OrderRequest orderRequest) {
         OrderBuilder orderBuilder = orderFactory.buildOrder();
         purchases()
                 .stream()
                 .forEach(purchase -> orderBuilder.withPurchase(purchase));
         orderBuilder.fromRequest(orderRequest);
         orderBuilder.forCustomer(customerRepository.getCurrentCustomer());
-        removeAllPurchases();
         return orderBuilder.get();
 
     }
 
+    @Override
     public void removeAllPurchases() {
         purchases()
                 .stream()

@@ -20,6 +20,6 @@ public class RepositoryOrderServiceTest {
 
         orderService.pass();
 
-        verify(cart, times(1)).passOrder(expectedOrderRequest);
+        verify(cart, times(1)).passOrderRequest(expectedOrderRequest);
     }
 }

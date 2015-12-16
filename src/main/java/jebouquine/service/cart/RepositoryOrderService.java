@@ -23,7 +23,8 @@ public class RepositoryOrderService implements OrderService {
 
     @Override
     public OrderService pass() {
-        order = cart.passOrder(orderRequest);
+        order = cart.passOrderRequest(orderRequest);
+        cart.removeAllPurchases();
         return this;
     }
 
