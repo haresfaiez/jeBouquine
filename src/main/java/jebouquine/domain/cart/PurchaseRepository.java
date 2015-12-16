@@ -7,4 +7,5 @@ import java.util.List;
 public interface PurchaseRepository {
     void addPurchase(Purchase purchase);
     List<Purchase> findPurchasesFor(Customer customer);
+    void removePurchase(Purchase purchase);
 }

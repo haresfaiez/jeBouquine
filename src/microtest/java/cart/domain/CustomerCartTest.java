@@ -23,6 +23,25 @@ import static org.mockito.Mockito.*;
 public class CustomerCartTest {
 
     @Test
+    public void shouldRemovePurchaseFromCart() {
+        Book book = MicroTestBookFactory.createBook();
+
+        Customer customer = MicroTestCustomerFactory.createCustomer();
+        CustomerRepository customerRepository = mock(CustomerRepository.class);
+        when(customerRepository.getCurrentCustomer()).thenReturn(customer);
+
+        PurchaseRepository purchaseRepository = mock(PurchaseRepository.class);
+
+        Cart customerCart = new CustomerCart(customerRepository, purchaseRepository);
+
+        customerCart.removeBook(book);
+
+        verify(purchaseRepository, times(1))
+                .removePurchase((Purchase)
+                        argThat(IsSamePurchase.as(customer, book)));
+    }
+
+    @Test
     public void shouldReturnPurchasesListOfTheCurrentCustomer() {
         Book expectedBook = MicroTestBookFactory.createBook();
 

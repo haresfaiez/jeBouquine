@@ -39,4 +39,9 @@ public class JPAPurchaseRepository implements PurchaseRepository {
                 .map(purchaseEntity -> purchaseEntity.purchase())
                 .collect(Collectors.toList());
     }
+
+    @Override
+    public void removePurchase(Purchase purchase) {
+
+    }
 }
