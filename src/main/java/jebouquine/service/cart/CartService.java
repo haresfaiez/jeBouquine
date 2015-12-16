@@ -1,5 +1,6 @@
 package jebouquine.service.cart;
 
+import jebouquine.service.cart.viewmodel.OrderPassingViewModel;
 import jebouquine.service.cart.viewmodel.PurchaseViewModel;
 
 import java.util.List;
@@ -9,4 +10,5 @@ public interface CartService {
     List<PurchaseViewModel> purchases();
     Integer purchasesSum();
     void removeBookFromCart(String bookISBN);
+    OrderService orderServiceOf(OrderPassingViewModel orderPassingViewModel);
 }

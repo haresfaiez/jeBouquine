@@ -2,6 +2,7 @@ package jebouquine.service.cart;
 
 import jebouquine.domain.books.BookRepository;
 import jebouquine.domain.cart.Cart;
+import jebouquine.service.cart.viewmodel.OrderPassingViewModel;
 import jebouquine.service.cart.viewmodel.PurchaseViewModel;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -49,5 +50,10 @@ public class RepositoryCartService implements CartService {
         bookRepository
                 .findBookByISBN(bookISBN)
                 .ifPresent(book -> cart.removeBook(book));
+    }
+
+    @Override
+    public OrderService orderServiceOf(OrderPassingViewModel orderPassingViewModel) {
+        return null;
     }
 }
