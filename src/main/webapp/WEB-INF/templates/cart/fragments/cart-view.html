@@ -11,6 +11,11 @@
                       id="cart-view-book-title">book title</span>
                 <span th:text="${item.price}"
                       id="cart-view-book-price">book price</span>
+            <a th:href="@{'/cart/remove-book/' + ${item.bookISBN}}"
+               id="remove-from-cart"><span
+                    th:text="#{cart-view.remove-from-cart}">
+                Remove from cart
+            </span></a>
         </li>
     </ul>
     <span th:text="${purchases.purchasesSum}" id="purchases-sum">r</span>
