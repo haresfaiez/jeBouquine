@@ -8,6 +8,8 @@
         <provider>org.hibernate.jpa.HibernatePersistenceProvider</provider>
         <class>jebouquine.infrastructure.books.model.BookEntity</class>
         <class>jebouquine.infrastructure.cart.model.PurchaseEntity</class>
+        <class>jebouquine.infrastructure.order.model.OrderEntity</class>
+        <class>jebouquine.infrastructure.order.model.OrderItemEntity</class>
         <properties>
             <property name="javax.persistence.jdbc.url" value="jdbc:hsqldb:mem:jebouquine"/>
             <property name="javax.persistence.jdbc.driver" value="org.hsqldb.jdbcDriver"/>

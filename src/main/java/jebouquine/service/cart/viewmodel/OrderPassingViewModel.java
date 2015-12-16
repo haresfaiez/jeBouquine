@@ -107,6 +107,7 @@ public class OrderPassingViewModel {
     }
 
     public OrderRequest orderRequest() {
-        return null;
+        return new OrderRequest(getCustomerName(), getCustomerPhone(),
+                getExpeditionDate(), getPaymentMethod(),getDeliveryAddress());
     }
 }

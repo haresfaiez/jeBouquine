@@ -14,6 +14,7 @@ public class OrderItemEntity {
     private Integer id;
     @Temporal(TemporalType.DATE)
     private Date date;
+    @ManyToOne
     private BookEntity book;
     @ManyToOne
     private OrderEntity order;

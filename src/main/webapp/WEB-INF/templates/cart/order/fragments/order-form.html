@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.w3.org/1999/xhtml"
+      th:with="lang=${#locale.language}"
+      th:lang="${lang}">
+<body>
+<section class="content-header" th:fragment="default">
+    Pass order
+    <div>
+        <form method="POST" th:object="${order}">
+            <label th:class="${#fields.hasErrors('customerName')}? 'error'"
+                   th:text="#{order.customer-name}">
+                customerName</label>:
+            <input type="text" th:field="*{customerName}"
+                   id="order-customer-name"
+                   th:class="${#fields.hasErrors('customerName')}? 'error'"/><br/>
+
+            <label th:class="${#fields.hasErrors('customerPhone')}? 'error'"
+                   th:text="#{order.customer-phone}">
+                customerPhone</label>:
+            <input type="text" th:field="*{customerPhone}"
+                   id="order-customer-phone"
+                   th:class="${#fields.hasErrors('customerPhone')}? 'error'"/><br/>
+
+            <label th:class="${#fields.hasErrors('expeditionDate')}? 'error'"
+                   th:text="#{order.expedition-date}">
+                expeditionDate</label>:
+            <input type="text" th:field="*{expeditionDate}"
+                   id="order-expedition-date"
+                   th:class="${#fields.hasErrors('expeditionDate')}? 'error'"/><br/>
+
+            <label th:class="${#fields.hasErrors('paymentMethod')}? 'error'"
+                   th:text="#{order.payment-method}">
+                paymentMethod</label>:
+            <input type="text" th:field="*{paymentMethod}"
+                   id="oder-expedition-date"
+                   th:class="${#fields.hasErrors('paymentMethod')}? 'error'"/><br/>
+
+            <label th:class="${#fields.hasErrors('deliveryAddress')}? 'error'"
+                   th:text="#{order.delivery-address}">
+                deliveryAddress</label>:
+            <input type="text" th:field="*{deliveryAddress}"
+                   id="order-delivery-address"
+                   th:class="${#fields.hasErrors('deliveryAddress')}? 'error'"/><br/>
+
+            <input type="submit" th:value="#{order.pass-order}"
+                   id="order-submit"/>
+        </form>
+    </div>
+</section>
+
+</body>
+</html>
