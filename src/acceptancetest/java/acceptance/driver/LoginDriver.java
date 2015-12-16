@@ -8,6 +8,8 @@ public class LoginDriver {
     //Logistic manager
     public static final String logisticManagerUsername = "faiez_logistic";
     public static final String logisticManagerPassword = "0000";
+    public static String customerUsername = "faiez_customer";
+    public static String customerPassword = "0000";
 
     private FirefoxDriver firefoxDriver;
 

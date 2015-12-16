@@ -33,4 +33,25 @@ public class CartDriver {
         WebElement purchasesSum = firefoxDriver.findElementById("purchases-sum");
         Assert.assertEquals(expectedSum, purchasesSum.getText());
     }
+
+    public void assertPurchaseTitleExists(String bookTitle) {
+        List<WebElement> purchasesTitles = firefoxDriver.findElementsById
+                ("cart-view-book-title");
+        Assert.assertTrue(purchasesTitles.stream()
+                .anyMatch(webElement -> webElement.getText().equals(bookTitle)));
+    }
+
+    public void assertPurchaseTitleDoesntExists(String bookTitle) {
+        List<WebElement> purchasesTitles = firefoxDriver.findElementsById
+                ("cart-view-book-title");
+        Assert.assertFalse(purchasesTitles.stream()
+                .anyMatch(webElement -> webElement.getText().equals(bookTitle)));
+    }
+
+    public void removePurchaseOf(String bookISBN) {
+        WebElement removeBookLink = firefoxDriver.findElementById(
+                String.format("remove-from-cart-%s", bookISBN)
+        );
+        removeBookLink.click();
+    }
 }
