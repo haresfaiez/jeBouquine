@@ -13,18 +13,3 @@ Feature:
       | Customer name | Customer phone | Expedition date |
       | Hares Faiez   | 26871788       | 08/05/2016      |
     Then The order should be passed successfully
-
-  Scenario:
-  Modify my order before the expedition date
-#    Given I pass an order with thw books
-#      | Book             | Price | Quantity |
-#      | Debian in action | 300   | 4        |
-#    And I pass an order
-#    And the details
-#      | Customer name | Customer phone | Expedition date |
-#      | Hares Faiez   | 26871788       | 08/05/2016      |
-#    And To day is "01/01/2016"
-#    When I modify the next details about payment method
-#      | Customer name | Customer phone | Expedition date |
-#      | Hares Faiez   | 26871788       | 08/05/2017      |
-#    Then The modification should be considered
