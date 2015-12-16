@@ -1,0 +1,11 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.w3.org/1999/xhtml"
+      th:with="lang=${#locale.language}"
+      th:lang="${lang}">
+<body>
+<section class="content-header" th:fragment="default">
+    <h1 th:text="${order.id}" id="order-id">Order id</h1>
+</section>
+
+</body>
+</html>

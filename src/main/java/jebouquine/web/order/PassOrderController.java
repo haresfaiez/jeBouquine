@@ -45,7 +45,7 @@ public class PassOrderController {
         //TODO:fix redirection string construction
 //        model.addAttribute("orderId", "1");
 //        return "redirect:/cart/order/view/{orderId}";
-        return String.format("redirect:/cart/order/view/%s",
+        return String.format("redirect:/order/view/%s",
                 orderViewModel.getId());
     }
 

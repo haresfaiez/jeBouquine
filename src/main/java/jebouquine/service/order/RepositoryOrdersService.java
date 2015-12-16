@@ -2,6 +2,7 @@ package jebouquine.service.order;
 
 import jebouquine.domain.order.OrderRepository;
 import jebouquine.service.cart.viewmodel.OrderViewModel;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 @Service
@@ -9,6 +10,7 @@ public class RepositoryOrdersService implements OrdersService {
 
     private final OrderRepository orderRepository;
 
+    @Autowired
     public RepositoryOrdersService(OrderRepository orderRepository) {
         this.orderRepository = orderRepository;
     }
