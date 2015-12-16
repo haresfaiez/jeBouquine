@@ -1,4 +1,4 @@
-package jebouquine.service.cart;
+package jebouquine.service.order;
 
 import jebouquine.service.cart.viewmodel.OrderViewModel;
 

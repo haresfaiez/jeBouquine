@@ -155,4 +155,10 @@ public class CustomerOrder implements Order {
                 Customer.nullObject(),
                 new ArrayList<>());
     }
+
+    public static Order from(Integer id, String customerName, String customerPhone, Date expeditionDate, String paymentMethod, String deliveryAddress, Customer customer, List<OrderItem> items) {
+        return new CustomerOrder(id, customerName, customerPhone,
+                expeditionDate,  paymentMethod, deliveryAddress, customer,
+                items);
+    }
 }

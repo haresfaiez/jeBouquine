@@ -1,6 +1,8 @@
 package jebouquine.infrastructure.order.model;
 
+import jebouquine.domain.customer.Customer;
 import jebouquine.domain.order.Order;
+import jebouquine.domain.order.customerorder.CustomerOrder;
 
 import javax.persistence.*;
 import java.util.Date;
@@ -138,5 +140,20 @@ public class OrderEntity {
                         .from(orderItem, orderEntity)).collect(Collectors.toList());
         orderEntity.setItems(orderItems);
         return orderEntity;
+    }
+
+    public Order order() {
+        //TODO:fix customer handling
+        return CustomerOrder.from(
+                getId(),
+                getCustomerName(),
+                getCustomerPhone(),
+                getExpeditionDate(),
+                getPaymentMethod(),
+                getDeliveryAddress(),
+                Customer.nullObject(),
+                getItems().stream().map(orderItemEntity -> orderItemEntity
+                        .orderItem()).collect(Collectors.toList())
+        );
     }
 }

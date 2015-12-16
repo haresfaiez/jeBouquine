@@ -1,5 +1,6 @@
 package jebouquine.infrastructure.order.model;
 
+import jebouquine.domain.order.Order;
 import jebouquine.domain.order.customerorder.OrderItem;
 import jebouquine.infrastructure.books.model.BookEntity;
 
@@ -90,5 +91,9 @@ public class OrderItemEntity {
             orderEntity) {
         return new OrderItemEntity(orderItem.getDate(),
                 BookEntity.from(orderItem.getBook()),orderEntity);
+    }
+
+    public OrderItem orderItem() {
+        return new OrderItem(getId(), getDate(), getBook().book());
     }
 }

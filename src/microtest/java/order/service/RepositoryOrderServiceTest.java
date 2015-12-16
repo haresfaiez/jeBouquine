@@ -6,7 +6,7 @@ import jebouquine.domain.customer.Customer;
 import jebouquine.domain.order.Order;
 import jebouquine.domain.order.OrderRepository;
 import jebouquine.domain.order.customerorder.OrderRequest;
-import jebouquine.service.cart.RepositoryOrderService;
+import jebouquine.service.order.RepositoryOrderService;
 import org.junit.Test;
 
 import java.util.ArrayList;

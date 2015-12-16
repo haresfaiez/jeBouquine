@@ -3,6 +3,7 @@ package jebouquine.service.cart.viewmodel;
 import jebouquine.domain.order.Order;
 import org.springframework.format.annotation.DateTimeFormat;
 
+import java.time.Instant;
 import java.util.Date;
 
 public class OrderViewModel {
@@ -126,5 +127,10 @@ public class OrderViewModel {
                 order.getPaymentMethod(),
                 order.getDeliveryAddress()
         );
+    }
+
+    public static OrderViewModel nullObject() {
+        return new OrderViewModel(0, "", "", Date.from(Instant.now()),
+                "", "");
     }
 }

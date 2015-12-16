@@ -1,4 +1,4 @@
-package jebouquine.service.cart;
+package jebouquine.service.order;
 
 import jebouquine.domain.cart.Cart;
 import jebouquine.domain.order.Order;

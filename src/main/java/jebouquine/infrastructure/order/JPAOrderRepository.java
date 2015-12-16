@@ -8,6 +8,7 @@ import org.springframework.transaction.annotation.Transactional;
 
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
+import java.util.Optional;
 
 @Repository
 @Transactional
@@ -22,5 +23,12 @@ public class JPAOrderRepository implements OrderRepository {
         OrderEntity entity = OrderEntity.from(order);
         entityManager.persist(entity);
         order.setId(entity.getId());
+    }
+
+    @Override
+    public Optional<Order> findOrderById(Integer id) {
+        return Optional
+                .of(entityManager.find(OrderEntity.class, id))
+                .map(orderEntity -> orderEntity.order());
     }
 }

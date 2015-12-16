@@ -1,6 +1,6 @@
 package cart.stub;
 
-import jebouquine.service.cart.OrderService;
+import jebouquine.service.order.OrderService;
 import jebouquine.service.cart.viewmodel.OrderPassingViewModel;
 import jebouquine.service.cart.viewmodel.OrderViewModel;
 

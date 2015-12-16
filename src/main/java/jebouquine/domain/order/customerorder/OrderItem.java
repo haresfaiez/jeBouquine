@@ -10,7 +10,7 @@ public class OrderItem {
     private final Date date;
     private final Book book;
 
-    public OrderItem(Integer  id, Date date, Book book) {
+    public OrderItem(Integer id, Date date, Book book) {
         this.id = id;
         this.date = date;
         this.book = book;
