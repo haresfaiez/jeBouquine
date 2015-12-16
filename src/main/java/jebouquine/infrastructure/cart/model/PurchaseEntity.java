@@ -86,6 +86,6 @@ public class PurchaseEntity {
 
     public Purchase purchase() {
         //TODO:handle customer
-        return Purchase.from(book.book(), Customer.nullObject(), getDate());
+        return Purchase.from(id, book.book(), Customer.nullObject(), getDate());
     }
 }

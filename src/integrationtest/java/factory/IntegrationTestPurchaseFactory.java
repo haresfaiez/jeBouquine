@@ -15,7 +15,9 @@ public class IntegrationTestPurchaseFactory {
         final Integer bookPrice = 100;
         return PurchaseViewModel.from(bookISBN, bookTitle, DATE, bookPrice);
     }
-    public static Purchase createPurchaseFrom(Customer customer, Book book) {
-        return Purchase.now(book, customer);
+    public static Purchase createPurchaseFrom(Integer id, Customer customer,
+                                              Book
+            book) {
+        return Purchase.from(id, book, customer, new Date(12, 29, 2014));
     }
 }

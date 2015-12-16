@@ -33,7 +33,7 @@ public class CustomerCart implements Cart {
 
     @Override
     public void removeBook(Book book) {
-        purchaseRepository.removePurchase(Purchase.now(book,
-                customerRepository.getCurrentCustomer()));
+        purchaseRepository.removePurchase(purchaseRepository
+                .findPurchase(customerRepository.getCurrentCustomer(), book));
     }
 }

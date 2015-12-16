@@ -1,5 +1,6 @@
 package jebouquine.infrastructure.cart;
 
+import jebouquine.domain.books.Book;
 import jebouquine.domain.cart.Purchase;
 import jebouquine.domain.cart.PurchaseRepository;
 import jebouquine.domain.customer.Customer;
@@ -25,7 +26,9 @@ public class JPAPurchaseRepository implements PurchaseRepository {
 
     @Override
     public void addPurchase(Purchase purchase) {
-        entityManager.persist(PurchaseEntity.from(purchase));
+        PurchaseEntity entity = PurchaseEntity.from(purchase);
+        entityManager.persist(entity);
+        purchase.setId(entity.getId());
     }
 
     @Override
@@ -33,7 +36,7 @@ public class JPAPurchaseRepository implements PurchaseRepository {
         //TODO:add customer handling
         TypedQuery<PurchaseEntity> query = entityManager
                 .createNamedQuery(SEARCH_BY_CUSTOMER_NAMED_QUERY, PurchaseEntity.class);
-        return  query
+        return query
                 .getResultList()
                 .stream()
                 .map(purchaseEntity -> purchaseEntity.purchase())
@@ -42,6 +45,14 @@ public class JPAPurchaseRepository implements PurchaseRepository {
 
     @Override
     public void removePurchase(Purchase purchase) {
+        //TODO:add test
+        PurchaseEntity purchaseEntity = entityManager.find
+                (PurchaseEntity.class, purchase.getId());
+        entityManager.remove(purchaseEntity);
+    }
 
+    @Override
+    public Purchase findPurchase(Customer currentCustomer, Book book) {
+        return null;
     }
 }

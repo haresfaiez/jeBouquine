@@ -4,19 +4,25 @@ import jebouquine.domain.books.Book;
 import jebouquine.domain.customer.Customer;
 
 import java.util.Date;
+import java.util.concurrent.atomic.AtomicInteger;
 
 public class Purchase {
 
+    private AtomicInteger id;
     private final Date date;
     private final Book book;
     private final Customer customer;
 
-    public Purchase(Book book, Customer customer, Date date) {
+    public Purchase(Integer id, Book book, Customer customer, Date date) {
+        this.id = new AtomicInteger(id);
         this.date = date;
         this.book = book;
         this.customer = customer;
     }
 
+    public void setId(Integer id) {
+        this.id = new AtomicInteger(id);
+    }
 
     public Date getDate() {
         return date;
@@ -30,6 +36,10 @@ public class Purchase {
         return customer;
     }
 
+    public Integer getId() {
+        return id.get();
+    }
+
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
@@ -37,10 +47,10 @@ public class Purchase {
 
         Purchase purchase = (Purchase) o;
 
-        //TODO:fix date comparison
-//        if (date != null ? !(date.compareTo(purchase.date) == 0) : purchase
-//                .date !=
-//                null)
+        if (id != null ? !id.equals(purchase.id) : purchase.id != null)
+            return false;
+        //TODO:fix comparison
+//        if (date != null ? !date.equals(purchase.date) : purchase.date != null)
 //            return false;
         if (book != null ? !book.equals(purchase.book) : purchase.book != null)
             return false;
@@ -50,18 +60,19 @@ public class Purchase {
 
     @Override
     public int hashCode() {
-        int result = date != null ? date.hashCode() : 0;
+        int result = id != null ? id.hashCode() : 0;
+        result = 31 * result + (date != null ? date.hashCode() : 0);
         result = 31 * result + (book != null ? book.hashCode() : 0);
         result = 31 * result + (customer != null ? customer.hashCode() : 0);
         return result;
     }
 
     public static Purchase now(Book book, Customer customer) {
-        return new Purchase(book, customer, new Date());
+        return new Purchase(0, book, customer, new Date());
     }
 
-    public static Purchase from(Book book, Customer customer, Date date) {
-        return new Purchase(book, customer, date);
+    public static Purchase from(Integer id, Book book, Customer customer, Date date) {
+        return new Purchase(id, book, customer, date);
     }
 
 }
