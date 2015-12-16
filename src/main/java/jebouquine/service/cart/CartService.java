@@ -8,4 +8,5 @@ public interface CartService {
     void addBookToCart(String bookISBN);
     List<PurchaseViewModel> purchases();
     Integer purchasesSum();
+    void removeBookFromCart(String bookISBN);
 }

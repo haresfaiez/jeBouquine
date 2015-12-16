@@ -30,4 +30,9 @@ public class CustomerCart implements Cart {
         return purchaseRepository.findPurchasesFor(
                 customerRepository.getCurrentCustomer());
     }
+
+    @Override
+    public void removeBook(Book expectedBook) {
+
+    }
 }

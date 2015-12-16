@@ -43,4 +43,11 @@ public class RepositoryCartService implements CartService {
                 .mapToInt(purchaseViewModel -> purchaseViewModel.getPrice())
                 .sum();
     }
+
+    @Override
+    public void removeBookFromCart(String bookISBN) {
+        bookRepository
+                .findBookByISBN(bookISBN)
+                .ifPresent(book -> cart.removeBook(book));
+    }
 }

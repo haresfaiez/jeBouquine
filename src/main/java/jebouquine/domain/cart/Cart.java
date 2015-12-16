@@ -7,4 +7,5 @@ import java.util.List;
 public interface Cart {
     void addBook(Book expectedBook);
     List<Purchase> purchases();
+    void removeBook(Book expectedBook);
 }
