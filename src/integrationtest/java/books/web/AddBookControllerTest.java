@@ -1,4 +1,4 @@
-package books.web.books;
+package books.web;
 
 import factory.IntegrationTestBookFactory;
 import jebouquine.service.books.BookService;

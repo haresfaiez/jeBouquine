@@ -1,4 +1,4 @@
-package books.web;
+package home;
 
 import jebouquine.web.context.SpringWebContext;
 import org.junit.Test;
