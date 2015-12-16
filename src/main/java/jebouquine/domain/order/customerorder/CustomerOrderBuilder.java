@@ -1,7 +1,9 @@
-package jebouquine.domain.order;
+package jebouquine.domain.order.customerorder;
 
 import jebouquine.domain.cart.Purchase;
 import jebouquine.domain.customer.Customer;
+import jebouquine.domain.order.Order;
+import jebouquine.domain.order.OrderBuilder;
 
 public class CustomerOrderBuilder implements OrderBuilder {
 

@@ -1,4 +1,4 @@
-package jebouquine.domain.order;
+package jebouquine.domain.order.customerorder;
 
 import java.time.Instant;
 import java.util.Date;

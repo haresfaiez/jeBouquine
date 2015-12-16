@@ -1,4 +1,4 @@
-package jebouquine.domain.order;
+package jebouquine.domain.order.customerorder;
 
 import jebouquine.domain.books.Book;
 import jebouquine.domain.cart.Purchase;

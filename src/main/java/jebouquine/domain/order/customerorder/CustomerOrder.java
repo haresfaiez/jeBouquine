@@ -1,6 +1,7 @@
-package jebouquine.domain.order;
+package jebouquine.domain.order.customerorder;
 
 import jebouquine.domain.customer.Customer;
+import jebouquine.domain.order.Order;
 
 import java.time.Instant;
 import java.util.ArrayList;

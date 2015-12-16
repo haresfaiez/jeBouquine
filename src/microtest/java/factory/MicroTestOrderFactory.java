@@ -2,10 +2,10 @@ package factory;
 
 import jebouquine.domain.cart.Purchase;
 import jebouquine.domain.customer.Customer;
-import jebouquine.domain.order.CustomerOrder;
+import jebouquine.domain.order.customerorder.CustomerOrder;
 import jebouquine.domain.order.Order;
-import jebouquine.domain.order.OrderItem;
-import jebouquine.domain.order.OrderRequest;
+import jebouquine.domain.order.customerorder.OrderItem;
+import jebouquine.domain.order.customerorder.OrderRequest;
 
 import java.util.List;
 import java.util.stream.Collectors;

@@ -1,11 +1,11 @@
-package cart.service;
+package order.service;
 
 import factory.MicroTestOrderFactory;
 import jebouquine.domain.cart.Cart;
 import jebouquine.domain.customer.Customer;
 import jebouquine.domain.order.Order;
 import jebouquine.domain.order.OrderRepository;
-import jebouquine.domain.order.OrderRequest;
+import jebouquine.domain.order.customerorder.OrderRequest;
 import jebouquine.service.cart.RepositoryOrderService;
 import org.junit.Test;
 

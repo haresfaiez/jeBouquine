@@ -1,5 +1,7 @@
-package jebouquine.domain.order;
+package jebouquine.domain.order.customerorder;
 
+import jebouquine.domain.order.OrderBuilder;
+import jebouquine.domain.order.OrderFactory;
 import org.springframework.stereotype.Component;
 
 @Component

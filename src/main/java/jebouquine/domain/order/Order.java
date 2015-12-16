@@ -1,6 +1,7 @@
 package jebouquine.domain.order;
 
 import jebouquine.domain.customer.Customer;
+import jebouquine.domain.order.customerorder.OrderItem;
 
 import java.util.Date;
 import java.util.List;

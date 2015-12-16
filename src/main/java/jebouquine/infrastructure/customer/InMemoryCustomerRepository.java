@@ -1,5 +1,7 @@
-package jebouquine.domain.customer;
+package jebouquine.infrastructure.customer;
 
+import jebouquine.domain.customer.Customer;
+import jebouquine.domain.customer.CustomerRepository;
 import org.springframework.stereotype.Repository;
 
 @Repository

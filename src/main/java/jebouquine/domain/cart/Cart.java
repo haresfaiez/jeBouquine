@@ -2,7 +2,7 @@ package jebouquine.domain.cart;
 
 import jebouquine.domain.books.Book;
 import jebouquine.domain.order.Order;
-import jebouquine.domain.order.OrderRequest;
+import jebouquine.domain.order.customerorder.OrderRequest;
 
 import java.util.List;
 
