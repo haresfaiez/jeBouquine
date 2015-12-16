@@ -1,5 +1,6 @@
 package jebouquine.service.cart.viewmodel;
 
+import jebouquine.domain.cart.Order;
 import org.springframework.format.annotation.DateTimeFormat;
 
 import java.util.Date;
@@ -116,4 +117,9 @@ public class OrderViewModel {
     }
 
 
+    public static OrderViewModel from(Order order) {
+        return new OrderViewModel(
+
+        );
+    }
 }

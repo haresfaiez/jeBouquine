@@ -14,7 +14,8 @@ public class CustomerCart implements Cart {
     private final PurchaseRepository purchaseRepository;
 
     @Autowired
-    public CustomerCart(CustomerRepository customerRepository, PurchaseRepository purchaseRepository) {
+    public CustomerCart(CustomerRepository customerRepository,
+                        PurchaseRepository purchaseRepository) {
         this.customerRepository = customerRepository;
         this.purchaseRepository = purchaseRepository;
     }
@@ -35,5 +36,10 @@ public class CustomerCart implements Cart {
     public void removeBook(Book book) {
         purchaseRepository.removePurchase(purchaseRepository
                 .findPurchase(customerRepository.getCurrentCustomer(), book));
+    }
+
+    @Override
+    public Order passOrder(OrderRequest order) {
+    return null;
     }
 }

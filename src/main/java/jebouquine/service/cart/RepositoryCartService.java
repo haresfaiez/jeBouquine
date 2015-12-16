@@ -54,6 +54,7 @@ public class RepositoryCartService implements CartService {
 
     @Override
     public OrderService orderServiceOf(OrderPassingViewModel orderPassingViewModel) {
-        return null;
+        return RepositoryOrderService.from(orderPassingViewModel.orderRequest(),
+                cart);
     }
 }

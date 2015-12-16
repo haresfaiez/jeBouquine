@@ -1,5 +1,6 @@
 package jebouquine.service.cart.viewmodel;
 
+import jebouquine.domain.cart.OrderRequest;
 import org.springframework.format.annotation.DateTimeFormat;
 
 import java.time.Instant;
@@ -95,13 +96,17 @@ public class OrderPassingViewModel {
     }
 
     public static OrderPassingViewModel from(String customerName, String customerPhone,
-                                             Date
-                                                     expeditionDate, String paymentMethod, String deliveryAddress) {
+                                             Date expeditionDate, String
+                                                     paymentMethod, String deliveryAddress) {
         return new OrderPassingViewModel(customerName, customerPhone,
                 expeditionDate, paymentMethod, deliveryAddress);
     }
 
     public static OrderPassingViewModel nullObject() {
         return new OrderPassingViewModel("", "", Date.from(Instant.now()), "", "");
+    }
+
+    public OrderRequest orderRequest() {
+        return null;
     }
 }

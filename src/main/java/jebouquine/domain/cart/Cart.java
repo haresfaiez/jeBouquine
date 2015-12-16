@@ -8,4 +8,5 @@ public interface Cart {
     void addBook(Book expectedBook);
     List<Purchase> purchases();
     void removeBook(Book expectedBook);
+    Order passOrder(OrderRequest order);
 }
