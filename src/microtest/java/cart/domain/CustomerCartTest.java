@@ -28,7 +28,7 @@ import static org.mockito.Mockito.*;
 public class CustomerCartTest {
 
     @Test
-    public void shouldPassOrder() {
+    public void shouldPassOrderRequest() {
         Book book = MicroTestBookFactory.createBook();
         Customer customer = MicroTestCustomerFactory.createCustomer();
         Purchase expectedPurchase = Purchase.now(book, customer);

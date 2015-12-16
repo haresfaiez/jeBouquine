@@ -6,6 +6,7 @@ import jebouquine.domain.books.Book;
 import jebouquine.domain.books.BookRepository;
 import jebouquine.domain.cart.Cart;
 import jebouquine.domain.cart.Purchase;
+import jebouquine.domain.order.OrderRepository;
 import jebouquine.service.cart.CartService;
 import jebouquine.service.cart.RepositoryCartService;
 import jebouquine.service.cart.viewmodel.PurchaseViewModel;
@@ -25,14 +26,14 @@ public class RepositoryCartServiceTest {
     @Test
     public void shouldRemovePurchaseFromCart() {
         Book expectedBook = MicroTestBookFactory.createBook();
-
+        OrderRepository orderRepository = mock(OrderRepository.class);
         Cart cart = mock(Cart.class);
         BookRepository bookRepository = mock(BookRepository.class);
         when(bookRepository.findBookByISBN(expectedBook.getISBN()))
                 .thenReturn(Optional.of(expectedBook));
 
         CartService cartService = new RepositoryCartService(cart,
-                bookRepository);
+                bookRepository, orderRepository);
 
         cartService.removeBookFromCart(expectedBook.getISBN());
 
@@ -41,6 +42,7 @@ public class RepositoryCartServiceTest {
 
     @Test
     public void shouldCalculatePurchasesSum() {
+        OrderRepository orderRepository = mock(OrderRepository.class);
         Book expectedBook = MicroTestBookFactory.createBook();
         BookRepository bookRepository = mock(BookRepository.class);
 
@@ -54,7 +56,7 @@ public class RepositoryCartServiceTest {
         when(cart.purchases())
                 .thenReturn(expectedPurchaseList);
         CartService cartService = new RepositoryCartService(cart,
-                bookRepository);
+                bookRepository, orderRepository);
 
         Integer actualSum = cartService.purchasesSum();
 
@@ -63,6 +65,7 @@ public class RepositoryCartServiceTest {
 
     @Test
     public void shouldReturnPurchasesListOfTheCurrentCustomer() {
+        OrderRepository orderRepository = mock(OrderRepository.class);
         Book expectedBook = MicroTestBookFactory.createBook();
         BookRepository bookRepository = mock(BookRepository.class);
 
@@ -81,7 +84,7 @@ public class RepositoryCartServiceTest {
                 .thenReturn(expectedPurchaseList);
 
         CartService cartService = new RepositoryCartService(cart,
-                bookRepository);
+                bookRepository, orderRepository);
 
         List<PurchaseViewModel> actualPurchaseListViewModel
                 = cartService.purchases();
@@ -91,6 +94,7 @@ public class RepositoryCartServiceTest {
 
     @Test
     public void shouldAddABookToTheCatalogWhenGivenAValidBookISBN() {
+        OrderRepository orderRepository = mock(OrderRepository.class);
         Book expectedBook = MicroTestBookFactory.createBook();
 
         BookRepository bookRepository = mock(BookRepository.class);
@@ -100,7 +104,7 @@ public class RepositoryCartServiceTest {
         Cart cart = mock(Cart.class);
 
         CartService repositoryCartService = new
-                RepositoryCartService(cart, bookRepository);
+                RepositoryCartService(cart, bookRepository, orderRepository);
 
         repositoryCartService.addBookToCart(expectedBook.getISBN());
 

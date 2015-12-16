@@ -1,5 +1,6 @@
 package jebouquine.domain.order;
 
+import java.time.Instant;
 import java.util.Date;
 
 public class OrderRequest {
@@ -85,5 +86,9 @@ public class OrderRequest {
         this.expeditionDate = expeditionDate;
         this.paymentMethod = paymentMethod;
         this.deliveryAddress = deliveryAddress;
+    }
+
+    public static OrderRequest nullObject() {
+        return new OrderRequest("","",Date.from(Instant.now()),"","");
     }
 }
