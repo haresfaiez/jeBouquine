@@ -10,7 +10,11 @@ import java.util.Date;
 @NamedQueries({
         @NamedQuery(name = "PurchaseEntity.searchByCustomer",
                 query = "SELECT purchaseEntity " +
-                        "FROM PurchaseEntity  purchaseEntity")
+                        "FROM PurchaseEntity  purchaseEntity"),
+        @NamedQuery(name = "PurchaseEntity.searchByCustomerAndBook",
+                query = "SELECT purchaseEntity " +
+                        "FROM PurchaseEntity  purchaseEntity " +
+                        "WHERE purchaseEntity.book = :book")
 })
 @Table(name = "PURCHASES")
 @Entity

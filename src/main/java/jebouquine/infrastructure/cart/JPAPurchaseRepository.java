@@ -4,6 +4,7 @@ import jebouquine.domain.books.Book;
 import jebouquine.domain.cart.Purchase;
 import jebouquine.domain.cart.PurchaseRepository;
 import jebouquine.domain.customer.Customer;
+import jebouquine.infrastructure.books.model.BookEntity;
 import jebouquine.infrastructure.cart.model.PurchaseEntity;
 import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
@@ -20,6 +21,8 @@ public class JPAPurchaseRepository implements PurchaseRepository {
 
     public static final String SEARCH_BY_CUSTOMER_NAMED_QUERY
             = "PurchaseEntity.searchByCustomer";
+    public static final String SEARCH_BY_CUSTOMER_AND_BOOK_NAMED_QUERY
+            = "PurchaseEntity.searchByCustomerAndBook";
 
     @PersistenceContext
     private EntityManager entityManager;
@@ -53,6 +56,13 @@ public class JPAPurchaseRepository implements PurchaseRepository {
 
     @Override
     public Purchase findPurchase(Customer currentCustomer, Book book) {
-        return null;
+        TypedQuery<PurchaseEntity> query = entityManager
+                .createNamedQuery(SEARCH_BY_CUSTOMER_AND_BOOK_NAMED_QUERY,
+                        PurchaseEntity.class);
+        query.setParameter("book", BookEntity.from(book));
+        return query
+                .getResultList()
+                .get(0)
+                .purchase();
     }
 }
