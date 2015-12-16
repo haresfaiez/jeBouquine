@@ -13,6 +13,7 @@ public interface Order {
     String getCustomerPhone();
     String getCustomerName();
     Integer getId();
+    void setId(Integer id);
     Customer getCustomer();
     List<OrderItem> getItems();
     void addItem(OrderItem item);

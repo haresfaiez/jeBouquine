@@ -72,6 +72,7 @@ public class CustomerOrder implements Order {
         return id;
     }
 
+    @Override
     public void setId(Integer id) {
         this.id = id;
     }
