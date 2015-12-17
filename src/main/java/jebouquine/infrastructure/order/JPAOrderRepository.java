@@ -9,19 +9,23 @@ import org.springframework.transaction.annotation.Transactional;
 
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
+import javax.persistence.TypedQuery;
 import java.util.List;
 import java.util.Optional;
+import java.util.stream.Collectors;
 
+//TODO:add class tests
 @Repository
 @Transactional
 public class JPAOrderRepository implements OrderRepository {
 
+    private static final java.lang.String SEARCH_BY_CUSTOMER_NAMED_QUERY
+            = "OrderEntity.searchByCustomer";
     @PersistenceContext
     private EntityManager entityManager;
 
     @Override
     public void addOrder(Order order) {
-        //TODO:add test
         OrderEntity entity = OrderEntity.from(order);
         entityManager.persist(entity);
         order.setId(entity.getId());
@@ -36,6 +40,14 @@ public class JPAOrderRepository implements OrderRepository {
 
     @Override
     public List<Order> findOrdersFor(Customer customer) {
-        return null;
+        //TODO:handle customer
+        TypedQuery<OrderEntity> query = entityManager
+                .createNamedQuery(SEARCH_BY_CUSTOMER_NAMED_QUERY,
+                    OrderEntity.class);
+        return query
+                .getResultList()
+                .stream()
+                .map(orderEntity -> orderEntity.order())
+                .collect(Collectors.toList());
     }
 }

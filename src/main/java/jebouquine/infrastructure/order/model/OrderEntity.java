@@ -9,6 +9,11 @@ import java.util.Date;
 import java.util.List;
 import java.util.stream.Collectors;
 
+@NamedQueries({
+        @NamedQuery(name = "OrderEntity.searchByCustomer",
+                query = "SELECT orderEntity " +
+                        "FROM OrderEntity orderEntity")
+})
 @Table(name = "ORDERS")
 @Entity
 public class OrderEntity {
