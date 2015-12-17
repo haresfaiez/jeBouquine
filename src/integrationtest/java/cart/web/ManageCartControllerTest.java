@@ -21,7 +21,6 @@ import static org.springframework.test.web.servlet.request
 @WebAppConfiguration
 public class ManageCartControllerTest {
 
-
     @Test
     public void shouldRemovePurchaseFromTheCart() throws Exception {
         final String bookISBN = "ABTCCT1";

@@ -1,0 +1,15 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.w3.org/1999/xhtml"
+      th:with="lang=${#locale.language}"
+      th:lang="${lang}">
+<body>
+<section class="content-header" th:fragment="default">
+    <ul>
+        <li th:each="item : ${orders}">
+                <span th:text="${item.id}"
+                      id="orders-list-order-id">order id</span>
+        </li>
+    </ul>
+</section>
+</body>
+</html>

@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.w3.org/1999/xhtml"
+      th:with="lang=${#locale.language}"
+      th:lang="${lang}">
+<head>
+    <meta charset="utf-8"/>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
+    <title>jebouquine</title>
+    <meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no"
+          name="viewport"/>
+    <link rel="stylesheet"
+          type="text/css"
+          th:href="@{/resources/bootstrap/css/bootstrap.min.css}"/>
+    <link rel="stylesheet"
+          href="https://maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css"/>
+    <link rel="stylesheet"
+          href="https://code.ionicframework.com/ionicons/2.0.1/css/ionicons.min.css"/>
+    <link rel="stylesheet"
+          type="text/css"
+          th:href="@{/resources/dist/css/skins/_all-skins.css}"/>
+    <link rel="stylesheet"
+          type="text/css"
+          th:href="@{/resources/dist/css/AdminLTE.css}"/>
+</head>
+<body class="hold-transition skin-blue sidebar-mini">
+<div class="wrapper">
+    <header class="main-header" th:include="fragments/header :: logo">
+    </header>
+    <aside class="main-sidebar" th:include="fragments/navigation :: left-menu">
+    </aside>
+    <div class="content-wrapper"
+         th:include="order/fragments/orders-list :: default">
+    </div>
+</div>
+<script th:src="@{/resources/plugins/jQuery/jQuery-2.1.4.min.js}"></script>
+<script th:src="@{/resources/dist/js/app.min.js}"></script>
+</body>
+</html>

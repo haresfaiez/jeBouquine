@@ -2,7 +2,6 @@ package jebouquine.web.order;
 
 import jebouquine.service.books.viewmodel.SearchBookViewModel;
 import jebouquine.service.cart.CartService;
-import jebouquine.service.order.OrderService;
 import jebouquine.service.cart.viewmodel.OrderPassingViewModel;
 import jebouquine.service.cart.viewmodel.OrderViewModel;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -31,17 +30,14 @@ public class PassOrderController {
 
     @RequestMapping(value = "/cart/pass-order", method = RequestMethod.POST)
     public String passOrder(@ModelAttribute(value = "order")
-                            OrderPassingViewModel orderPassingViewModel,
-                            Model model) {
-        OrderService orderService = cartService.orderServiceOf
-                (orderPassingViewModel);
-        orderService.pass();
+                            OrderPassingViewModel orderPassingViewModel) {
         OrderViewModel orderViewModel
-                = orderService
+                = cartService
+                .orderServiceOf(orderPassingViewModel)
                 .pass()
                 .viewModel();
-        model.addAttribute("booksearch", SearchBookViewModel.nullObject());
-        model.addAttribute("order", orderViewModel);
+//        model.addAttribute("booksearch", SearchBookViewModel.nullObject());
+//        model.addAttribute("order", orderViewModel);
         //TODO:fix redirection string construction
 //        model.addAttribute("orderId", "1");
 //        return "redirect:/cart/order/view/{orderId}";
