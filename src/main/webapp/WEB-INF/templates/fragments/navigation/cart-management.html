@@ -6,7 +6,7 @@
 <ul class="sidebar-menu" th:fragment="default">
     <li class="active treeview">
         <a href="#">
-            <i class="fa fa-dashboard"></i>
+            <i class="fa fa-shopping-cart"></i>
                         <span th:text="#{home.cart-management}">
                             Cart management
                         </span>
@@ -26,6 +26,14 @@
                     <i class="fa fa-circle-o"></i>
                                 <span th:text="#{home.cart-order}">
                                     Cart order
+                                </span>
+                </a>
+            </li>
+                       <li>
+                <a th:href="@{/order/list}">
+                    <i class="fa fa-circle-o"></i>
+                                <span th:text="#{home.list-order}">
+                                    List orders
                                 </span>
                 </a>
             </li>

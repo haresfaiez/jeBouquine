@@ -4,7 +4,7 @@
       th:lang="${lang}">
 <body>
 <div th:fragment="logo">
-    <a href="#" class="logo">
+    <a th:href="@{/}" class="logo">
             <span class="logo-mini" th:text="#{home.title-mini}">
                 ST
             </span>

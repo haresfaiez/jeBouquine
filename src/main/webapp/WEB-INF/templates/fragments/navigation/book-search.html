@@ -17,13 +17,20 @@
     </div>
     <div class="input-group">
         <input type="radio" th:field="*{criteria}"
-               th:value="*{criteriaISBN}" class=""
+               th:value="*{criteriaISBN}"
+               sty="color: rgb(138, 164, 175); padding-left: 1em;"
                id="search-book-by-isbn"/>
-        <span th:text="#{home.search-by-isbn}">By ISBN</span>
+        <span th:text="#{home.search-by-isbn}"
+
+              style="color: rgb(138, 164, 175); padding-left:
+              1em;padding-right: 1em;"
+        >By ISBN</span>
         <input type="radio" th:field="*{criteria}"
                th:value="*{criteriaTitle}" class=""
                id="search-book-by-title"/>
-        <span th:text="#{home.search-by-title}">By title</span>
+        <span
+                style="color: rgb(138, 164, 175); padding-left: 1em;"
+                th:text="#{home.search-by-title}">By title</span>
     </div>
 </form>
 
