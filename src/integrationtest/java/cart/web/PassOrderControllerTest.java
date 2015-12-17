@@ -72,7 +72,7 @@ public class PassOrderControllerTest {
                 )
                 .andExpect(model().attribute("order", expectedOrderViewModel))
                 .andExpect(view().name(String.format
-                        ("redirect:/cart/order/view/%s",
+                        ("redirect:/order/view/%s",
                         expectedOrderViewModel.getId())));
     }
 }

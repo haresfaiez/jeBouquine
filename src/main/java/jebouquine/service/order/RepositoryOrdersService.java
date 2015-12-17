@@ -5,6 +5,8 @@ import jebouquine.service.cart.viewmodel.OrderViewModel;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
+
 @Service
 public class RepositoryOrdersService implements OrdersService {
 
@@ -18,5 +20,10 @@ public class RepositoryOrdersService implements OrdersService {
     @Override
     public OrderViewModel getOrderById(Integer orderId) {
         return OrderViewModel.from(orderRepository.findOrderById(orderId).get());
+    }
+
+    @Override
+    public List<OrderViewModel> getCurrentCustomerOrders() {
+        return null;
     }
 }
