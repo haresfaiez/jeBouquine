@@ -29,7 +29,7 @@
     <aside class="main-sidebar" th:include="fragments/navigation :: left-menu">
     </aside>
     <div class="content-wrapper"
-         th:include="cart/order/fragments/order-form :: default">
+         th:replace="cart/order/fragments/order-form :: default">
     </div>
 </div>
 <script th:src="@{/resources/plugins/jQuery/jQuery-2.1.4.min.js}"></script>

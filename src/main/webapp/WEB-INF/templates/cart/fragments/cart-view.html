@@ -4,20 +4,75 @@
       th:lang="${lang}">
 <body>
 <section class="content-header" th:fragment="default">
-    Cart purchases
-    <ul>
-        <li th:each="item : ${purchases.purchases}">
+    <div class="box box-info">
+        <div class="box-header with-border">
+            <h3 class="box-title" th:text="#{cart.latest-orders}">Latest Orders</h3>
+        </div>
+        <div class="box-body">
+            <div class="table-responsive">
+                <table class="table no-margin">
+                    <thead>
+                    <tr>
+                        <th th:text="#{book.ISBN}">Book ISBN</th>
+                        <th th:text="#{book.title}">Book title</th>
+                        <th th:text="#{book.price}">Book price</th>
+                        <th th:text="#{cart.purchase-date}">Purchase date</th>
+                        <th th:text="#{cart.actions}">Actions</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    <tr th:each="item : ${purchases.purchases}">
+                        <td><a th:href="@{'/book/view/' + ${item.bookISBN}}">
+
+                <span th:text="${item.bookISBN}"
+                      id="cart-view-book-isbn">book ISBN</span>
+                        </a>
+
+
+                        </td>
+                        <td><a th:href="@{'/book/view/' + ${item.bookISBN}}">
+
                 <span th:text="${item.bookTitle}"
                       id="cart-view-book-title">book title</span>
+                        </a></td>
+                        <td><span class="label label-success">
+
                 <span th:text="${item.price}"
                       id="cart-view-book-price">book price</span>
-            <a th:href="@{'/cart/remove-book/' + ${item.bookISBN}}"
-               th:id="@{'remove-from-cart-' + ${item.bookISBN}}"><span
-                    th:text="#{cart-view.remove-from-cart}">
+                        </span>
+                        </td>
+                        <td>
+                <span th:text="${item.purchaseDate}"
+                      id="cart-view-purchase-date">purchase date</span>
+                        </td>
+                        <td>
+                            <a th:href="@{'/cart/remove-book/' + ${item.bookISBN}}"
+                               th:id="@{'remove-from-cart-' + ${item.bookISBN}}">
+                                <span th:text="#{cart-view.remove-from-cart}">
                 Remove from cart
-            </span></a>
-        </li>
-    </ul>
+            </span>
+                            </a>
+                        </td>
+                    </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+        <div class="box-footer clearfix">
+            <a th:href="@{/cart/pass-order}"
+               class="btn btn-sm btn-info btn-flat pull-left"
+            th:text="#{cart.place-new-order}"
+            >Place New
+                Order</a>
+            <a th:href="@{/order/list}"
+
+               class="btn btn-sm btn-default btn-flat pull-right"
+
+               th:text="#{cart.view-all-orders}"
+            >View All
+                Orders</a>
+        </div>
+    </div>
     <span th:text="${purchases.purchasesSum}" id="purchases-sum">r</span>
 </section>
 

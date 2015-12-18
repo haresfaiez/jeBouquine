@@ -29,7 +29,7 @@
     <aside class="main-sidebar" th:include="fragments/navigation :: left-menu">
     </aside>
     <div class="content-wrapper"
-         th:include="book/fragments/add-book-form :: default">
+         th:replace="book/fragments/add-book-form :: default">
     </div>
 </div>
 <script th:src="@{/resources/plugins/jQuery/jQuery-2.1.4.min.js}"></script>

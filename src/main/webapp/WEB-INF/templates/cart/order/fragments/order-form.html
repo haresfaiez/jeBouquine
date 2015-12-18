@@ -3,10 +3,17 @@
       th:with="lang=${#locale.language}"
       th:lang="${lang}">
 <body>
-<section class="content-header" th:fragment="default">
-    Pass order
-    <div>
+<div class="content-wrapper" style="min-height: 330px; padding-top: 2em;"
+     th:fragment="default">
+    <div id="content"
+         style="width: 30%; text-align: center; padding: 3em;
+             margin-left: 35%; border: 1px solid #8AA4AF; border-radius: 0.4em">
+        <i class="fa fa-shopping-cart" style="font-size: 2em;"></i>
+
+        <h3 th:text="#{cart-order.pass-new-order}">Pass a new order</h3>
+
         <form method="POST" th:object="${order}">
+            <div class="form-group">
             <label th:class="${#fields.hasErrors('customerName')}? 'error'"
                    th:text="#{order.customer-name}">
                 customerName</label>:
@@ -14,6 +21,8 @@
                    id="order-customer-name"
                    th:class="${#fields.hasErrors('customerName')}? 'error'"/><br/>
 
+            </div>
+            <div class="form-group">
             <label th:class="${#fields.hasErrors('customerPhone')}? 'error'"
                    th:text="#{order.customer-phone}">
                 customerPhone</label>:
@@ -21,6 +30,8 @@
                    id="order-customer-phone"
                    th:class="${#fields.hasErrors('customerPhone')}? 'error'"/><br/>
 
+            </div>
+            <div class="form-group">
             <label th:class="${#fields.hasErrors('expeditionDate')}? 'error'"
                    th:text="#{order.expedition-date}">
                 expeditionDate</label>:
@@ -28,6 +39,8 @@
                    id="order-expedition-date"
                    th:class="${#fields.hasErrors('expeditionDate')}? 'error'"/><br/>
 
+            </div>
+            <div class="form-group">
             <label th:class="${#fields.hasErrors('paymentMethod')}? 'error'"
                    th:text="#{order.payment-method}">
                 paymentMethod</label>:
@@ -35,6 +48,8 @@
                    id="oder-expedition-date"
                    th:class="${#fields.hasErrors('paymentMethod')}? 'error'"/><br/>
 
+            </div>
+            <div class="form-group">
             <label th:class="${#fields.hasErrors('deliveryAddress')}? 'error'"
                    th:text="#{order.delivery-address}">
                 deliveryAddress</label>:
@@ -42,11 +57,12 @@
                    id="order-delivery-address"
                    th:class="${#fields.hasErrors('deliveryAddress')}? 'error'"/><br/>
 
-            <input type="submit" th:value="#{order.pass-order}"
+            </div>
+            <input type="submit" th:value="#{order.pass-order}" class="btn btn btn-primary"
                    id="order-submit"/>
         </form>
     </div>
-</section>
+</div>
 
 </body>
 </html>

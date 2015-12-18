@@ -15,10 +15,11 @@
         <ul class="treeview-menu">
             <li>
                 <a th:href="@{/cart/view}" id="view-cart">
-                    <i class="fa fa-circle-o"></i>
-                                <span th:text="#{home.cart-view}">
+                    <i class="fa fa-circle-o  text-red"></i>
+                    <span th:text="#{home.cart-view}">
                                     Cart view
-                                </span>
+                    </span>
+                    <small class="label pull-right bg-red">3</small>
                 </a>
             </li>
             <li>
@@ -29,12 +30,14 @@
                                 </span>
                 </a>
             </li>
-                       <li>
+            <li>
                 <a th:href="@{/order/list}">
-                    <i class="fa fa-circle-o"></i>
+                    <i class="fa fa-circle-o text-yellow"></i>
                                 <span th:text="#{home.list-order}">
                                     List orders
                                 </span>
+
+                    <small class="label pull-right bg-yellow">3</small>
                 </a>
             </li>
         </ul>
