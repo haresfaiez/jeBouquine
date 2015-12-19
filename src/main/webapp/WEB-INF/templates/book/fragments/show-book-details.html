@@ -4,49 +4,55 @@
       th:lang="${lang}">
 <body>
 <section class="content-header" th:fragment="default">
-<div  style="min-height: 330px; padding-left: 2em; padding-top: 1em;">
-    <div class="">
-        <p class="">
-            <strong th:text="${bookDetails.title}" id="book-title">
-                Book title
-            </strong>
+    <div style="min-height: 330px; padding-left: 2em; padding-top: 1em;">
+        <div class="">
+            <p class="">
+                <strong th:text="${bookDetails.title}" id="book-title">
+                    Book title
+                </strong>
 
-            <a th:href="@{'/cart/add-book/' + ${bookDetails.ISBN}}"
-               id="add-to-cart"><span>
+                <a th:href="@{'/cart/add-book/' + ${bookDetails.ISBN}}"
+                   id="add-to-cart"><span>
                         <i class="fa fa-shopping-cart text-aqua"></i>
 </span></a>
 
-        </p>
+            </p>
+
+            <div class="progress-group">
+                <span class="progress-text"
+                      th:text="#{book.ISBN}">#{book.ISBN}</span>
+                <small th:text="${bookDetails.ISBN}" id="book-isbn">
+                    Book ISBN
+                </small>
+            </div>
+        </div>
+        <br/>
 
         <div class="progress-group">
-            <span class="progress-text" th:text="#{book.ISBN}">#{book.ISBN}</span>
-            <small th:text="${bookDetails.ISBN}" id="book-isbn">
-                Book ISBN
+            <span class="progress-text"
+                  th:text="#{book.price}">#{book.price}</span>
+            <small th:text="${bookDetails.price}" id="book-price">
+                Book price
             </small>
         </div>
-    </div>
-    <br/>
-    <div class="progress-group">
-        <span class="progress-text" th:text="#{book.price}">#{book.price}</span>
-        <small th:text="${bookDetails.price}" id="book-price">
-            Book price
-        </small>
-    </div>
-    <br/>
-    <div class="progress-group">
+        <br/>
+
+        <div class="progress-group">
         <span class="progress-text" th:text="#{book.summary}">#{book
             .summary}</span>
-        <small th:text="${bookDetails.summary}" id="book-summary">
-            Book summary
-        </small>
-    </div>
-    <br/>
-    <div class="progress-group">
-        <span class="progress-text" th:text="#{book.author}">#{book.author}</span>
-        <small th:text="${bookDetails.author}" id="book-author">
-            Book author
-        </small>
-    </div>
+            <small th:text="${bookDetails.summary}" id="book-summary">
+                Book summary
+            </small>
+        </div>
+        <br/>
+
+        <div class="progress-group">
+            <span class="progress-text"
+                  th:text="#{book.author}">#{book.author}</span>
+            <small th:text="${bookDetails.author}" id="book-author">
+                Book author
+            </small>
+        </div>
     </div>
 </section>
 

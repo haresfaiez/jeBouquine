@@ -17,24 +17,29 @@
     </div>
     <br/>
     <div class="progress-group">
-        <span class="progress-text" th:text="#{order.customerName}">#{book.price}</span>
+        <span class="progress-text" th:text="#{order.customerName}">
+            Customer name
+        </span>
         <small th:text="${order.customerName}" id="customerName">
-            Book price
+            Customer name value
         </small>
     </div>
     <br/>
     <div class="progress-group">
-        <span class="progress-text" th:text="#{order.customerPhone}">#{book
-            .summary}</span>
+        <span class="progress-text" th:text="#{order.customerPhone}">
+            Customer phone
+        </span>
         <small th:text="${order.customerPhone}" id="customerPhone">
-            Book summary
+            Customer phone value
         </small>
     </div>
     <br/>
     <div class="progress-group">
-        <span class="progress-text" th:text="#{order.expeditionDate}">#{book.author}</span>
+        <span class="progress-text" th:text="#{order.expeditionDate}">
+            Order expedition date
+        </span>
         <small th:text="${order.expeditionDate}" id="expeditionDate">
-            Book author
+            Order expedition date value
         </small>
     </div>
     </div>
