@@ -4,7 +4,40 @@
       th:lang="${lang}">
 <body>
 <section class="content-header" th:fragment="default">
-    <h1 th:text="${order.id}" id="order-id">Order id</h1>
+    <div  style="min-height: 330px; padding-left: 2em; padding-top: 1em;">
+    <div class="">
+        <p class="">
+            <strong th:text="#{order.id}">
+                Order id
+            </strong>
+            <strong th:text="${order.id}" id="order-id">
+                Order id
+            </strong>
+        </p>
+    </div>
+    <br/>
+    <div class="progress-group">
+        <span class="progress-text" th:text="#{order.customerName}">#{book.price}</span>
+        <small th:text="${order.customerName}" id="customerName">
+            Book price
+        </small>
+    </div>
+    <br/>
+    <div class="progress-group">
+        <span class="progress-text" th:text="#{order.customerPhone}">#{book
+            .summary}</span>
+        <small th:text="${order.customerPhone}" id="customerPhone">
+            Book summary
+        </small>
+    </div>
+    <br/>
+    <div class="progress-group">
+        <span class="progress-text" th:text="#{order.expeditionDate}">#{book.author}</span>
+        <small th:text="${order.expeditionDate}" id="expeditionDate">
+            Book author
+        </small>
+    </div>
+    </div>
 </section>
 
 </body>

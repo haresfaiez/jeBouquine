@@ -2,8 +2,8 @@ package jebouquine.web.order;
 
 import jebouquine.service.books.viewmodel.SearchBookViewModel;
 import jebouquine.service.cart.CartService;
-import jebouquine.service.cart.viewmodel.OrderPassingViewModel;
-import jebouquine.service.cart.viewmodel.OrderViewModel;
+import jebouquine.service.order.viewmodel.OrderPassingViewModel;
+import jebouquine.service.order.viewmodel.OrderViewModel;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;

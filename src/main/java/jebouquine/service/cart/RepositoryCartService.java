@@ -3,7 +3,7 @@ package jebouquine.service.cart;
 import jebouquine.domain.books.BookRepository;
 import jebouquine.domain.cart.Cart;
 import jebouquine.domain.order.OrderRepository;
-import jebouquine.service.cart.viewmodel.OrderPassingViewModel;
+import jebouquine.service.order.viewmodel.OrderPassingViewModel;
 import jebouquine.service.cart.viewmodel.PurchaseViewModel;
 import jebouquine.service.order.OrderService;
 import jebouquine.service.order.RepositoryOrderService;

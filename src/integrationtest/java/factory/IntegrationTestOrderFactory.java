@@ -1,8 +1,8 @@
 package factory;
 
 import jebouquine.domain.order.Order;
-import jebouquine.service.cart.viewmodel.OrderPassingViewModel;
-import jebouquine.service.cart.viewmodel.OrderViewModel;
+import jebouquine.service.order.viewmodel.OrderPassingViewModel;
+import jebouquine.service.order.viewmodel.OrderViewModel;
 
 import static org.mockito.Mockito.mock;
 

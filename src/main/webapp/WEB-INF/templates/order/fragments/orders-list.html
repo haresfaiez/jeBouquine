@@ -4,12 +4,62 @@
       th:lang="${lang}">
 <body>
 <section class="content-header" th:fragment="default">
-    <ul>
-        <li th:each="item : ${orders}">
+        <div class="box box-info">
+            <div class="box-header with-border">
+                <h3 class="box-title" th:text="#{cart.latest-orders}">Latest Orders</h3>
+            </div>
+            <div class="box-body">
+                <div class="table-responsive">
+                    <table class="table no-margin">
+                        <thead>
+                        <tr>
+                            <th th:text="#{order.id}">Order id</th>
+                            <th th:text="#{order.customer-name}">Customer
+                                name</th>
+                            <th th:text="#{order.customer-phone}">Customer
+                                phone</th>
+                            <th th:text="#{order.expedition-date}">Expedition
+                                date</th>
+                            <th th:text="#{order.payment-method}">Payment
+                                method</th>
+                        </tr>
+                        </thead>
+                        <tbody>
+                        <tr th:each="item : ${orders}">
+                            <td><a th:href="@{'/order/view/' + ${item.id}}">
+
                 <span th:text="${item.id}"
-                      id="orders-list-order-id">order id</span>
-        </li>
-    </ul>
+                      id="orders-list-order-id">Order id</span>
+                            </a>
+
+
+                            </td>
+                            <td>
+
+                <span th:text="${item.customerName}"
+                      id="orders-list-customer-name">Customer name</span>
+                            </td>
+                            <td><span class="">
+
+                <span th:text="${item.customerPhone}"
+                      id="orders-list-customer-phone">Customer phone</span>
+                        </span>
+                            </td>
+                            <td>
+                <span th:text="${item.expeditionDate}"
+                      id="orders-list-expedition-date">Expedition date</span>
+                            </td>
+
+                     <td>
+                <span th:text="${item.paymentMethod}"
+                      id="orders-list-payment-method">Payment method</span>
+                            </td>                        </tr>
+
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
 </section>
 </body>
 </html>

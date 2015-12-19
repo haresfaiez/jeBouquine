@@ -1,23 +1,25 @@
-package jebouquine.service.cart.viewmodel;
+package jebouquine.service.order.viewmodel;
 
-import jebouquine.domain.order.customerorder.OrderRequest;
+import jebouquine.domain.order.Order;
 import org.springframework.format.annotation.DateTimeFormat;
 
 import java.time.Instant;
 import java.util.Date;
 
-public class OrderPassingViewModel {
+public class OrderViewModel {
+    private Integer id;
     private String customerName;
     private String customerPhone;
-    @DateTimeFormat(pattern = "MM/dd/yyyy")
+    @DateTimeFormat(pattern = "dd/MM/yyyy")
     private Date expeditionDate;
     private String paymentMethod;
     private String deliveryAddress;
 
-    public OrderPassingViewModel() {
+    public OrderViewModel() {
     }
 
-    public OrderPassingViewModel(String customerName, String customerPhone, Date expeditionDate, String paymentMethod, String deliveryAddress) {
+    public OrderViewModel(Integer id, String customerName, String customerPhone, Date expeditionDate, String paymentMethod, String deliveryAddress) {
+        this.id = id;
         this.customerName = customerName;
         this.customerPhone = customerPhone;
         this.expeditionDate = expeditionDate;
@@ -27,11 +29,13 @@ public class OrderPassingViewModel {
 
     @Override
     public boolean equals(Object o) {
+
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
 
-        OrderPassingViewModel that = (OrderPassingViewModel) o;
+        OrderViewModel that = (OrderViewModel) o;
 
+        if (id != null ? !id.equals(that.id) : that.id != null) return false;
         if (customerName != null ? !customerName.equals(that.customerName) : that.customerName != null)
             return false;
         if (customerPhone != null ? !customerPhone.equals(that.customerPhone) : that.customerPhone != null)
@@ -47,12 +51,21 @@ public class OrderPassingViewModel {
 
     @Override
     public int hashCode() {
-        int result = customerName != null ? customerName.hashCode() : 0;
+        int result = id != null ? id.hashCode() : 0;
+        result = 31 * result + (customerName != null ? customerName.hashCode() : 0);
         result = 31 * result + (customerPhone != null ? customerPhone.hashCode() : 0);
         result = 31 * result + (expeditionDate != null ? expeditionDate.hashCode() : 0);
         result = 31 * result + (paymentMethod != null ? paymentMethod.hashCode() : 0);
         result = 31 * result + (deliveryAddress != null ? deliveryAddress.hashCode() : 0);
         return result;
+    }
+
+    public Integer getId() {
+        return id;
+    }
+
+    public void setId(Integer id) {
+        this.id = id;
     }
 
     public String getCustomerName() {
@@ -95,19 +108,29 @@ public class OrderPassingViewModel {
         this.deliveryAddress = deliveryAddress;
     }
 
-    public static OrderPassingViewModel from(String customerName, String customerPhone,
-                                             Date expeditionDate, String
-                                                     paymentMethod, String deliveryAddress) {
-        return new OrderPassingViewModel(customerName, customerPhone,
-                expeditionDate, paymentMethod, deliveryAddress);
+    public static OrderViewModel from(Integer id, OrderPassingViewModel
+            orderPassingViewModel) {
+        return new OrderViewModel(id, orderPassingViewModel.getCustomerName(),
+                orderPassingViewModel.getCustomerPhone(),
+                orderPassingViewModel.getExpeditionDate(),
+                orderPassingViewModel.getPaymentMethod(),
+                orderPassingViewModel.getDeliveryAddress());
     }
 
-    public static OrderPassingViewModel nullObject() {
-        return new OrderPassingViewModel("", "", Date.from(Instant.now()), "", "");
+
+    public static OrderViewModel from(Order order) {
+        return new OrderViewModel(
+                order.getId(),
+                order.getCustomerName(),
+                order.getCustomerPhone(),
+                order.getExpeditionDate(),
+                order.getPaymentMethod(),
+                order.getDeliveryAddress()
+        );
     }
 
-    public OrderRequest orderRequest() {
-        return new OrderRequest(getCustomerName(), getCustomerPhone(),
-                getExpeditionDate(), getPaymentMethod(),getDeliveryAddress());
+    public static OrderViewModel nullObject() {
+        return new OrderViewModel(0, "", "", Date.from(Instant.now()),
+                "", "");
     }
 }

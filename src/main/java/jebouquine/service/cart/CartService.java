@@ -1,6 +1,6 @@
 package jebouquine.service.cart;
 
-import jebouquine.service.cart.viewmodel.OrderPassingViewModel;
+import jebouquine.service.order.viewmodel.OrderPassingViewModel;
 import jebouquine.service.cart.viewmodel.PurchaseViewModel;
 import jebouquine.service.order.OrderService;
 

@@ -5,7 +5,7 @@ import jebouquine.domain.customer.CustomerRepository;
 import jebouquine.domain.order.Order;
 import jebouquine.domain.order.OrderRepository;
 import jebouquine.domain.order.customerorder.CustomerOrder;
-import jebouquine.service.cart.viewmodel.OrderViewModel;
+import jebouquine.service.order.viewmodel.OrderViewModel;
 import jebouquine.service.order.OrdersService;
 import jebouquine.service.order.RepositoryOrdersService;
 import org.junit.Assert;

@@ -1,8 +1,8 @@
 package cart.stub;
 
 import jebouquine.service.order.OrderService;
-import jebouquine.service.cart.viewmodel.OrderPassingViewModel;
-import jebouquine.service.cart.viewmodel.OrderViewModel;
+import jebouquine.service.order.viewmodel.OrderPassingViewModel;
+import jebouquine.service.order.viewmodel.OrderViewModel;
 
 public class OrderServiceStub implements OrderService {
 

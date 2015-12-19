@@ -4,7 +4,7 @@ import jebouquine.domain.cart.Cart;
 import jebouquine.domain.order.Order;
 import jebouquine.domain.order.OrderRepository;
 import jebouquine.domain.order.customerorder.OrderRequest;
-import jebouquine.service.cart.viewmodel.OrderViewModel;
+import jebouquine.service.order.viewmodel.OrderViewModel;
 
 public class RepositoryOrderService implements OrderService {
 

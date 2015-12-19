@@ -2,8 +2,8 @@ package cart.web;
 
 import cart.stub.OrderServiceStub;
 import jebouquine.service.cart.CartService;
-import jebouquine.service.cart.viewmodel.OrderPassingViewModel;
-import jebouquine.service.cart.viewmodel.OrderViewModel;
+import jebouquine.service.order.viewmodel.OrderPassingViewModel;
+import jebouquine.service.order.viewmodel.OrderViewModel;
 import jebouquine.web.order.PassOrderController;
 import jebouquine.web.context.SpringWebContext;
 import org.junit.Test;

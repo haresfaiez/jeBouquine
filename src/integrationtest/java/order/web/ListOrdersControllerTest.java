@@ -1,7 +1,7 @@
 package order.web;
 
-import jebouquine.service.cart.viewmodel.OrderPassingViewModel;
-import jebouquine.service.cart.viewmodel.OrderViewModel;
+import jebouquine.service.order.viewmodel.OrderPassingViewModel;
+import jebouquine.service.order.viewmodel.OrderViewModel;
 import jebouquine.service.order.OrdersService;
 import jebouquine.web.context.SpringWebContext;
 import jebouquine.web.order.ListOrdersController;

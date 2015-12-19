@@ -1,6 +1,6 @@
 package jebouquine.service.order;
 
-import jebouquine.service.cart.viewmodel.OrderViewModel;
+import jebouquine.service.order.viewmodel.OrderViewModel;
 
 import java.util.List;
 
