@@ -1,21 +1,21 @@
 package cart.stub;
 
-import jebouquine.service.order.OrderService;
+import jebouquine.service.order.OrderPassingService;
 import jebouquine.service.order.viewmodel.OrderPassingViewModel;
 import jebouquine.service.order.viewmodel.OrderViewModel;
 
-public class OrderServiceStub implements OrderService {
+public class OrderPassingServiceStub implements OrderPassingService {
 
     private Integer id;
     private OrderPassingViewModel orderPassingViewModel;
-    public OrderServiceStub(Integer id, OrderPassingViewModel
+    public OrderPassingServiceStub(Integer id, OrderPassingViewModel
                             orderPassingViewModel) {
         this.orderPassingViewModel = orderPassingViewModel;
         this.id = id;
     }
 
     @Override
-    public OrderService pass() {
+    public OrderPassingService pass() {
         return this;
     }
 
@@ -24,8 +24,8 @@ public class OrderServiceStub implements OrderService {
         return OrderViewModel.from(id,orderPassingViewModel);
     }
 
-    public static OrderService newInstance(Integer id, OrderPassingViewModel
+    public static OrderPassingService newInstance(Integer id, OrderPassingViewModel
                                                    orderPassingViewModel) {
-        return new OrderServiceStub(id, orderPassingViewModel);
+        return new OrderPassingServiceStub(id, orderPassingViewModel);
     }
 }

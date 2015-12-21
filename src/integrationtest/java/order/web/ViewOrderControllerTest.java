@@ -2,7 +2,7 @@ package order.web;
 
 import factory.IntegrationTestOrderFactory;
 import jebouquine.service.order.viewmodel.OrderViewModel;
-import jebouquine.service.order.OrdersService;
+import jebouquine.service.order.OrderService;
 import jebouquine.web.context.SpringWebContext;
 import jebouquine.web.order.ViewOrderController;
 import org.junit.Test;
@@ -30,11 +30,11 @@ public class ViewOrderControllerTest {
         OrderViewModel expectedOrderViewModel =
                 IntegrationTestOrderFactory.createOrderViewModel(orderId);
 
-        OrdersService ordersService = mock(OrdersService.class);
-        when(ordersService.getOrderById(orderId)).thenReturn
+        OrderService orderService = mock(OrderService.class);
+        when(orderService.getOrderById(orderId)).thenReturn
                 (expectedOrderViewModel);
         ViewOrderController viewOrderController
-                = new ViewOrderController(ordersService);
+                = new ViewOrderController(orderService);
 
         standaloneSetup(viewOrderController).build()
                 .perform(get(String.format("/order/view/%s", orderId.toString())))

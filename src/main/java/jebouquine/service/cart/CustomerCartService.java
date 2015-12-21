@@ -5,8 +5,8 @@ import jebouquine.domain.cart.Cart;
 import jebouquine.domain.order.OrderRepository;
 import jebouquine.service.order.viewmodel.OrderPassingViewModel;
 import jebouquine.service.cart.viewmodel.PurchaseViewModel;
-import jebouquine.service.order.OrderService;
-import jebouquine.service.order.RepositoryOrderService;
+import jebouquine.service.order.OrderPassingService;
+import jebouquine.service.order.CustomerOrderPassingService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -14,16 +14,16 @@ import java.util.List;
 import java.util.stream.Collectors;
 
 @Service
-public class RepositoryCartService implements CartService {
+public class CustomerCartService implements CartService {
 
     private final Cart cart;
     private final BookRepository bookRepository;
     private final OrderRepository orderRepository;
 
     @Autowired
-    public RepositoryCartService(Cart cart,
-                                 BookRepository bookRepository,
-                                 OrderRepository orderRepository) {
+    public CustomerCartService(Cart cart,
+                               BookRepository bookRepository,
+                               OrderRepository orderRepository) {
         this.cart = cart;
         this.bookRepository = bookRepository;
         this.orderRepository = orderRepository;
@@ -59,8 +59,8 @@ public class RepositoryCartService implements CartService {
     }
 
     @Override
-    public OrderService orderServiceOf(OrderPassingViewModel orderPassingViewModel) {
-        return RepositoryOrderService.from
+    public OrderPassingService orderServiceOf(OrderPassingViewModel orderPassingViewModel) {
+        return CustomerOrderPassingService.from
                 (orderPassingViewModel.orderRequest(),
                         cart,
                         orderRepository);

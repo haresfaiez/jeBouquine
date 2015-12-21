@@ -1,6 +1,6 @@
 package cart.web;
 
-import cart.stub.OrderServiceStub;
+import cart.stub.OrderPassingServiceStub;
 import jebouquine.service.cart.CartService;
 import jebouquine.service.order.viewmodel.OrderPassingViewModel;
 import jebouquine.service.order.viewmodel.OrderViewModel;
@@ -56,7 +56,7 @@ public class PassOrderControllerTest {
 
         when(cartService.orderServiceOf(actualOrderPassingViewModel))
                 .thenReturn
-                        (new OrderServiceStub(orderId, actualOrderPassingViewModel));
+                        (new OrderPassingServiceStub(orderId, actualOrderPassingViewModel));
 
         standaloneSetup(passOrderController).build()
                 .perform(post("/cart/pass-order")

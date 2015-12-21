@@ -5,7 +5,7 @@ import jebouquine.domain.books.Book;
 import jebouquine.domain.books.BookRepository;
 import jebouquine.infrastructure.books.JPABookRepository;
 import jebouquine.service.books.BookService;
-import jebouquine.service.books.RepositoryBookService;
+import jebouquine.service.books.CustomerBookService;
 import jebouquine.service.books.viewmodel.AddBookViewModel;
 import jebouquine.service.books.viewmodel.BookViewModel;
 import jebouquine.service.books.viewmodel.SearchBookViewModel;
@@ -19,7 +19,7 @@ import java.util.stream.Stream;
 
 import static org.mockito.Mockito.*;
 
-public class RepositoryBookServiceTest {
+public class CustomerBookServiceTest {
 
     @Test
     public void shouldReturnABookViewModelListWhenAskForAnExistingBookByTitle
@@ -36,7 +36,7 @@ public class RepositoryBookServiceTest {
         when(bookRepository.findBooksByTitle(MicroTestBookFactory.bookTitle))
                 .thenReturn(Stream.of(expectedBook).collect(Collectors.toList()));
 
-        final BookService bookService = new RepositoryBookService
+        final BookService bookService = new CustomerBookService
                 (bookRepository);
 
         List<BookViewModel> actualBooksList =
@@ -51,7 +51,7 @@ public class RepositoryBookServiceTest {
         BookRepository jpaBookRepository = mock(JPABookRepository.class);
         Book expectedBook = actualAddBookViewModel.book();
 
-        BookService repositoryBookService = new RepositoryBookService
+        BookService repositoryBookService = new CustomerBookService
                 (jpaBookRepository);
 
         repositoryBookService.addBook(actualAddBookViewModel);
@@ -69,7 +69,7 @@ public class RepositoryBookServiceTest {
         BookRepository bookRepository = mock(BookRepository.class);
         when(bookRepository.findBookByISBN(MicroTestBookFactory.bookISBN)).thenReturn(Optional.of
                 (expectedBook));
-        final BookService bookService = new RepositoryBookService
+        final BookService bookService = new CustomerBookService
                 (bookRepository);
 
         BookViewModel actualBookViewModel =

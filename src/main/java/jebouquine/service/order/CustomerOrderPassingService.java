@@ -6,7 +6,7 @@ import jebouquine.domain.order.OrderRepository;
 import jebouquine.domain.order.customerorder.OrderRequest;
 import jebouquine.service.order.viewmodel.OrderViewModel;
 
-public class RepositoryOrderService implements OrderService {
+public class CustomerOrderPassingService implements OrderPassingService {
 
     private Order order;
 
@@ -14,19 +14,19 @@ public class RepositoryOrderService implements OrderService {
     private final Cart cart;
     private final OrderRepository orderRepository;
 
-    public RepositoryOrderService(OrderRequest orderRequest, Cart cart, OrderRepository orderRepository) {
+    public CustomerOrderPassingService(OrderRequest orderRequest, Cart cart, OrderRepository orderRepository) {
         this.cart = cart;
         this.orderRequest = orderRequest;
         this.orderRepository = orderRepository;
     }
 
-    public static OrderService from(OrderRequest orderRequest, Cart cart,
-                                    OrderRepository orderRepository) {
-        return new RepositoryOrderService(orderRequest, cart, orderRepository);
+    public static OrderPassingService from(OrderRequest orderRequest, Cart cart,
+                                           OrderRepository orderRepository) {
+        return new CustomerOrderPassingService(orderRequest, cart, orderRepository);
     }
 
     @Override
-    public OrderService pass() {
+    public OrderPassingService pass() {
         order = cart.passOrderRequest(orderRequest);
         cart.removeAllPurchases();
         orderRepository.addOrder(order);

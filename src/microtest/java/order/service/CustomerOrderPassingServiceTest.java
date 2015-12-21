@@ -6,14 +6,14 @@ import jebouquine.domain.customer.Customer;
 import jebouquine.domain.order.Order;
 import jebouquine.domain.order.OrderRepository;
 import jebouquine.domain.order.customerorder.OrderRequest;
-import jebouquine.service.order.RepositoryOrderService;
+import jebouquine.service.order.CustomerOrderPassingService;
 import org.junit.Test;
 
 import java.util.ArrayList;
 
 import static org.mockito.Mockito.*;
 
-public class RepositoryOrderServiceTest {
+public class CustomerOrderPassingServiceTest {
 
 
     @Test
@@ -28,8 +28,8 @@ public class RepositoryOrderServiceTest {
         when(cart.passOrderRequest(expectedOrderRequest)).thenReturn
                 (expectedOrder);
 
-        RepositoryOrderService orderService
-                = new RepositoryOrderService(expectedOrderRequest, cart, orderRepository);
+        CustomerOrderPassingService orderService
+                = new CustomerOrderPassingService(expectedOrderRequest, cart, orderRepository);
 
 
         orderService.pass();

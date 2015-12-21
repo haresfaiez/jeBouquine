@@ -2,7 +2,7 @@ package order.web;
 
 import jebouquine.service.order.viewmodel.OrderPassingViewModel;
 import jebouquine.service.order.viewmodel.OrderViewModel;
-import jebouquine.service.order.OrdersService;
+import jebouquine.service.order.OrderService;
 import jebouquine.web.context.SpringWebContext;
 import jebouquine.web.order.ListOrdersController;
 import org.junit.Test;
@@ -41,12 +41,12 @@ public class ListOrdersControllerTest {
                 secondOrderViewModel
         ).collect(Collectors.toList());
 
-        OrdersService ordersService = mock(OrdersService.class);
-        when(ordersService.getCurrentCustomerOrders()).thenReturn
+        OrderService orderService = mock(OrderService.class);
+        when(orderService.getCurrentCustomerOrders()).thenReturn
                 (expectedOrdersViewModelList);
 
         ListOrdersController listOrdersController
-                = new ListOrdersController(ordersService);
+                = new ListOrdersController(orderService);
 
         standaloneSetup(listOrdersController).build()
                 .perform(get("/order/list"))

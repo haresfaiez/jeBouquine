@@ -10,14 +10,14 @@ import java.util.List;
 import java.util.stream.Collectors;
 
 @Service
-public class RepositoryOrdersService implements OrdersService {
+public class CustomerOrderService implements OrderService {
 
     private final OrderRepository orderRepository;
     private final CustomerRepository customerRepository;
 
     @Autowired
-    public RepositoryOrdersService(OrderRepository orderRepository,
-                                   CustomerRepository customerRepository) {
+    public CustomerOrderService(OrderRepository orderRepository,
+                                CustomerRepository customerRepository) {
         this.orderRepository = orderRepository;
         this.customerRepository = customerRepository;
     }

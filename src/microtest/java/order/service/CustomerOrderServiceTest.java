@@ -6,8 +6,8 @@ import jebouquine.domain.order.Order;
 import jebouquine.domain.order.OrderRepository;
 import jebouquine.domain.order.customerorder.CustomerOrder;
 import jebouquine.service.order.viewmodel.OrderViewModel;
-import jebouquine.service.order.OrdersService;
-import jebouquine.service.order.RepositoryOrdersService;
+import jebouquine.service.order.OrderService;
+import jebouquine.service.order.CustomerOrderService;
 import org.junit.Assert;
 import org.junit.Test;
 
@@ -19,7 +19,7 @@ import java.util.stream.Stream;
 import static org.mockito.Mockito.mock;
 import static org.mockito.Mockito.when;
 
-public class RepositoryOrdersServiceTest {
+public class CustomerOrderServiceTest {
 
     @Test
     public void shouldListCurrentCustomerOrders() {
@@ -47,11 +47,11 @@ public class RepositoryOrdersServiceTest {
 
         OrderRepository orderRepository = mock(OrderRepository.class);
         when(orderRepository.findOrdersFor(customer)).thenReturn(expectedOrdersList);
-        OrdersService ordersService = new RepositoryOrdersService
+        OrderService orderService = new CustomerOrderService
                 (orderRepository, customerRepository);
 
         List<OrderViewModel> actualOrdersViewModeList
-                = ordersService.getCurrentCustomerOrders();
+                = orderService.getCurrentCustomerOrders();
 
         Assert.assertEquals(expectedOrdersViewModelList,
                 actualOrdersViewModeList);
@@ -73,8 +73,8 @@ public class RepositoryOrdersServiceTest {
         when(orderRepository.findOrderById(orderId)).thenReturn
                 (Optional.of(expectedOrder));
 
-        RepositoryOrdersService
-                repositoryOrdersService = new RepositoryOrdersService
+        CustomerOrderService
+                repositoryOrdersService = new CustomerOrderService
                 (orderRepository, customerRepository);
 
         OrderViewModel actualOrderViewModel = repositoryOrdersService

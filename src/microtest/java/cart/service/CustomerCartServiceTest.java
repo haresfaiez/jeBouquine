@@ -8,7 +8,7 @@ import jebouquine.domain.cart.Cart;
 import jebouquine.domain.cart.Purchase;
 import jebouquine.domain.order.OrderRepository;
 import jebouquine.service.cart.CartService;
-import jebouquine.service.cart.RepositoryCartService;
+import jebouquine.service.cart.CustomerCartService;
 import jebouquine.service.cart.viewmodel.PurchaseViewModel;
 import junit.framework.Assert;
 import org.junit.Test;
@@ -21,7 +21,7 @@ import java.util.stream.Stream;
 import static factory.MicroTestPurchaseFactory.createPurchaseViewModelFor;
 import static org.mockito.Mockito.*;
 
-public class RepositoryCartServiceTest {
+public class CustomerCartServiceTest {
 
     @Test
     public void shouldRemovePurchaseFromCart() {
@@ -32,7 +32,7 @@ public class RepositoryCartServiceTest {
         when(bookRepository.findBookByISBN(expectedBook.getISBN()))
                 .thenReturn(Optional.of(expectedBook));
 
-        CartService cartService = new RepositoryCartService(cart,
+        CartService cartService = new CustomerCartService(cart,
                 bookRepository, orderRepository);
 
         cartService.removeBookFromCart(expectedBook.getISBN());
@@ -55,7 +55,7 @@ public class RepositoryCartServiceTest {
         Cart cart = mock(Cart.class);
         when(cart.purchases())
                 .thenReturn(expectedPurchaseList);
-        CartService cartService = new RepositoryCartService(cart,
+        CartService cartService = new CustomerCartService(cart,
                 bookRepository, orderRepository);
 
         Integer actualSum = cartService.purchasesSum();
@@ -83,7 +83,7 @@ public class RepositoryCartServiceTest {
         when(cart.purchases())
                 .thenReturn(expectedPurchaseList);
 
-        CartService cartService = new RepositoryCartService(cart,
+        CartService cartService = new CustomerCartService(cart,
                 bookRepository, orderRepository);
 
         List<PurchaseViewModel> actualPurchaseListViewModel
@@ -104,7 +104,7 @@ public class RepositoryCartServiceTest {
         Cart cart = mock(Cart.class);
 
         CartService repositoryCartService = new
-                RepositoryCartService(cart, bookRepository, orderRepository);
+                CustomerCartService(cart, bookRepository, orderRepository);
 
         repositoryCartService.addBookToCart(expectedBook.getISBN());
 
