@@ -40,19 +40,21 @@ public class AddBookControllerTest {
 
     @Test
     public void shouldAddNewBookWhenGivenValidBookDetails() throws Exception {
-        AddBookViewModel expectedAddBookViewModel = IntegrationTestBookFactory
-                .createAddBookViewModel();
+        AddBookViewModel expectedAddBookViewModel
+                = IntegrationTestBookFactory.createAddBookViewModel();
+
         BookService bookService = mock(BookService.class);
+
         AddBookController addBookController = new
                 AddBookController(bookService);
 
         standaloneSetup(addBookController).build()
                 .perform(post("/book/add")
-                        .param("ISBN", IntegrationTestBookFactory.bookISBN)
-                        .param("title", IntegrationTestBookFactory.bookTitle)
-                        .param("price", String.valueOf(IntegrationTestBookFactory.bookPrice.get()))
-                        .param("summary", IntegrationTestBookFactory.bookSummary)
-                        .param("author", IntegrationTestBookFactory.bookAuthor));
+                        .param("ISBN", expectedAddBookViewModel.getISBN())
+                        .param("title", expectedAddBookViewModel.getTitle())
+                        .param("price", String.valueOf(expectedAddBookViewModel.getPrice()))
+                        .param("summary", expectedAddBookViewModel.getSummary())
+                        .param("author", expectedAddBookViewModel.getAuthor()));
 
         verify(bookService, times(1)).addBook(expectedAddBookViewModel);
     }

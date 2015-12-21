@@ -4,8 +4,8 @@ import cart.stub.OrderServiceStub;
 import jebouquine.service.cart.CartService;
 import jebouquine.service.order.viewmodel.OrderPassingViewModel;
 import jebouquine.service.order.viewmodel.OrderViewModel;
-import jebouquine.web.order.PassOrderController;
 import jebouquine.web.context.SpringWebContext;
+import jebouquine.web.order.PassOrderController;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.test.context.ContextConfiguration;
@@ -19,7 +19,6 @@ import static org.mockito.Mockito.mock;
 import static org.mockito.Mockito.when;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post;
-import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.model;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.view;
 import static org.springframework.test.web.servlet.setup.MockMvcBuilders.standaloneSetup;
 
@@ -42,37 +41,40 @@ public class PassOrderControllerTest {
     @Test
     public void shouldPassOrder() throws Exception {
         CartService cartService = mock(CartService.class);
+
         PassOrderController passOrderController = new
                 PassOrderController(cartService);
 
-        Calendar cal = Calendar.getInstance();
-        cal.set(Calendar.YEAR, 2016);
-        cal.set(Calendar.MONTH, Calendar.AUGUST);
-        cal.set(Calendar.DAY_OF_MONTH, 5);
-        Date expirationDate = cal.getTime();
+        Date expirationDate = createDummyDate();
 
+        Integer orderId = new Integer(1);
         OrderPassingViewModel actualOrderPassingViewModel
                 = OrderPassingViewModel
                 .from("Faiez", "26871788", expirationDate, "manual", "Tunis");
         OrderViewModel expectedOrderViewModel = OrderViewModel
-                .from(1, actualOrderPassingViewModel);
+                .from(orderId, actualOrderPassingViewModel);
 
         when(cartService.orderServiceOf(actualOrderPassingViewModel))
-                .thenReturn(OrderServiceStub.newInstance
-                        (1, actualOrderPassingViewModel));
+                .thenReturn
+                        (new OrderServiceStub(orderId, actualOrderPassingViewModel));
 
         standaloneSetup(passOrderController).build()
                 .perform(post("/cart/pass-order")
-                        .param("customerName", actualOrderPassingViewModel
-                                .getCustomerName())
+                        .param("customerName", actualOrderPassingViewModel.getCustomerName())
                         .param("customerPhone", actualOrderPassingViewModel.getCustomerPhone())
                         .param("expeditionDate", "08/05/2016")
                         .param("paymentMethod", actualOrderPassingViewModel.getPaymentMethod())
                         .param("deliveryAddress", actualOrderPassingViewModel.getDeliveryAddress())
                 )
-                .andExpect(model().attribute("order", expectedOrderViewModel))
                 .andExpect(view().name(String.format
-                        ("redirect:/order/view/%s",
-                        expectedOrderViewModel.getId())));
+                ("redirect:/order/view/%s", expectedOrderViewModel.getId())));
+    }
+
+    private Date createDummyDate() {
+        Calendar cal = Calendar.getInstance();
+        cal.set(Calendar.YEAR, 2016);
+        cal.set(Calendar.MONTH, Calendar.AUGUST);
+        cal.set(Calendar.DAY_OF_MONTH, 5);
+        return cal.getTime();
     }
 }

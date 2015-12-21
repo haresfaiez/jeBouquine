@@ -28,9 +28,11 @@ public class HomeControllerTest {
     @Test
     public void shouldProvideSearchByISBNOnHomePage() throws Exception {
         MockMvc mockMvc;
+
         mockMvc = MockMvcBuilders
                 .webAppContextSetup(webApplicationContext)
                 .build();
+
         mockMvc.perform(get(HOME_PAGE_MAPPING))
                 .andExpect(view().name(HOME_VIEW_NAME));
     }
