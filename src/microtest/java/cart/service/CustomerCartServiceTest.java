@@ -1,113 +1,110 @@
 package cart.service;
 
-import factory.MicroTestBookFactory;
-import factory.MicroTestPurchaseFactory;
 import jebouquine.domain.books.Book;
 import jebouquine.domain.books.BookRepository;
 import jebouquine.domain.cart.Cart;
 import jebouquine.domain.cart.Purchase;
+import jebouquine.domain.customer.Customer;
 import jebouquine.domain.order.OrderRepository;
-import jebouquine.service.cart.CartService;
 import jebouquine.service.cart.CustomerCartService;
 import jebouquine.service.cart.viewmodel.PurchaseViewModel;
-import junit.framework.Assert;
+import org.junit.Before;
 import org.junit.Test;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 import java.util.stream.Collectors;
-import java.util.stream.Stream;
 
-import static factory.MicroTestPurchaseFactory.createPurchaseViewModelFor;
+import static junit.framework.TestCase.assertEquals;
 import static org.mockito.Mockito.*;
 
 public class CustomerCartServiceTest {
 
-    @Test
-    public void shouldRemovePurchaseFromCart() {
-        Book expectedBook = MicroTestBookFactory.createBook();
-        OrderRepository orderRepository = mock(OrderRepository.class);
-        Cart cart = mock(Cart.class);
-        BookRepository bookRepository = mock(BookRepository.class);
-        when(bookRepository.findBookByISBN(expectedBook.getISBN()))
-                .thenReturn(Optional.of(expectedBook));
+    private CustomerCartService cartService;
+    private Cart cartMock;
+    private Customer customer;
+    private List<Purchase> cartPurchases;
 
-        CartService cartService = new CustomerCartService(cart,
-                bookRepository, orderRepository);
+    @Test
+    public void shouldRemoveAnExistingBookPurchaseFromCart() {
+        Book expectedBook = cartPurchases.get(0).getBook();
 
         cartService.removeBookFromCart(expectedBook.getISBN());
 
-        verify(cart, times(1)).removeBook(expectedBook);
+        verify(cartMock, times(1)).removeBook(expectedBook);
     }
 
     @Test
-    public void shouldCalculatePurchasesSum() {
-        OrderRepository orderRepository = mock(OrderRepository.class);
-        Book expectedBook = MicroTestBookFactory.createBook();
-        BookRepository bookRepository = mock(BookRepository.class);
-
-        List<Purchase> expectedPurchaseList
-                = Stream
-                .of(MicroTestPurchaseFactory.createPurchaseFor(expectedBook))
-                .collect(Collectors.toList());
-
-
-        Cart cart = mock(Cart.class);
-        when(cart.purchases())
-                .thenReturn(expectedPurchaseList);
-        CartService cartService = new CustomerCartService(cart,
-                bookRepository, orderRepository);
+    public void shouldCalculateCurrentCustomerPurchasesSum() {
+        Integer expectedSum
+                = cartPurchases
+                .stream()
+                .mapToInt(purchase -> purchase.getBook().getPrice().intValue())
+                .sum();
 
         Integer actualSum = cartService.purchasesSum();
 
-        Assert.assertEquals(new Integer(500), actualSum);
+        assertEquals(expectedSum, actualSum);
     }
 
     @Test
-    public void shouldReturnPurchasesListOfTheCurrentCustomer() {
-        OrderRepository orderRepository = mock(OrderRepository.class);
-        Book expectedBook = MicroTestBookFactory.createBook();
-        BookRepository bookRepository = mock(BookRepository.class);
-
-        List<Purchase> expectedPurchaseList
-                = Stream
-                .of(MicroTestPurchaseFactory.createPurchaseFor(expectedBook))
-                .collect(Collectors.toList());
-
+    public void shouldReturnCurrentCustomerPurchases() {
         List<PurchaseViewModel> expectedPurchaseListViewModel
-                = Stream
-                .of(createPurchaseViewModelFor(expectedBook))
+                = cartPurchases
+                .stream()
+                .map(purchase -> PurchaseViewModel.from(purchase))
                 .collect(Collectors.toList());
-
-        Cart cart = mock(Cart.class);
-        when(cart.purchases())
-                .thenReturn(expectedPurchaseList);
-
-        CartService cartService = new CustomerCartService(cart,
-                bookRepository, orderRepository);
 
         List<PurchaseViewModel> actualPurchaseListViewModel
                 = cartService.purchases();
-        Assert.assertEquals(expectedPurchaseListViewModel, actualPurchaseListViewModel);
+
+        assertEquals(expectedPurchaseListViewModel, actualPurchaseListViewModel);
 
     }
 
     @Test
-    public void shouldAddABookToTheCatalogWhenGivenAValidBookISBN() {
+    public void shouldAddABookToTheCatalogWhenGivenAnExistingBookISBN() {
+        Book expectedBook = cartPurchases.get(0).getBook();
+
+        cartService.addBookToCart(expectedBook.getISBN());
+
+        verify(cartMock, times(1)).addBook(expectedBook);
+    }
+
+    @Before
+    public void setUp() {
         OrderRepository orderRepository = mock(OrderRepository.class);
-        Book expectedBook = MicroTestBookFactory.createBook();
+        customer = Customer.nullObject();
+        createDummyCartPurchases();
+        BookRepository bookRepository = createBookRepositoryMock();
+        createCartMock();
+        cartService = new CustomerCartService(cartMock,
+                                                bookRepository,
+                                                orderRepository);
+    }
 
-        BookRepository bookRepository = mock(BookRepository.class);
-        when(bookRepository.findBookByISBN(expectedBook.getISBN()))
-                .thenReturn(Optional.of(expectedBook));
+    private BookRepository createBookRepositoryMock() {
+        BookRepository bookRepository
+                = mock(BookRepository.class);
+        cartPurchases
+                .stream()
+                .forEach(purchase ->
+                        when(bookRepository
+                                .findBookByISBN(purchase.getBook().getISBN()))
+                                .thenReturn(Optional.of(purchase.getBook())));
+        return bookRepository;
+    }
 
-        Cart cart = mock(Cart.class);
+    private void createCartMock() {
+        cartMock = mock(Cart.class);
+        when(cartMock.purchases()).thenReturn(cartPurchases);
+    }
 
-        CartService repositoryCartService = new
-                CustomerCartService(cart, bookRepository, orderRepository);
-
-        repositoryCartService.addBookToCart(expectedBook.getISBN());
-
-        verify(cart, times(1)).addBook(expectedBook);
+    private void createDummyCartPurchases() {
+        cartPurchases = new ArrayList<>();
+        Book expectedBook = Book.nullObject();
+        Purchase expectedPurchase = Purchase.now(expectedBook, customer);
+        cartPurchases.add(expectedPurchase);
     }
 }
