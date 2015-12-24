@@ -14,13 +14,15 @@ public class CustomerOrderBuilder implements OrderBuilder {
     }
 
     @Override
-    public void withPurchase(Purchase purchase) {
+    public CustomerOrderBuilder withPurchase(Purchase purchase) {
         order.addItem(OrderItem.from(purchase));
+        return this;
     }
 
     @Override
-    public void forCustomer(Customer customer) {
+    public CustomerOrderBuilder forCustomer(Customer customer) {
         order.setCustomer(customer);
+        return this;
     }
 
     @Override
@@ -29,12 +31,13 @@ public class CustomerOrderBuilder implements OrderBuilder {
     }
 
     @Override
-    public void fromRequest(OrderRequest orderRequest) {
+    public CustomerOrderBuilder fromRequest(OrderRequest orderRequest) {
         order.setCustomerName(orderRequest.getCustomerName());
         order.setCustomerPhone(orderRequest.getCustomerPhone());
         order.setExpeditionDate(orderRequest.getExpeditionDate());
         order.setPaymentMethod(orderRequest.getPaymentMethod());
         order.setDeliveryAddress(orderRequest.getDeliveryAddress());
+        return this;
     }
 
     public static OrderBuilder newInstance() {

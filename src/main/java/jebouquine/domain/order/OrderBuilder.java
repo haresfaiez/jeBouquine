@@ -5,8 +5,8 @@ import jebouquine.domain.customer.Customer;
 import jebouquine.domain.order.customerorder.OrderRequest;
 
 public interface OrderBuilder {
-    void withPurchase(Purchase purchase);
-    void forCustomer(Customer currentCustomer);
+    OrderBuilder withPurchase(Purchase purchase);
+    OrderBuilder forCustomer(Customer currentCustomer);
     Order get();
-    void fromRequest(OrderRequest orderRequest);
+    OrderBuilder fromRequest(OrderRequest orderRequest);
 }

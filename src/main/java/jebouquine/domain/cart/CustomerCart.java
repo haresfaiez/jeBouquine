@@ -51,8 +51,8 @@ public class CustomerCart implements Cart {
         purchases()
                 .stream()
                 .forEach(purchase -> orderBuilder.withPurchase(purchase));
-        orderBuilder.fromRequest(orderRequest);
-        orderBuilder.forCustomer(customerRepository.getCurrentCustomer());
+        orderBuilder.fromRequest(orderRequest)
+                    .forCustomer(customerRepository.getCurrentCustomer());
         return orderBuilder.get();
 
     }
