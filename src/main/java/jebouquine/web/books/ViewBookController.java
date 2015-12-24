@@ -24,7 +24,7 @@ public class ViewBookController {
                                   Model model) {
         model.addAttribute("booksearch", SearchBookViewModel.nullObject());
         model.addAttribute("bookDetails", bookService.searchForBookByISBN
-                (SearchBookViewModel.fromISBN(ISBN)));
+                (SearchBookViewModel.byISBN(ISBN)));
         return "book/view";
     }
 

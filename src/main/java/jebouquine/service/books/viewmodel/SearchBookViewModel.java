@@ -67,7 +67,7 @@ public class SearchBookViewModel {
         return value;
     }
 
-    public static SearchBookViewModel fromISBN(String bookISBN) {
+    public static SearchBookViewModel byISBN(String bookISBN) {
         return new SearchBookViewModel(criteriaISBN, bookISBN);
     }
 
@@ -76,7 +76,7 @@ public class SearchBookViewModel {
         return value;
     }
 
-    public static SearchBookViewModel fromTitle(String title) {
+    public static SearchBookViewModel byTitle(String title) {
         return new SearchBookViewModel(criteriaTitle, title);
     }
 

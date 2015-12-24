@@ -1,7 +1,7 @@
 package books.service;
 
+import books.stub.InMemoryBookRepository;
 import jebouquine.domain.books.Book;
-import jebouquine.domain.books.BookRepository;
 import jebouquine.service.books.BookService;
 import jebouquine.service.books.CustomerBookService;
 import jebouquine.service.books.viewmodel.BookViewModel;
@@ -11,25 +11,25 @@ import org.junit.Before;
 import org.junit.Test;
 
 import java.util.List;
-import java.util.Optional;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
-import static org.mockito.Mockito.mock;
-import static org.mockito.Mockito.when;
+import static jebouquine.service.books.viewmodel.BookViewModel.from;
+import static jebouquine.service.books.viewmodel.SearchBookViewModel.byISBN;
+import static jebouquine.service.books.viewmodel.SearchBookViewModel.byTitle;
 
 public class CustomerBookServiceSearchTest {
 
-    private Book expectedBook;
-    private BookViewModel expectedBookViewModel;
-    private List<BookViewModel> expectedBooksList;
+    InMemoryBookRepository bookRepository = InMemoryBookRepository.create();
+    BookService bookService;
 
     @Test
     public void shouldReturnMatchedBooksWhenAskedForSearchingBookByTitle() {
-        BookService bookService
-                = new CustomerBookService(createBookRepositoryStub());
+        Book expectedBook = bookRepository.getAnExistingBook();
+        List<BookViewModel> expectedBooksList
+                = bookViewModelsOf(expectedBook);
         SearchBookViewModel searchBookViewModel
-                = SearchBookViewModel.fromTitle(expectedBook.getTitle());
+                = byTitle(expectedBook.getTitle());
 
         List<BookViewModel> actualBooksList =
                 bookService.searchForBooksByTitle(searchBookViewModel);
@@ -39,10 +39,10 @@ public class CustomerBookServiceSearchTest {
 
     @Test
     public void shouldReturnBookWhenAskedForSearchingAnExistingBookByISBN() {
-        BookService bookService = new CustomerBookService
-                (createBookRepositoryStub());
+        Book expectedBook = bookRepository.getAnExistingBook();
         SearchBookViewModel searchBookViewModel
-                = SearchBookViewModel.fromISBN(expectedBook.getISBN());
+                = byISBN(expectedBook.getISBN());
+        BookViewModel expectedBookViewModel = from(expectedBook);
 
         BookViewModel actualBookViewModel =
                 bookService.searchForBookByISBN(searchBookViewModel);
@@ -52,22 +52,13 @@ public class CustomerBookServiceSearchTest {
 
     @Before
     public void setUp() {
-        expectedBook = Book.nullObject();
-        expectedBookViewModel = BookViewModel.from(expectedBook);
-        expectedBooksList
-                = Stream.of(expectedBookViewModel)
+        bookService = new CustomerBookService(bookRepository);
+    }
+
+    private static List<BookViewModel> bookViewModelsOf(Book book) {
+        return Stream.of(BookViewModel.from(book))
                 .collect(Collectors.toList());
     }
 
-    public BookRepository createBookRepositoryStub() {
-        BookRepository bookRepository = mock(BookRepository.class);
 
-        when(bookRepository
-                .findBooksByTitle(expectedBook.getTitle()))
-                .thenReturn(Stream.of(expectedBook).collect(Collectors.toList()));
-
-        when(bookRepository.findBookByISBN(expectedBook.getISBN()))
-                .thenReturn(Optional.of(expectedBook));
-        return bookRepository;
-    }
 }

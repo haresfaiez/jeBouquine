@@ -41,7 +41,7 @@ public class SearchBookControllerTest {
                 Stream.of(expectedBookViewModel).collect(Collectors.toList());
 
         BookService bookService = mock(BookService.class);
-        given(bookService.searchForBooksByTitle(SearchBookViewModel.fromTitle
+        given(bookService.searchForBooksByTitle(SearchBookViewModel.byTitle
                 (IntegrationTestBookFactory.bookTitle))).willReturn
                 (expectedResult);
 
@@ -62,7 +62,7 @@ public class SearchBookControllerTest {
             throws Exception {
         final BookViewModel expectedBookViewModel = IntegrationTestBookFactory.createBookViewModel();
         BookService bookService = mock(BookService.class);
-        given(bookService.searchForBookByISBN(SearchBookViewModel.fromISBN
+        given(bookService.searchForBookByISBN(SearchBookViewModel.byISBN
                 (IntegrationTestBookFactory.bookISBN)
         )).willReturn
                 (expectedBookViewModel);

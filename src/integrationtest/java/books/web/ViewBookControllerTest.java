@@ -30,7 +30,7 @@ public class ViewBookControllerTest {
                 = IntegrationTestBookFactory.createBookViewModel();
 
         SearchBookViewModel searchBookViewModel
-                = SearchBookViewModel.fromISBN(IntegrationTestBookFactory.bookISBN);
+                = SearchBookViewModel.byISBN(IntegrationTestBookFactory.bookISBN);
         BookService bookService = mock(BookService.class);
         when(bookService.searchForBookByISBN(searchBookViewModel)).thenReturn
                 (expectedBookViewModel);
